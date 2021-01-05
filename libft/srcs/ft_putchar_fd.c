@@ -1,33 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/11 12:02:40 by bmangin           #+#    #+#             */
-/*   Updated: 2020/12/14 18:54:16 by bmangin          ###   ########lyon.fr   */
+/*   Created: 2020/11/05 02:40:41 by bmangin           #+#    #+#             */
+/*   Updated: 2020/11/24 15:16:21 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "../includes/libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdarg.h>
-# include "../libft/includes/libft.h"
-
-typedef	struct	s_flag
+void	ft_putchar_fd(char c, int fd)
 {
-	int         neg;
-	int			zero;
-    int         pres;
-    int         star;
-}				t_flag;
-
-int				ft_printf(const char *format, ...)
-                __attribute__((format(printf,1,2)));
-
-
-#endif
+	write(fd, &c, 1);
+}

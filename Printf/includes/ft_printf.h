@@ -16,18 +16,21 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
-# include "../libft/includes/libft.h"
 
 typedef	struct	s_flag
 {
-	int         neg;
-	int			zero;
-    int         pres;
-    int         star;
+	char		mod;
+	int			v;
+
 }				t_flag;
 
 int				ft_printf(const char *format, ...)
                 __attribute__((format(printf,1,2)));
-
+size_t			ft_strlen(char *s);
+int				ft_putchar(char c);
+int				ft_putstr(char *s);
+int				ft_putnbr(int n);
+int				ft_putnbr_base_xmin(int n);
+int				ft_putnbr_base_xmax(int n);
 
 #endif

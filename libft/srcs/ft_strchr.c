@@ -1,33 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/11 12:02:40 by bmangin           #+#    #+#             */
-/*   Updated: 2020/12/14 18:54:16 by bmangin          ###   ########lyon.fr   */
+/*   Created: 2020/11/04 00:39:37 by bmangin           #+#    #+#             */
+/*   Updated: 2020/12/10 14:17:37 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "../includes/libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdarg.h>
-# include "../libft/includes/libft.h"
-
-typedef	struct	s_flag
+char	*ft_strchr(const char *s, int c)
 {
-	int         neg;
-	int			zero;
-    int         pres;
-    int         star;
-}				t_flag;
-
-int				ft_printf(const char *format, ...)
-                __attribute__((format(printf,1,2)));
-
-
-#endif
+	while (*s && *s != (unsigned char)c)
+		s++;
+	if (*s == (unsigned char)c)
+		return ((char*)&(*s));
+	return (NULL);
+}

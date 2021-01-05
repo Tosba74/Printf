@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/11 12:02:40 by bmangin           #+#    #+#             */
-/*   Updated: 2020/12/14 18:54:16 by bmangin          ###   ########lyon.fr   */
+/*   Created: 2020/11/04 00:45:13 by bmangin           #+#    #+#             */
+/*   Updated: 2020/12/08 19:51:36 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "../includes/libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdarg.h>
-# include "../libft/includes/libft.h"
-
-typedef	struct	s_flag
+void	*ft_calloc(size_t count, size_t size)
 {
-	int         neg;
-	int			zero;
-    int         pres;
-    int         star;
-}				t_flag;
+	void	*dst;
 
-int				ft_printf(const char *format, ...)
-                __attribute__((format(printf,1,2)));
-
-
-#endif
+	if (count < 0 || size < 0)
+		return (NULL);
+	if (!(dst = malloc(count * size)))
+		return (NULL);
+	ft_bzero(dst, count * size);
+	return (dst);
+}

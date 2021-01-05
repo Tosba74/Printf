@@ -24,13 +24,13 @@ F_SRCS	= ./srcs/
 
 C_SRCS	= $(addprefix ${F_SRCS}, ${SRCS})
 
+LIBFT	= make -C include all
+
 F_LIB	= ./libft/
 
 C_LIB	= $(addprefix ${F_LIB}, ${LIBFT})
 
 OBJS	= ${C_SRCS:.c=.o}
-
-MAKE	= make -C 
 
 CC		= clang
 
@@ -40,13 +40,12 @@ AR		= ar rc
 
 RM		= rm -f
 
-all:	${NAME}
-
 %.o: %.c	${HDRS}
 	${CC} ${FLAGS} -c $ -o $@ -I ${HDRS}
 
+all:	${NAME}
+
 $(NAME):	${OBJS}
-	${MAKE} ${F_LIB}
 	${AR} $@ $?
 
 clean:

@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/11 12:02:40 by bmangin           #+#    #+#             */
-/*   Updated: 2020/12/14 18:54:16 by bmangin          ###   ########lyon.fr   */
+/*   Created: 2020/11/07 15:08:23 by bmangin           #+#    #+#             */
+/*   Updated: 2020/12/09 12:25:31 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "../includes/libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdarg.h>
-# include "../libft/includes/libft.h"
-
-typedef	struct	s_flag
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int         neg;
-	int			zero;
-    int         pres;
-    int         star;
-}				t_flag;
+	size_t	len1;
+	size_t	len2;
+	char	*s;
 
-int				ft_printf(const char *format, ...)
-                __attribute__((format(printf,1,2)));
-
-
-#endif
+	if (s1 == NULL || s2 == NULL)
+		return (NULL);
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	if (!(s = (char*)malloc(sizeof(char) * len1 + len2 + 1)))
+		return (NULL);
+	ft_memcpy(s, s1, len1);
+	ft_memcpy(s + len1, s2, len2 + 1);
+	return (s);
+}

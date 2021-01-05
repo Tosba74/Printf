@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/11 12:02:40 by bmangin           #+#    #+#             */
-/*   Updated: 2020/12/14 18:54:16 by bmangin          ###   ########lyon.fr   */
+/*   Created: 2020/11/09 22:58:18 by bmangin           #+#    #+#             */
+/*   Updated: 2020/11/09 23:21:24 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "../includes/libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdarg.h>
-# include "../libft/includes/libft.h"
-
-typedef	struct	s_flag
+char	*ft_strrev(char *s)
 {
-	int         neg;
-	int			zero;
-    int         pres;
-    int         star;
-}				t_flag;
+	size_t i;
+	size_t len;
+	char tmp;
 
-int				ft_printf(const char *format, ...)
-                __attribute__((format(printf,1,2)));
-
-
-#endif
+	i = 0;
+	len = ft_strlen(s) - 1;
+	if (len == 0)
+		return (NULL);
+	while (i <= len)
+	{
+		tmp = s[len];
+		s[len] = s[i];
+		s[i] = tmp;
+		len--;
+		i++;
+	}
+	return (s);
+}

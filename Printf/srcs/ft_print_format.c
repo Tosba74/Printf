@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-int		ft_isconvert(char c)
+int		ft_isflags(char c)
 {
 	char *flags;
 
@@ -25,36 +25,21 @@ int		ft_isconvert(char c)
 	}
 	return (0);
 }
-
-int		ft_isflags(char c)
-{
-    int     i;
-	char    *flags;
-
-    i = -1;
-	flags = "-0.*";
-	while (flags[++i])
-		if (*flags == c)
-			return (-1);
-	return (i);
-}
-
-
 int		ft_check_flags(char format, char c, va_list ap)
 {
 	if (format == '%' && c == 'c')
-		return (ft_putchar(va_arg(ap, int)));
+		return (ft_putchar(va_arg(ap, char)));
 	if (format == '%' && c == 's')
 		return (ft_putstr(va_arg(ap, char *)));
 	if (format == '%' && (c == 'd' || c == 'i'))
-		return (ft_itoa_len(va_arg(ap, int)));
+		return (ft_putnbr(va_arg(ap, int)));
 	if (format == '%' && (c == 'u'))
-		return (ft_itoa_len(va_arg(ap, unsigned int)));
-	/*
+		return (ft_putnbr(va_arg(ap, unsigned int)));
 	if (format == '%' && (c == 'x'))
 		return (ft_putnbr_base_x(va_arg(ap, int), "0123456789abcdef"));
 	if (format == '%' && (c == 'X'))
 		return (ft_putnbr_base_x(va_arg(ap, int), "0123456789ABCDEF"));
+	/*
 	if (format == '%' && (c == 'p'))
 		ft_putnbr((int)va_arg(int, arg));
 	if (format == '%' && (c == '%'))
