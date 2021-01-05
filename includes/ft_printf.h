@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 12:02:40 by bmangin           #+#    #+#             */
-/*   Updated: 2020/12/14 18:54:16 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/01/05 18:14:56 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,17 @@
 
 typedef	struct	s_flag
 {
-	int         neg;
-	int			zero;
-    int         pres;
-    int         star;
+	int 		size;
+	int			zero
+	int			neg;
+    int			pres;
+    int			star;
 }				t_flag;
 
-int				ft_printf(const char *format, ...)
-                __attribute__((format(printf,1,2)));
+int	            ft_printf(const char *format, ...)
+				__attribute__((format(printf,1,2)));
+int				ft_isconvert(char c);
+int				ft_isflags(char c);
 
 
 #endif

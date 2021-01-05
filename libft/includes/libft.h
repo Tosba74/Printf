@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 00:58:17 by bmangin           #+#    #+#             */
-/*   Updated: 2020/11/27 19:12:14 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/01/05 15:50:27 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ typedef struct		s_list
 **                  BASICS FUNCTIONS
 */
 int					ft_atoi(const char *str);
-int                 ft_atoi_base(const char *str, const char *base);
-int		            ft_check_base(const char *base);
+int					ft_atoi_base(const char *str, const char *base);
+int					ft_check_base(const char *base);
 int					ft_isspace(int c);
 int					ft_isalnum(int c);
 int					ft_isalpha(int c);
@@ -70,20 +70,21 @@ char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s1, char const *set);
 char				**ft_split(char const *s, char c);
 char				**ft_split_whitespaces(char const *s);
-int                 ft_putchar_len(char c);
-int                 ft_putstr_len(char *s);
-int                 ft_len_nbr(int n);
-int                 ft_putnbr_len(int n);
-int                 ft_len_itoa(int n, int b);
+int					ft_putchar_len(char c);
+int					ft_putstr_len(char *s);
+int					ft_len_nbr(int n);
+int					ft_putnbr_len(int n);
+int					ft_len_itoa(int n, int b);
+int					ft_itoa_base_len(char *result, int n, const char *base);
 char				*ft_itoa(int n);
-char            	*ft_itoa_base(int n, const char *base);
+char				*ft_itoa_base(int n, const char *base);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void				ft_putchar_fd(char c, int fd);
 void				ft_putchar(char c);
 void				ft_putstr_fd(char *s, int fd);
 void				ft_putnbr(int n);
 void				ft_putnbr_fd(int n, int fd);
-void                ft_putnbr_base(int n, char *base);
+void				ft_putnbr_base(int n, char *base);
 void				ft_putendl_fd(char *s, int fd);
 /*
 **                  BONUS FUNCTIONS

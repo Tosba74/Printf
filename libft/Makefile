@@ -18,8 +18,7 @@ FILES	= ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 		  ft_check_base.c ft_atoi_base.c ft_itoa_base.c ft_putnbr_base.c \
 		  ft_putchar.c ft_putstr.c ft_putnbr.c ft_isspace.c ft_strstr.c \
 		  ft_strcat.c ft_strncat.c ft_strncpy.c ft_split_whitespaces.c \
-		  ft_strcmp.c ft_len_itoa.c ft_putchar_len.c ft_putstr_len.c \
-		  ft_putnbr_len.c ft_len_nbr.c
+		  ft_strcmp.c ft_len_num.c ft_putchar_len.c ft_putstr_len.c 
 
 FILES_B	= ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c \
 		  ft_lstiter.c ft_lstlast.c ft_lstmap.c ft_lstnew.c ft_lstsize.c \

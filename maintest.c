@@ -11,8 +11,8 @@ int     main(void)
     printf("[%s == (%.5f)]\n", ".5f", pi);
     printf("[%s == (%10f)]\n", "10f", pi);
     printf("[%s == (%010f)]\n", "010f", pi);
-    printf("[%s == (%-10f)]\n", "-10f", pi);
-    printf("[%s == (%5f)]\n", "5f", pi);
+    printf("[%s == (%-10.3f)]\n", "-10.3f", pi);
+    printf("[%s == (%3*5f)]\n", "5f", pi);
     printf("[%s == (%-3f)]\n", "-3f", pi);
     return (0);
 }

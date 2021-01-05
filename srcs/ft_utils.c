@@ -1,21 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/11 16:46:14 by bmangin           #+#    #+#             */
-/*   Updated: 2020/12/14 18:03:41 by bmangin          ###   ########lyon.fr   */
+/*   Created: 2021/01/05 15:29:00 by bmangin           #+#    #+#             */
+/*   Updated: 2021/01/05 15:29:29 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-#include <stdio.h>
 
-int main(void)
+int		ft_isconvert(char c)
 {
-	printf("%x => %X\n", 42, 42);
-	ft_printf("%x => %X\n", 42, 42);	
-	return (0);
+	int		i;
+	char	*flags;
+
+	i = -1;
+	flags = "cspdiuxX%";
+	while (flags[++i])
+		if (flags[i] == c)
+			return (i);
+	return (-1);
+}
+
+int		ft_isflags(char c)
+{
+	int		i;
+	char	*flags;
+
+	i = -1;
+	flags = "-0.*";
+	while (flags[++i])
+		if (*flags == c)
+			return (-1);
+	return (i);
 }

@@ -1,20 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_len_num.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bmangin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/05 15:54:18 by bmangin           #+#    #+#             */
+/*   Updated: 2021/01/05 15:54:23 by bmangin          ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-int     ft_len_num(int n, int b)
+int		ft_len_num(int n, int b)
 {
 	int		count;
 
 	count = 0;
-    if (n < 0)
-    {
-        n = -n;
-        count++;
-    }
-    while (n > 0 && b >= 1)
-    {
-        n /= b;
-        count++;
-    }
-    return (count);
+	if (n < 0)
+	{
+		n = -n;
+		count++;
+	}
+	while (n > 0 && b >= 1)
+	{
+		n /= b;
+		count++;
+	}
+	return (count);
 }
