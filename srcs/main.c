@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 16:46:14 by bmangin           #+#    #+#             */
-/*   Updated: 2020/12/14 18:03:41 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/01/06 17:06:03 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int main(void)
 {
-	printf("%x => %X\n", 42, 42);
-	ft_printf("%x => %X\n", 42, 42);	
+	printf("ALEXIS JE TAIME mais tu%45d\n", 42);	
+	ft_printf("ALEXIS JE TAIME mais tu%45d\n", 42);	
 	return (0);
 }

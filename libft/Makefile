@@ -47,7 +47,7 @@ AR		= ar rcs
 
 MV		= mv
 
-RM		= rm
+RM		= rm -f
 
 I_LIB	= ranlib
 

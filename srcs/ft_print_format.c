@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 12:03:02 by bmangin           #+#    #+#             */
-/*   Updated: 2021/01/05 19:20:15 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/01/06 19:03:49 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,30 +36,31 @@ int		ft_check_flags(char format, char c, va_list ap)
 	return (0);
 }
 
-void	ft_init_flags(char format, t_flag flag)
-{
-	if (ft_isflags(format) == 0)
-		flag.minus = 1;
-	if (ft_isflags(format) == 1)
-		flag.zero = 1;
-	if (ft_isflags(format) == 2)
-		flag.neg = 1;
-	if (ft_isflags(format) == 3)
-		flag.pres = 1;
-	if (ft_isflags(format) == 4)
-		flag.star = 1;
-}
-
 int		ft_print_format(const char *format, va_list ap)
 {
-	t_flag		flag;
+	t_flags		*flags;
+	ft_putstr("-0-\n");
+	ft_putstr("-1-\n");
+	ft_putstr("-2-\n");
 	format++;
-	while (ft_isconvert(*format))
+	while (ft_isconvert(*format) < 0)
 	{
+		ft_putchar('0');
+		ft_init_struct(flags);
+	ft_print_struct(flags);
 		if (ft_isalnum(*format) > 0)
-			flag.size = ft_atoi(format);
+		{
+			ft_putstr("ERROR\n");
+			flags->size = ft_atoi(format);
+		}
 		else if (ft_isflags(*format))
-			ft_init_flags(*format, flag);
+		{
+			ft_putstr("ERROR\n");
+			ft_init_flags(*format, flags);
+		}
+		else if (ft_isflags(*format))
+			ft_putstr("ïsflags");
 		format++;
 	}
+	return (0);
 }
