@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 12:04:18 by bmangin           #+#    #+#             */
-/*   Updated: 2021/01/06 18:23:56 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/01/09 13:15:23 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ int		ft_printf(const char *format, ...)
 		if ((ft_isconvert(*format + 1) || ft_isflags(*format + 1)
 		|| ft_isalnum((int)*format + 1)) && *format == '%')
 		{
-			ft_putstr(" ahah\n");
 			ft_print_format(format, ap);
+			while (ft_isconvert(*format))
+				format++;
 		}
 		else
 			ft_putchar(*format);

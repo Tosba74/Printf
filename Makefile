@@ -6,7 +6,7 @@
 #    By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/11 11:23:45 by bmangin           #+#    #+#              #
-#    Updated: 2021/01/05 17:43:28 by bmangin          ###   ########lyon.fr    #
+#    Updated: 2021/01/08 19:24:07 by bmangin          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,6 @@ AR		= ar rc
 RM		= rm -f
 
 all:	${NAME}
-	${CC} -o prog ${NAME} ${C_LIB}
 
 %.o: %.c	${HDRS}
 	${CC} ${FLAGS} -c $ -o $@ -I ${HDRS} 
@@ -59,5 +58,11 @@ fclean:		clean
 	${RM} ${NAME}
 
 re:			fclean all
+
+test:
+	${CC} -o prog ${NAME} ${C_LIB}
+
+tests:
+	${CC} -fsanitize=address -g3 ${NAME} ${C_LIB}
 
 .PHONY:		all clean fclean re
