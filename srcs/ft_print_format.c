@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 12:03:02 by bmangin           #+#    #+#             */
-/*   Updated: 2021/01/09 14:25:05 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/01/09 18:54:58 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ int		ft_check_flags(char format, t_flags *flags, va_list ap)
 	if (format == 'c')
 		return (ft_putchar_len((char)va_arg(ap, int)));
 	if (format == 's')
-		return (ft_print_str(va_arg(ap, char *), flags));
+		return (ft_print_str(va_arg(ap, char *), *flags));
 	if (format == 'd' || format == 'i')
-		return (ft_itoa_len(va_arg(ap, int)));
+		return (ft_print_num(va_arg(ap, int), *flags));
+	/*
 	if (format == 'u')
 		return (ft_itoa_len(va_arg(ap, unsigned int)));
 	if (format == 'x')
@@ -41,7 +42,7 @@ int		ft_print_format(const char *format, va_list ap)
 {
 	t_flags		*flags;
 	flags = ft_init_struct(flags);
-	while (ft_isconvert(++format)) < 0)
+	while (ft_isconvert(++format) == -1)
 	{
 		if (ft_isalnum(*format))
 		{
@@ -55,16 +56,16 @@ int		ft_print_format(const char *format, va_list ap)
 				format++;
 			ft_putchar(*format);
 			ft_prints(flags);
-		}			
+		}
 		if (ft_isflags(*format))
 		{
 			ft_init_flags(*format, flags);
 			if (flags->star == 1)
 			{
-				if(flags->pres == 1)
+				if (flags->pres == 1)
 					flags->pres = (int)va_arg(ap, int);
 				else
-					flags->size = (int)va_arg(ap, int);	
+					flags->size = (int)va_arg(ap, int);
 			}
 			ft_prints(flags);
 		}
