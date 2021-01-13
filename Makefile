@@ -6,7 +6,7 @@
 #    By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/11 11:23:45 by bmangin           #+#    #+#              #
-#    Updated: 2021/01/08 19:24:07 by bmangin          ###   ########lyon.fr    #
+#    Updated: 2021/01/11 21:02:54 by bmangin          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,31 +38,33 @@ CC		= clang
 
 FLAGS	= -Wall -Werror -Wextra
 
-AR		= ar rc
+AR		= ar rcs
 
 RM		= rm -f
 
 all:	${NAME}
 
 %.o: %.c	${HDRS}
-	${CC} ${FLAGS} -c $ -o $@ -I ${HDRS} 
+	${CC} ${FLAGS} -c $< -o $@ -I ${F_HDRS} 
 
-$(NAME):	${OBJS}
+${NAME}:	${OBJS}
 	${MAKE} ${F_LIB}
-	${AR} $@ $?
+	${AR} $@ ${C_LIB} $?
 
 clean:
+	${MAKE} ${F_LIB} clean
 	${RM} ${OBJS}
 
 fclean:		clean
+	${MAKE} ${F_LIB} fclean
 	${RM} ${NAME}
 
 re:			fclean all
 
 test:
-	${CC} -o prog ${NAME} ${C_LIB}
+	${CC} ${FLAGS} ${OBJS} ${C_LIB} -o prog -I ${F_HDRS}  
 
 tests:
 	${CC} -fsanitize=address -g3 ${NAME} ${C_LIB}
 
-.PHONY:		all clean fclean re
+.PHONY:		all clean fclean test tests re

@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_ternary.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/11 16:46:14 by bmangin           #+#    #+#             */
-/*   Updated: 2021/01/13 12:15:59 by bmangin          ###   ########lyon.fr   */
+/*   Created: 2021/01/10 20:50:19 by bmangin           #+#    #+#             */
+/*   Updated: 2021/01/11 10:37:17 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
-#include <stdio.h>
+# include "../includes/libft.h"
 
-int main(void)
+void	ft_ternary (int *(*condition)(void *), void *(*f1)(void *), void *(*f2)(void *))
 {
-	double pi;
-	
-	pi = 3.141591654;
-	printf("ALEXIS JE TAIME mais %-*s theo %-*d lavabo\n", 6, "salut", 6, 42);	
-	ft_printf("ALEXIS JE TAIME mais %-*s theo %-*d lavabo\n", 6, "salut", 6, 42);	
-	return (0);
+	if (condition() == 0)
+		return (f1());
+	else if (condition() > 0)
+		return (f2(void *));
 }

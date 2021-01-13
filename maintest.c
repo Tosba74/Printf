@@ -6,14 +6,17 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 17:37:17 by bmangin           #+#    #+#             */
-/*   Updated: 2021/01/09 17:40:41 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/01/13 11:18:21 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <unistd.h>
 
 int		main(void)
 {
+	char *teub;
+
 	double	pi;
 	char 	*str;
 

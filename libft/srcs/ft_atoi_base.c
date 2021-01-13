@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 01:48:07 by bmangin           #+#    #+#             */
-/*   Updated: 2020/11/12 01:07:44 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/01/11 19:08:05 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,4 @@ int         ft_atoi_base(const char *str, const char *base)
         str++;
     }
    return (num * neg);
-}
-
-
-
-#include <stdio.h>
-int main(void)
-{
-    printf("%d\n", ft_atoi_base("101010", "01"));
-    return (0);
 }

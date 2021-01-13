@@ -18,7 +18,8 @@ FILES	= ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 		  ft_check_base.c ft_atoi_base.c ft_itoa_base.c ft_putnbr_base.c \
 		  ft_putchar.c ft_putstr.c ft_putnbr.c ft_isspace.c ft_strstr.c \
 		  ft_strcat.c ft_strncat.c ft_strncpy.c ft_split_whitespaces.c \
-		  ft_strcmp.c ft_len_num.c ft_putchar_len.c ft_putstr_len.c 
+		  ft_strcmp.c ft_len_num.c ft_putchar_len.c ft_putstr_len.c \
+		  ft_hexa.c 
 
 FILES_B	= ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c \
 		  ft_lstiter.c ft_lstlast.c ft_lstmap.c ft_lstnew.c ft_lstsize.c \
@@ -63,16 +64,16 @@ _P=\x1b[35m
 _C=\x1b[36m
 _E=\x1b[0m
 
-all :		${NAME} ${BONUS} libft
+all :		${NAME}
 
 %.o : %.c
 	${CC} ${FLAGS} -o $@ -c $< -I ${INC}
 	echo "${_Y}compiling >>>${E}${_G} $<${_E}"
 
-${NAME}	:	${TMP}
+$(NAME)	:	${TMP}
 	${MV} $? ${PATH_O}
-	echo "${_P}-----${_E}\t${_R}   creating archive${_E}\t${_P}-----${_E}"
 	${AR} $@ ${BIN}
+	echo "${_P}-----${_E}\t${_R}   creating archive${_E}\t${_P}-----${_E}"
 	echo "${_P}-----${_E}\t${_R}    library index${_E}\t${_P}-----${_E}"
 	${I_LIB} $@
 
@@ -86,7 +87,7 @@ clean :
 	${RM} ${BIN} ${BIN_B}
 	echo "${_P}$@ ${_E}${_R}ecrase your objets !${_E}"
 
-fclean :	clean monkey
+fclean :	clean
 	${RM} ${NAME}
 	echo "${_P}$@ ${_E}${_R}ecrase all !!!${_E}"
 

@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
+/*   ft_hexa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/08 21:42:29 by bmangin           #+#    #+#             */
-/*   Updated: 2021/01/09 23:25:42 by bmangin          ###   ########lyon.fr   */
+/*   Created: 2021/01/10 13:53:05 by bmangin           #+#    #+#             */
+/*   Updated: 2021/01/11 15:13:39 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+# include "../includes/libft.h"
 
-void    ft_recursive_itoa(long nb, int i, const char *base, char *result)
+static char	*ft_add_0x(char *str, const char *base)
+{
+	str[0] = '0';
+	if (base[10] == 'A')
+		str[1] = 'X';
+	else
+		str[1] = 'x';
+	return (str);
+}
+
+void	    ft_recursive_itoa(long nb, int i, const char *base, char *result)
 {
 	int b;
 
@@ -22,7 +32,7 @@ void    ft_recursive_itoa(long nb, int i, const char *base, char *result)
         ft_recursive_itoa(nb / b, i - 1, base, result);
 }
 
-char	*ft_itoa_base(int n, const char *base)
+char		*ft_hexa(int n, const char *base)
 {
 	int		b;
 	int		len;
@@ -30,9 +40,9 @@ char	*ft_itoa_base(int n, const char *base)
 	char	*result;
 
 	b = ft_check_base(base); 
-	len = ft_len_num(n, b);
+	len = ft_len_num(n, b) + 2;
 	nb = (long)n;
-	if (!(result = (char*)malloc(sizeof(char) * len)))
+	if (!(result = (char*)malloc(sizeof(char) * len) + 1))
 		return (NULL);
 	if (b == 0 || b == 1)
 		return (0);
@@ -42,6 +52,7 @@ char	*ft_itoa_base(int n, const char *base)
         nb = -nb;
     }
 	result[len] = '\0';
-	ft_recursive_itoa(nb, len - 1, base, result);
+	ft_recursive_itoa(nb, len - 3, base, result);
+	result = ft_add_0x(result, base);
 	return (result);
 }

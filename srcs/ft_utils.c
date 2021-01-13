@@ -6,11 +6,18 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 15:29:00 by bmangin           #+#    #+#             */
-/*   Updated: 2021/01/09 14:24:43 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/01/13 12:15:18 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+
+char	*ft_all_z(char *s)
+{
+	while (*s++)
+		*s = '0';
+	return (s);
+}
 
 int		ft_isconvert(char c)
 {
@@ -40,20 +47,17 @@ int		ft_isflags(char c)
 
 void	ft_init_flags(const char format, t_flags *flags)
 {
-	ft_putstr("ahah == ");
-	ft_putchar((char)format);
-	ft_putchar('\n');
-	if (ft_isflags(format) == 0)
+	if (format == '-')
 		flags->neg = 1;
-	if (ft_isflags(format) == 1)
+	if (format == '.')
 		flags->pres = 1;
-	if (ft_isflags(format) == 2)
+	if (format == '*')
 		flags->star = 1;
 }
 
 void	ft_prints(t_flags *flags)
 {
-	ft_putstr("\n------------\n");
+	ft_putstr("------------\n");
 	ft_putstr("size => ");
 	ft_putnbr(flags->size);
 	ft_putstr("\nzero => ");
@@ -69,7 +73,7 @@ void	ft_prints(t_flags *flags)
 
 t_flags	*ft_init_struct(t_flags *flags)
 {
-	ft_putstr("|\nstart init");
+//	ft_putstr("|\nfirst init\n");
 	if (!(flags = malloc(sizeof(t_flags))))
 		return (NULL);
 	flags->size = -1;
@@ -77,7 +81,6 @@ t_flags	*ft_init_struct(t_flags *flags)
 	flags->neg = 0;
 	flags->pres = 0;
 	flags->star = 0;
-	ft_prints(flags);
-	ft_putstr("end init");
+	//ft_prints(flags);
 	return (flags);
 }
