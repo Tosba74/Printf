@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 15:29:00 by bmangin           #+#    #+#             */
-/*   Updated: 2021/01/13 12:15:18 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/01/15 16:30:40 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,13 @@ int		ft_isflags(char c)
 	return (-1);
 }
 
-void	ft_init_flags(const char format, t_flags *flags)
+void	ft_re_init(t_flags *flags)
 {
-	if (format == '-')
-		flags->neg = 1;
-	if (format == '.')
-		flags->pres = 1;
-	if (format == '*')
-		flags->star = 1;
+	flags->size = -1;
+	flags->zero = 0;
+	flags->rev = 0;
+	flags->prec = 0;
+	flags->star = 0;
 }
 
 void	ft_prints(t_flags *flags)
@@ -62,25 +61,16 @@ void	ft_prints(t_flags *flags)
 	ft_putnbr(flags->size);
 	ft_putstr("\nzero => ");
 	ft_putnbr(flags->zero);
-	ft_putstr("\nneg => ");
-	ft_putnbr(flags->neg);
-	ft_putstr("\npres => ");
-	ft_putnbr(flags->pres);
+	ft_putstr("\nrev => ");
+	ft_putnbr(flags->rev);
+	ft_putstr("\nprec => ");
+	ft_putnbr(flags->prec);
 	ft_putstr("\nstar => ");
 	ft_putnbr(flags->star);
+	ft_putstr("\nlength => ");
+	ft_putnbr(flags->length);
+	ft_putstr("\nspec => ");
+	ft_putchar(flags->spec);
 	ft_putstr("\n------------\n");
-}
-
-t_flags	*ft_init_struct(t_flags *flags)
-{
-//	ft_putstr("|\nfirst init\n");
-	if (!(flags = malloc(sizeof(t_flags))))
-		return (NULL);
-	flags->size = -1;
-	flags->zero = 0;
-	flags->neg = 0;
-	flags->pres = 0;
-	flags->star = 0;
-	//ft_prints(flags);
-	return (flags);
+	ft_putchar('\n');
 }

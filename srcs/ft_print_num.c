@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 18:50:50 by bmangin           #+#    #+#             */
-/*   Updated: 2021/01/13 12:19:34 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/01/15 19:00:02 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,66 +31,36 @@ char	*ft_complet_all(int len, int fzero)
 	return (ret);
 }
 
-char	*ft_make_str(char *ret, char *s, int i, int fneg)
-{
-	int		c;
-
-	c = -1;
-	ft_putstr(ret);
-	ft_putchar('\n');
-	ft_putstr(s);
-	ft_putchar('\n');
-	if (fneg == 0)
-	{
-		while (*s && ret[i])
-			ret[i++] = *s++;
-		ft_putchar('0');
-	}
-	else if (fneg == 1)
-	{
-		while (s[++c])
-			ret[c] = s[c];	
-		ft_putchar('1');
-	}
-	ft_putstr(ret);
-	ft_putchar('\n');
-	return(ret);
-	
-}
-
-int		ft_print_str(char *s, t_flags flags)
+char	*ft_make_str(char *ret, char *s, t_flags flags)
 {
 	int		i;
+	int		c;
+
+	i = 0;
+	if (flags.prec == 0)
+		flags.prec = ft_strlen(s);
+	if (flags.rev == 1)
+		c = 0;
+	else if (flags.rev == 0)
+		c = ft_strlen(ret) - ft_strlen(s);
+	while (s[i] && i < flags.prec)
+		ret[c++] = s[i++];
+	return (ret);
+}
+
+int		ft_print_str(t_flags flags)
+{
 	int		len;
 	char	*ret;
 
-	ft_prints(&flags);
-	if (flags.size >= 0)
-		len = flags.size;
-	else if (flags.size < 0)
-		len = ft_strlen(s);
-	ret = ft_complet_all(len, flags.zero);
-	i = len - ft_strlen(s);
-	ft_putstr("i == ");
-	ft_putnbr(i);
-	ft_putchar('\n');
-	ret = ft_make_str(ret, s, i, flags.neg);
-	ft_putstr(ret);
-	ft_putchar('\n');
-	
-	/*
-	if (!(ret = malloc(sizeof(char) * len + 1)))
-		return (0);
-	ret[len] = '\0';
-	if (flags.zero == -1)
-		ret = ft_all_z(ret);
-	if (flags.neg == 0)
-		ret = ft_substr(s, len - ft_strlen(s) + 1, ft_strlen(s));
+	if (flags.size == -1)
+		len = ft_strlen((char*)va_arg(flags.ap, char *));
 	else
-		ret = ft_substr(s, 0, ft_strlen(s));
-	*/
+		len = flags.size;
+	ret = ft_complet_all(len, flags.zero);
+	ret = ft_make_str(ret, (char*)va_arg(flags.ap, char *), flags);
 	ft_putstr(ret);
-	ft_putchar('\n');
+	free(ret);
 	return (len);
 }
 
@@ -100,7 +70,6 @@ int		ft_print_num(int n, t_flags flags)
 	char	*ret;
 	char	*tmp;
 
-	ft_prints(&flags);
 	ft_putnbr(n);
 	if (flags.size >= 0)
 		len = flags.size;
@@ -112,13 +81,14 @@ int		ft_print_num(int n, t_flags flags)
 	if (flags.zero == -1)
 		ret = ft_all_z(ret);
 	tmp = ft_itoa(n);
-	if (flags.neg == 0)
+	if (flags.rev == 0)
 		ret = ft_substr(tmp, len - ft_strlen(tmp), ft_strlen(tmp));
 	else
-		ret = ft_substr(tmp, 0, ft_strlen(tmp));	
+		ret = ft_substr(tmp, 0, ft_strlen(tmp));
 	ft_putstr(ret);
 	return (len);
 }
+
 /*
 int		ft_print_hex(int n, const char *base, t_flags flags)
 {

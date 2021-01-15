@@ -6,7 +6,7 @@
 #    By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/11 11:23:45 by bmangin           #+#    #+#              #
-#    Updated: 2021/01/11 21:02:54 by bmangin          ###   ########lyon.fr    #
+#    Updated: 2021/01/15 16:55:20 by bmangin          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,9 +62,12 @@ fclean:		clean
 re:			fclean all
 
 test:
-	${CC} ${FLAGS} ${OBJS} ${C_LIB} -o prog -I ${F_HDRS}  
+	${CC} ${FLAGS} ${OBJS} ${C_LIB} -o prog -I ${F_HDRS}
+	./prog | cat -e 
 
 tests:
 	${CC} -fsanitize=address -g3 ${NAME} ${C_LIB}
+
+a:	re test
 
 .PHONY:		all clean fclean test tests re

@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 12:04:18 by bmangin           #+#    #+#             */
-/*   Updated: 2021/01/13 11:12:58 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/01/14 18:17:38 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,25 @@
 
 int		ft_printf(const char *format, ...)
 {
-	va_list ap;
-	va_start(ap, format);
-	int		count;
-	while (*format)
+	t_flags		tf;
+	int			i;
+
+	tf = (t_flags) {.size = -1};
+	i = -1;
+	va_start(tf.ap, format);
+	while (format[++i])
 	{
-		if ((ft_isconvert(*format + 1) || ft_isflags(*format + 1)
-		|| ft_isalnum((int)*format + 1)) && *format == '%')
+		if (format[i] == '%')
 		{
-			count += ft_print_format(format, ap);
-			while (ft_isconvert(*format) != -1)
-				format++;
-			format++;
+			i++;
+			i += ft_init_format(&tf, format + i);
 		}
 		else
-			ft_putchar(*format);
-		format++;
+		{
+			ft_putchar(format[i]);
+			tf.length++;
+		}
 	}
-	va_end(ap);
-	return (count);
+	va_end(tf.ap);
+	return (tf.length);
 }
