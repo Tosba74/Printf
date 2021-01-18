@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 12:04:18 by bmangin           #+#    #+#             */
-/*   Updated: 2021/01/14 18:17:38 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/01/17 10:41:34 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,11 @@ int		ft_printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
+			ft_putnbr(i);
+			ft_putchar(' ');
 			i++;
 			i += ft_init_format(&tf, format + i);
+			ft_putnbr(i);
 		}
 		else
 		{

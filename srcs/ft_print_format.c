@@ -6,14 +6,15 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 12:03:02 by bmangin           #+#    #+#             */
-/*   Updated: 2021/01/15 19:11:43 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/01/17 20:20:09 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void		ft_check_flags(t_flags *flags)
+void		ft_print_format(t_flags *flags)
 {
+	ft_prints(flags);
 	/*
 	ft_putstr("\nx><><x><><x\n");
 	ft_prints(flags);
@@ -37,7 +38,6 @@ void		ft_check_flags(t_flags *flags)
 	if (format == '%')
 		ft_putnbr((int)va_arg(ap, int));
 	*/
-	ft_re_init(flags);
 }
 
 int		ft_init_format(t_flags *flags, const char *format)
@@ -47,45 +47,53 @@ int		ft_init_format(t_flags *flags, const char *format)
 	i = 0;
 	while (ft_isconvert(format[i]) == -1)
 	{
+		ft_putchar(format[i]);
+		ft_putchar('\n');
 		if (format[i] == '-')
+		{
 			flags->rev = 1;
+			i++;
+		}
+		if (format[i] == '0')
+		{
+			flags->zero = 1;
+			i++;
+		}
+		while (ft_isdigit(format[i]))
+		{
+			if (flags->size == -1)
+				flags->size = ft_atoi(format);
+			i++;
+		}
 		if (format[i] == '*')
-			flags->star = 1;
+		{
+			flags->size = va_arg(flags->ap, int);
+		}
 		if (format[i] == '.')
 		{
-			flags->prec = 1;
 			i++;
-			if (format[i] == '*')
-				flags->prec = va_arg(flags->ap, int);
-			else
-				flags->prec = ft_atoi(format);
-		}
-		if (ft_isalnum(format[i]))
-		{
-			if (format[i] == '0')
-				flags->zero = 1;
-			else if (format[i] != '0')
+			if (ft_isdigit(format[i]))
 			{
-				if (flags->prec == 1)
-					flags->prec = ft_atoi(format);
-				else if (flags->size == -1)
-					flags->size = ft_atoi(format);
+				flags->prec = ft_atoi(format);
+				ft_putchar('.');
+				ft_putnbr(flags->prec);
+				ft_putchar('\n');
+			}
+			else if (format[i] == '*')
+			{
+				flags->prec = va_arg(flags->ap, int);
+				ft_putchar('.');
+				ft_putnbr(flags->prec);
+				ft_putchar('\n');
 			}
 		}
-		if (flags->star == 1)
-		{
-			if (flags->prec == 0)
-				flags->size = va_arg(flags->ap, int);
-			else if (flags->prec == 1)
-				flags->prec = va_arg(flags->ap, int);
-			flags->star = 0;
-		}
-		i++;
 		ft_prints(flags);
+		if (ft_isconvert(format[i]))
+			break;
+		i++;
 	}
-	flags->spec = format[i];
-	ft_prints(flags);
-	ft_check_flags(flags);
+	flags->spec = format[i++];
+	//ft_print_format(flags);
 	return (i);
 }
 

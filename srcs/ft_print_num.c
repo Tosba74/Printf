@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 18:50:50 by bmangin           #+#    #+#             */
-/*   Updated: 2021/01/15 19:00:02 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/01/17 10:51:56 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*ft_make_str(char *ret, char *s, t_flags flags)
 	if (flags.rev == 1)
 		c = 0;
 	else if (flags.rev == 0)
-		c = ft_strlen(ret) - ft_strlen(s);
+		c = ft_strlen(ret) - (ft_strlen(s) - flags.prec);
 	while (s[i] && i < flags.prec)
 		ret[c++] = s[i++];
 	return (ret);
@@ -58,8 +58,11 @@ int		ft_print_str(t_flags flags)
 	else
 		len = flags.size;
 	ret = ft_complet_all(len, flags.zero);
-	ret = ft_make_str(ret, (char*)va_arg(flags.ap, char *), flags);
 	ft_putstr(ret);
+	ft_putchar('\n');
+	ret = ft_make_str(ret, (char*)va_arg(flags.ap, char *), flags);
+	//ft_putstr(ret);
+	//ft_putchar('\n');
 	free(ret);
 	return (len);
 }
@@ -79,13 +82,14 @@ int		ft_print_num(int n, t_flags flags)
 		return (0);
 	ret[len] = '\0';
 	if (flags.zero == -1)
-		ret = ft_all_z(ret);
+		ret = ft_complet_all(len, flags.zero);
 	tmp = ft_itoa(n);
 	if (flags.rev == 0)
 		ret = ft_substr(tmp, len - ft_strlen(tmp), ft_strlen(tmp));
 	else
 		ret = ft_substr(tmp, 0, ft_strlen(tmp));
 	ft_putstr(ret);
+	ft_init_flags(&flags);
 	return (len);
 }
 

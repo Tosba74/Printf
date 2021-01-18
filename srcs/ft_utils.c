@@ -6,18 +6,11 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 15:29:00 by bmangin           #+#    #+#             */
-/*   Updated: 2021/01/15 16:30:40 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/01/16 14:30:01 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-
-char	*ft_all_z(char *s)
-{
-	while (*s++)
-		*s = '0';
-	return (s);
-}
 
 int		ft_isconvert(char c)
 {
@@ -45,7 +38,7 @@ int		ft_isflags(char c)
 	return (-1);
 }
 
-void	ft_re_init(t_flags *flags)
+void	ft_init_flags(t_flags *flags)
 {
 	flags->size = -1;
 	flags->zero = 0;
