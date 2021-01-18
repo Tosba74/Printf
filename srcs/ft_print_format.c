@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 12:03:02 by bmangin           #+#    #+#             */
-/*   Updated: 2021/01/17 20:20:09 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/01/18 17:44:13 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,40 @@ void		ft_print_format(t_flags *flags)
 	*/
 }
 
+void	ft_parsing(t_flags *flags, const char *format, int *i)
+{
+	if (format[*i] == '-')
+		flags->rev = 1;
+	if (format[*i] == '0')
+		flags->zero = 1;
+	while (ft_isdigit(format[*i]))
+	{
+		if (flags->size == -1)
+			flags->size = ft_atoi(format + *i);
+		(*i)++;
+	}
+	if (format[*i] == '*')
+		flags->size = (int)va_arg(flags->ap, int);
+}
+
+void	ft_parsing_prec(t_flags *flags, const char *format, int *i)
+{
+	if (format[*i] == '.')
+	{
+		(*i)++;
+		if (ft_isdigit(format[*i]))
+		{
+			flags->prec = ft_atoi(format + *i);
+			while (ft_isdigit(format[*i]))
+				(*i)++;
+		}
+		else if (format[*i] == '*')
+		{
+			flags->prec = va_arg(flags->ap, int);
+		}
+	}
+}
+
 int		ft_init_format(t_flags *flags, const char *format)
 {
 	int i;
@@ -47,53 +81,15 @@ int		ft_init_format(t_flags *flags, const char *format)
 	i = 0;
 	while (ft_isconvert(format[i]) == -1)
 	{
-		ft_putchar(format[i]);
-		ft_putchar('\n');
-		if (format[i] == '-')
-		{
-			flags->rev = 1;
-			i++;
-		}
-		if (format[i] == '0')
-		{
-			flags->zero = 1;
-			i++;
-		}
-		while (ft_isdigit(format[i]))
-		{
-			if (flags->size == -1)
-				flags->size = ft_atoi(format);
-			i++;
-		}
-		if (format[i] == '*')
-		{
-			flags->size = va_arg(flags->ap, int);
-		}
-		if (format[i] == '.')
-		{
-			i++;
-			if (ft_isdigit(format[i]))
-			{
-				flags->prec = ft_atoi(format);
-				ft_putchar('.');
-				ft_putnbr(flags->prec);
-				ft_putchar('\n');
-			}
-			else if (format[i] == '*')
-			{
-				flags->prec = va_arg(flags->ap, int);
-				ft_putchar('.');
-				ft_putnbr(flags->prec);
-				ft_putchar('\n');
-			}
-		}
-		ft_prints(flags);
-		if (ft_isconvert(format[i]))
-			break;
+		ft_parsing(flags, format, &i);
+		ft_parsing_prec(flags, format, &i);
+		if (ft_isconvert(format[i]) != -1)
+			break ;
 		i++;
 	}
-	flags->spec = format[i++];
-	//ft_print_format(flags);
+	flags->spec = format[i];
+	ft_prints(flags);
+	ft_print_format(flags);
 	return (i);
 }
 

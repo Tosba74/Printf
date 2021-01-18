@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 15:29:00 by bmangin           #+#    #+#             */
-/*   Updated: 2021/01/16 14:30:01 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/01/18 15:47:09 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	ft_init_flags(t_flags *flags)
 	flags->rev = 0;
 	flags->prec = 0;
 	flags->star = 0;
+	flags->spec = '-';
 }
 
 void	ft_prints(t_flags *flags)

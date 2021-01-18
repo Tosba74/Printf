@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 16:46:14 by bmangin           #+#    #+#             */
-/*   Updated: 2021/01/18 13:15:28 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/01/18 16:40:52 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int main(void)
 	
 	str = "salut";
 	pi = 3.141591654;
-	printf("1ALEXIS JE TAIME mais %-*.2s theo %*s lavabo\n", 3, str, 6, "42");	
-	ft_printf("ALEXIS JE TAIME mais %-*.2s theo %*s lavabo\n", 3, str, 6, "42");	
+	printf("1ALEXIS JE TAIME mais %-*.4s theo %6s lavabo\n", 3, str, "42");	
+	ft_printf("ALEXIS JE TAIME mais %-*.4s theo %-*s lavabo\n", 3, str, 6, "213654987");	
+	// ft_printf("Jaime bien: %*s %*s\n", 5, "coucou", 5, "hey");
 	return (0);
 }
