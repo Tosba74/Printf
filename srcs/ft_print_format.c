@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 12:03:02 by bmangin           #+#    #+#             */
-/*   Updated: 2021/01/18 17:44:13 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/02/02 17:15:07 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,13 @@
 
 void		ft_print_format(t_flags *flags)
 {
+	ft_putstr("CONNARD!\n");
 	ft_prints(flags);
-	/*
 	ft_putstr("\nx><><x><><x\n");
-	ft_prints(flags);
-	ft_putstr("x><><x><><x\n");
-	if (format == 'c')
-		return (ft_putchar_len(flags));
-	*/
+	// ft_prints(flags);
+	// ft_putstr("x><><x><><x\n");
+	// if (format == 'c')
+		// return (ft_putchar_len(flags));
 	if (flags->spec == 's')
 		flags->length += ft_print_str(*flags);
 	/*
@@ -54,6 +53,7 @@ void	ft_parsing(t_flags *flags, const char *format, int *i)
 	}
 	if (format[*i] == '*')
 		flags->size = (int)va_arg(flags->ap, int);
+	ft_putstr("suis ");
 }
 
 void	ft_parsing_prec(t_flags *flags, const char *format, int *i)
@@ -72,6 +72,8 @@ void	ft_parsing_prec(t_flags *flags, const char *format, int *i)
 			flags->prec = va_arg(flags->ap, int);
 		}
 	}
+	ft_putstr("LA! ");
+	ft_putnbr(*i);
 }
 
 int		ft_init_format(t_flags *flags, const char *format)
@@ -81,6 +83,7 @@ int		ft_init_format(t_flags *flags, const char *format)
 	i = 0;
 	while (ft_isconvert(format[i]) == -1)
 	{
+		ft_putstr(" JE ");
 		ft_parsing(flags, format, &i);
 		ft_parsing_prec(flags, format, &i);
 		if (ft_isconvert(format[i]) != -1)
@@ -88,55 +91,7 @@ int		ft_init_format(t_flags *flags, const char *format)
 		i++;
 	}
 	flags->spec = format[i];
-	ft_prints(flags);
+	// ft_prints(flags);
 	ft_print_format(flags);
 	return (i);
 }
-
-/*
-int		ft_print_format(const char *format, t_flags *flags)
-{
-	format++;
-	while (ft_isconvert(*format) == -1)
-	{
-		if (ft_isalnum(*format))
-		{
-			if (*format == '0')
-				flags->zero = 1;
-			else if (*format != '0')
-			{
-				if (flags->prec == 1)
-					flags->prec = ft_atoi(format);
-				if (flags->size == -1)
-					flags->size = ft_atoi(format);
-			}
-			while (ft_isalnum(*format))
-				format++;
-		}
-		if (ft_isflags(*format) == -1)
-		{
-			ft_putstr("hahahahah");
-			ft_init_flags(*format, flags);
-			if (flags->star == 1)
-			{
-				if (flags->prec == 0)
-					flags->size = (int)va_arg(flags->ap, int);
-				else if (flags->prec == 1)
-					flags->prec = (int)va_arg(flags->ap, int);
-			}
-		}
-		ft_putstr("char => ");
-		ft_putchar(*format);
-		ft_putchar('\n');
-		ft_putstr("\nx><><x><><x\n");
-		ft_prints(flags);
-		ft_putstr("x><><x><><x\n");
-		format++;
-	}
-	return (0);
-	//ft_putstr("\nx><><x><><x\n");
-	//ft_prints(flags);
-	//ft_putstr("x><><x><><x\n");
-	//return (ft_check_flags(*format, flags, ap));
-}
-*/

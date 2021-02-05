@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 12:04:18 by bmangin           #+#    #+#             */
-/*   Updated: 2021/01/18 17:38:25 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/02/03 14:18:21 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		ft_printf(const char *format, ...)
 	t_flags		tf;
 	int			i;
 
-	tf = (t_flags) {.size = -1};
+	tf = (t_flags) {.size = -1, .prec = -1};
 	i = -1;
 	va_start(tf.ap, format);
 	while (format[++i])

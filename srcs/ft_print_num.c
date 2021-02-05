@@ -6,66 +6,11 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 18:50:50 by bmangin           #+#    #+#             */
-/*   Updated: 2021/01/18 16:39:57 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/02/05 13:20:05 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-
-char	*ft_complet_all(int len, int fzero)
-{
-	char	*ret;
-	char	replace;
-	int		i;
-
-	if (!(ret = malloc(sizeof(char) * len + 1)))
-		return (NULL);
-	if (fzero == 0)
-		replace = ' ';
-	else if (fzero == 1)
-		replace = '0';
-	i = -1;
-	while (++i < len)
-		ret[i] = replace;
-	ret[len] = '\0';
-	return (ret);
-}
-
-char	*ft_make_str(char *ret, char *s, t_flags flags)
-{
-	int		i;
-	int		c;
-
-	i = 0;
-	if (flags.prec == 0)
-		flags.prec = ft_strlen(s);
-	if (flags.rev == 1)
-		c = 0;
-	else if (flags.rev == 0)
-		c = ft_strlen(ret) - (ft_strlen(s) - flags.prec);
-	while (s[i] && i < flags.prec)
-		ret[c++] = s[i++];
-	return (ret);
-}
-
-int		ft_print_str(t_flags flags)
-{
-	int		len;
-	char	*ret;
-
-	if (flags.size == -1)
-		len = ft_strlen((char*)va_arg(flags.ap, char *));
-	else
-		len = flags.size;
-	ret = ft_complet_all(len, flags.zero);
-	ft_putstr(ret);
-	ft_putchar('\n');
-	ret = ft_make_str(ret, (char*)va_arg(flags.ap, char *), flags);
-	ft_putstr(ret);
-	free(ret);
-	ft_init_flags(&flags);
-	return (len);
-}
 
 int		ft_print_num(int n, t_flags flags)
 {
@@ -117,3 +62,60 @@ int		ft_print_hex(int n, const char *base, t_flags flags)
 	return (len);
 }
 */
+
+char	*ft_complet_all(int len, int fzero)
+{
+	char	*ret;
+	char	replace;
+	int		i;
+
+	if (!(ret = malloc(sizeof(char) * len + 1)))
+		return (NULL);
+	if (fzero == 0)
+		replace = ' ';
+	else if (fzero == 1)
+		replace = '0';
+	i = -1;
+	while (++i < len)
+		ret[i] = replace;
+	ret[len] = '\0';
+	return (ret);
+}
+
+char	*ft_make_str(char *ret, char *s, t_flags flags)
+{
+	int		i;
+	int		c;
+
+	i = 0;
+	if (flags.prec == 0)
+		flags.prec = ft_strlen(s);
+	if (flags.rev == 1)
+		c = 0;
+	else if (flags.rev == 0)
+		c = ft_strlen(ret) - (ft_strlen(s) - flags.prec);
+	while (s[i] && i < flags.prec)
+		ret[c++] = s[i++];
+	return (ret);
+}
+
+int		ft_print_str1(t_flags flags)
+{
+	int		len;
+	char	*ret;
+	char	*s;
+
+	s = (char*)va_arg(flags.ap, char *);
+	if (flags.size == -1)
+		len = ft_strlen(s);
+	else
+		len = flags.size;
+	ret = ft_complet_all(len, flags.zero);
+	ft_putstr(ret);
+	ft_putchar('\n');
+	// ret = ft_make_str(ret, s, flags);
+	// ft_putstr(ret);
+	free(ret);
+	ft_init_flags(&flags);
+	return (len);
+}
