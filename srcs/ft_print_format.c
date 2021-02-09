@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 12:03:02 by bmangin           #+#    #+#             */
-/*   Updated: 2021/02/07 11:04:05 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 17:44:46 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void		ft_print_format(t_flags *flags)
 {
-	ft_putstr("CONNARD!\n");
-	ft_prints(flags);
+	// ft_putstr("CONNARD!\n");
+	// ft_prints(flags);
 	// ft_prints(flags);
 	// ft_putstr("x><><x><><x\n");
 	// if (format == 'c')
@@ -36,8 +36,8 @@ void		ft_print_format(t_flags *flags)
 	if (format == '%')
 		ft_putnbr((int)va_arg(ap, int));
 	*/
-	ft_putnbr(flags->length);
-	ft_putchar('\n');
+	// ft_putnbr(flags->length);
+	// ft_putchar('\n');
 }
 
 int		ft_parsing(t_flags *flags, const char *format)
@@ -50,16 +50,16 @@ int		ft_parsing(t_flags *flags, const char *format)
 		if (format[i] == '-')
 		{
 			flags->rev = 1;
-			ft_putstr("-`'|");
-			ft_putnbr(flags->rev);
-			ft_putstr("|'/-\n");
+			// ft_putstr("-`'|");
+			// ft_putnbr(flags->rev);
+			// ft_putstr("|'/-\n");
 		}
 		if (format[i] == '0')
 		{
 			flags->zero = 1;
-			ft_putstr("-`'|");
-			ft_putnbr(flags->zero);
-			ft_putstr("|'/-\n");
+			// ft_putstr("-`'|");
+			// ft_putnbr(flags->zero);
+			// ft_putstr("|'/-\n");
 		}
 		while (format[i] == '-' && format[i] == '0')
 			i++;
@@ -75,7 +75,7 @@ int		ft_parsing(t_flags *flags, const char *format)
 		flags->size = (int)va_arg(flags->ap, int);
 		i++;
 	}
-	ft_putstr("suis ");
+	// ft_putstr("suis ");
 	return (i);
 }
 
@@ -96,7 +96,7 @@ int		ft_parsing_prec(t_flags *flags, const char *format)
 		flags->prec = va_arg(flags->ap, int);
 		i++;
 	}
-	ft_putstr("LA! ");
+	// ft_putstr("LA! ");
 	return (i);
 }
 
@@ -107,17 +107,17 @@ int		ft_init_format(t_flags *flags, const char *format)
 	i = 0;
 	while (ft_isconvert(format[i]) == -1)
 	{
-		ft_putstr(" JE ");
+		// ft_putstr(" JE ");
 		i += ft_parsing(flags, format);
 		if (format[i] == '.')
 			i += ft_parsing_prec(flags, format);
 		if (ft_isconvert(format[i]) != -1)
 			break ;
 		i++;
-		ft_putchar('|');
-		ft_putnbr(i);
-		ft_putchar('|');
-		ft_putchar('\n');
+		// ft_putchar('|');
+		// ft_putnbr(i);
+		// ft_putchar('|');
+		// ft_putchar('\n');
 	}
 	flags->spec = format[i];
 	// ft_prints(flags);

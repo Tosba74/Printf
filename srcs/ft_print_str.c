@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 18:50:50 by bmangin           #+#    #+#             */
-/*   Updated: 2021/02/09 16:34:49 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 17:40:21 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,16 @@ int		ft_print_str(t_flags flags, char *s)
 		else if (len < size)
 		{
 			ft_memcpy(out, s, len);
-			while(out[i])
+			while (out[i])
 				out[i++] = ' ';
 		}
 		else
 			ft_memcpy(out, s, size);
 	}
 	ft_putstr(out);
+	// ft_putchar('\n');
 	ft_memdel(out);
 	ft_init_flags(&flags);
-	ft_putchar('\n');
-	ft_prints(&flags);
+	// ft_prints(&flags);
 	return (len);
 }
