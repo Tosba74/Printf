@@ -6,7 +6,7 @@
 #    By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/11 11:23:45 by bmangin           #+#    #+#              #
-#    Updated: 2021/01/27 16:48:39 by bmangin          ###   ########lyon.fr    #
+#    Updated: 2021/02/06 20:17:38 by bmangin          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ F_HDRS	= includes/
 C_HRDS	= $(addprefix ${F_HDRS}, ${HDRS})
 
 SRCS	= ft_printf.c ft_print_format.c ft_print_num.c ft_print_str.c \
-		ft_utils.c main.c
+		ft_utils.c 
 
 F_SRCS	= srcs/
 
@@ -63,12 +63,16 @@ fclean:		clean
 re:			fclean all
 
 test:
-	${CC} ${FLAGS} ${OBJS} ${C_LIB} -o prog -I ${F_HDRS}
+	${CC} ${FLAGS} ${OBJS} main/main.c ${C_LIB} -o prog -I ${F_HDRS}
 	./prog | cat -e 
+
+test_s:
+	${CC} ${FLAGS} main/maintest_s.c -o test_s
+	./test_s | cat -e 
 
 tests:
 	${CC} -fsanitize=address -g3 ${NAME} ${C_LIB}
 
 a:	re test
 
-.PHONY:		all clean fclean test tests re
+.PHONY:		all clean fclean test test_s re a

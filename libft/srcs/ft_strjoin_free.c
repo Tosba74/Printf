@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strjoin_free.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/11 16:46:14 by bmangin           #+#    #+#             */
-/*   Updated: 2021/01/27 16:46:37 by bmangin          ###   ########lyon.fr   */
+/*   Created: 2020/11/07 15:08:23 by bmangin           #+#    #+#             */
+/*   Updated: 2021/02/04 14:51:01 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
-#include <stdio.h>
+#include "../includes/libft.h"
 
-int main(void)
+char	*ft_strjoin_free(char const *s1, char const *s2, int sp)
 {
-	char	*str;
-	double pi;
-	
-	str = "salut";
-	pi = 3.141591654;
-	printf("1ALEXIS JE TAIME mais %-*.4s theo %-6s lavabo\n", 3, str, "42");	
-	ft_printf("ALEXIS JE TAIME mais %-*.4s theo %-*s lavabo\n", 3, str, 6, "42");	
-	// ft_printf("Jaime bien: %*s %*s\n", 5, "coucou", 5, "hey");
-	return (0);
+	size_t	len1;
+	size_t	len2;
+	char	*s;
+
+	if (!s1 || !s2)
+		return (NULL);
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	if (!(s = (char*)malloc(sizeof(char) * len1 + len2 + 1)))
+		return (NULL);
+	ft_memcpy(s, s1, len1);
+	ft_memcpy(s + len1, s2, len2 + 1);
+	if (sp)
+		ft_memdel((void *)s1);
+	return (s);
 }

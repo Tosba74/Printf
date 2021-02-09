@@ -6,12 +6,13 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 18:50:50 by bmangin           #+#    #+#             */
-/*   Updated: 2021/02/05 13:20:05 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/02/06 10:49:33 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
+/*
 int		ft_print_num(int n, t_flags flags)
 {
 	int		len;
@@ -61,7 +62,6 @@ int		ft_print_hex(int n, const char *base, t_flags flags)
 	ft_putstr(ret);
 	return (len);
 }
-*/
 
 char	*ft_complet_all(int len, int fzero)
 {
@@ -119,3 +119,4 @@ int		ft_print_str1(t_flags flags)
 	ft_init_flags(&flags);
 	return (len);
 }
+*/

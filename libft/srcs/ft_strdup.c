@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 00:59:38 by bmangin           #+#    #+#             */
-/*   Updated: 2020/12/08 23:04:15 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/02/04 13:57:40 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_strdup(const char *s1)
 	char	*dst;
 	size_t	size;
 
+	if (!s1)
+		return (NULL);
 	size = ft_strlen(s1);
 	if (!(dst = (char*)malloc(sizeof(char) * size + 1)))
 		return (NULL);
