@@ -6,7 +6,7 @@
 #    By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/11 11:23:45 by bmangin           #+#    #+#              #
-#    Updated: 2021/02/06 20:17:38 by bmangin          ###   ########lyon.fr    #
+#    Updated: 2021/02/10 16:34:15 by bmangin          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ F_HDRS	= includes/
 C_HRDS	= $(addprefix ${F_HDRS}, ${HDRS})
 
 SRCS	= ft_printf.c ft_print_format.c ft_print_num.c ft_print_str.c \
-		ft_utils.c 
+		ft_utils.c ft_parse.c 
 
 F_SRCS	= srcs/
 

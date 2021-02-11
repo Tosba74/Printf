@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 18:50:50 by bmangin           #+#    #+#             */
-/*   Updated: 2021/02/09 17:40:21 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/02/10 16:08:07 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,27 @@ int		ft_print_str(t_flags flags, char *s)
 		return (0);
 	ft_putstr("\nx><><x><><x\n");
 	out[size] = '\0';
+	if ((-1 < flags.prec && flags.prec < len) && flags.prec < size)
+	{
+		if (flags.rev == 0)	
+			ft_memcpy(out + i, s, flags.prec);
+		while (i != (size - flags.prec))
+			out[i++] = ' ';
+		if (flags.rev == 1)	
+			ft_memcpy(out + i, s, flags.prec);
+	}
+	else if (len < size)
+	{
+		if (flags.rev == 0)	
+			ft_memcpy(out + i, s, len);
+		while (i != (size - len))
+			out[i++] = ' ';
+		if (flags.rev == 1)	
+			ft_memcpy(out + i, s, len);
+	}
+	else
+		ft_memcpy(out, s, size);
+	/*
 	if (flags.rev == 0)
 	{
 		if ((-1 < flags.prec && flags.prec < len) && flags.prec < size)
@@ -60,16 +81,17 @@ int		ft_print_str(t_flags flags, char *s)
 		else if (len < size)
 		{
 			ft_memcpy(out, s, len);
-			while (out[i])
+			while(out[i])
 				out[i++] = ' ';
 		}
 		else
 			ft_memcpy(out, s, size);
 	}
+	*/
 	ft_putstr(out);
-	// ft_putchar('\n');
 	ft_memdel(out);
 	ft_init_flags(&flags);
-	// ft_prints(&flags);
+	ft_putchar('\n');
+	ft_prints(&flags);
 	return (len);
 }
