@@ -39,6 +39,7 @@ int				ft_isflags(char c);
 int				ft_print_str(t_flags flags, char *s);
 int				ft_print_num(int n, t_flags flags);
 int				ft_print_hex(int n, const char *base, t_flags flags);
+int				ft_parse(t_flags *flags, const char *format);
 /*
 **	TEST
 */

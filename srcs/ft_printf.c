@@ -17,14 +17,13 @@ int		ft_printf(const char *format, ...)
 	t_flags		tf;
 	int			i;
 
-	tf = (t_flags) {.size = -1, .prec = -1};
+	tf = (t_flags) {.size = -1, .zero = 32, .prec = -1};
 	i = -1;
 	va_start(tf.ap, format);
 	while (format[++i])
 	{
 		if (format[i] == '%')
 		{
-			i++;
 			i += ft_init_format(&tf, format + i);
 		}
 		else

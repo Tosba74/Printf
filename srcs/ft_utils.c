@@ -24,6 +24,15 @@ int		ft_isconvert(char c)
 			return (i);
 	return (-1);
 }
+/*
+void	ft_converse((*f)(t_flags *flags, char *format))
+{
+	int tab[8];
+
+	tab[0] = &ft_putchar_len;
+	tab[1] = &ft_print_str;
+}
+*/
 
 int		ft_isflags(char c)
 {
@@ -41,7 +50,7 @@ int		ft_isflags(char c)
 void	ft_init_flags(t_flags *flags)
 {
 	flags->size = -1;
-	flags->zero = 0;
+	flags->zero = 32;
 	flags->rev = 0;
 	flags->prec = -1;
 	flags->star = 0;

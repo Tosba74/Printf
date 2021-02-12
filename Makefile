@@ -20,8 +20,8 @@ F_HDRS	= includes/
 
 C_HRDS	= $(addprefix ${F_HDRS}, ${HDRS})
 
-SRCS	= ft_printf.c ft_print_format.c ft_print_num.c ft_print_str.c \
-		ft_utils.c ft_parse.c 
+SRCS	= ft_printf.c ft_print_format.c ft_parse.c ft_print_str.c \
+		ft_utils.c 
 
 F_SRCS	= srcs/
 

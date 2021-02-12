@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../includes/ft_printf.h"
+
 int		ft_isvalue(char c)
 {
 	if (ft_isdigit(c) || c == '*')
@@ -17,33 +19,46 @@ int		ft_isvalue(char c)
 	return (0);
 }
 
-int		ft_complet_value(int f, t_flags flags, char *format)
+int		ft_complet_value(int *f, t_flags flags, const char *format)
 {
 	int		i;
 
 	i = 0;
-	if (ft_isdigit(format[i]))
+	if (format[i] == '*')
 	{
-		f = ft_atoi(format[i]);
+		*f = va_arg(flags.ap, int);
+		i++;
+	}
+	else if (ft_isdigit(format[i]))
+	{
+		*f = ft_atoi(format);
 		while (ft_isdigit(format[i]))
 			i++;
 	}
-	else if (format)
-	return(i);
-}	
+	return (i);
+}
 
 int		ft_parse(t_flags *flags, const char *format)
 {
 	int		i;
 
 	i = 0;
-	if (format[i] == '0' || format[i] == '-')
+	if (format[i] == '-' || format[i] == '0')
 	{
+		if (format[i] == '-')
+			flags->rev = 1;
+		else if (format[i] == '0' && flags->rev == 0)
+			flags->zero = 48;
 		i++;
 	}
 	if (ft_isvalue(format[i]))
-		i += ft_complet_value(flags->size ,flags, format);	
+		i += ft_complet_value(&flags->size, *flags, format + i);
 	if (format[i] == '.')
-		i += ft_complet_value(flags->prec, flags, format);	ft_complet_value(format);	
+	{
+		i++;
+		i += ft_complet_value(&flags->prec, *flags, format + i);
+	}
+	if (ft_isconvert(format[i]) != -1)
+		flags->spec = format[i++];
 	return (i);
 }

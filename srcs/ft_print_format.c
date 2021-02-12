@@ -14,8 +14,7 @@
 
 void		ft_print_format(t_flags *flags)
 {
-	ft_putstr("CONNARD!\n");
-	ft_prints(flags);
+	// ft_putstr("CONNARD!\n");
 	// ft_prints(flags);
 	// ft_putstr("x><><x><><x\n");
 	// if (format == 'c')
@@ -36,85 +35,19 @@ void		ft_print_format(t_flags *flags)
 	if (format == '%')
 		ft_putnbr((int)va_arg(ap, int));
 	*/
-	ft_putnbr(flags->length);
-	ft_putchar('\n');
-}
-
-int		ft_parsing(t_flags *flags, const char *format)
-{
-	int		i;
-
-	i = 0;
-	if (format[i] == '-' || format[i] == '0')
-	{
-		if (format[i] == '-')
-		{
-			flags->rev = 1;
-		}
-		if (format[i] == '0')
-		{
-			flags->zero = 1;
-		}
-		while (format[i] == '-' && format[i] == '0')
-			i++;
-	}
-	while (ft_isdigit(format[i]))
-	{
-		if (flags->size == -1)
-			flags->size = ft_atoi(format + i);
-		i++;
-	}
-	if (format[i] == '*')
-	{
-		flags->size = (int)va_arg(flags->ap, int);
-		i++;
-	}
-	ft_putstr("suis ");
-	return (i);
-}
-
-int		ft_parsing_prec(t_flags *flags, const char *format)
-{
-	int		i;
-
-	i = 0;
-	i++;
-	if (ft_isdigit(format[i]))
-	{
-		flags->prec = ft_atoi(format + i);
-		while (ft_isdigit(format[i]))
-			i++;
-	}
-	else if (format[i] == '*')
-	{
-		flags->prec = va_arg(flags->ap, int);
-		i++;
-	}
-	ft_putstr("LA! ");
-	return (i);
 }
 
 int		ft_init_format(t_flags *flags, const char *format)
 {
 	int i;
 
-	i = 0;
-	while (ft_isconvert(format[i]) == -1)
-	{
-		ft_putstr(" JE ");
-		i += ft_parsing(flags, format);
-		if (format[i] == '.')
-			i += ft_parsing_prec(flags, format);
-		if (ft_isconvert(format[i]) != -1)
-			break ;
-		i++;
-		ft_putchar('|');
-		ft_putnbr(i);
-		ft_putchar('|');
-		ft_putchar('\n');
-	}
-	flags->spec = format[i];
-	// ft_prints(flags);
+	i = 1;
+	ft_init_flags(flags);
+	ft_prints(flags);
+	ft_putstr("PARSING SA MERE\n");
+	i += ft_parse(flags, format + i);
+	ft_prints(flags);
+	// ft_converse((ft_isconvert(flags->spec))(flags, format);
 	ft_print_format(flags);
 	return (i);
 }
