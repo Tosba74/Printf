@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 12:02:40 by bmangin           #+#    #+#             */
-/*   Updated: 2021/02/06 13:15:48 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 21:39:58 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,23 @@ typedef	struct	s_flags
 	int			zero;
 	int			rev;
 	int			prec;
-	int			star;
 	int			length;
 	char		spec;
 }				t_flags;
 
 int	            ft_printf(const char *format, ...)
 				__attribute__((format(printf,1,2)));
-int 			ft_init_format(t_flags *flags, const char *format);
-void			ft_init_flags(t_flags *flags);
 int				ft_isconvert(char c);
-int				ft_isflags(char c);
-int				ft_print_str(t_flags flags, char *s);
-int				ft_print_num(int n, t_flags flags);
-int				ft_print_hex(int n, const char *base, t_flags flags);
-int				ft_parse(t_flags *flags, const char *format);
+int				ft_isvalue(char c);
+int				ft_print_char(t_flags *flags);
+int				ft_print_str(t_flags *flags);
+int				ft_print_ptr(t_flags *flags);
+int				ft_print_num(t_flags *flags);
+int				ft_print_hex(t_flags *flags);
+int				ft_print_pourcent(t_flags *flags);
+char			*ft_choose_base(char c);
+void			ft_print_and_clean(t_flags *flags, char *s);
+void			ft_init_flags(t_flags *flags);
 /*
 **	TEST
 */

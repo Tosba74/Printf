@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/08 21:42:29 by bmangin           #+#    #+#             */
-/*   Updated: 2021/01/05 15:49:21 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 17:29:01 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		ft_itoa_base_len(char *result, int n, const char *base)
 	long	nb;
 
 	b = ft_check_base(base);
-	len = ft_len_itoa(n, b);
+	len = ft_len_num(n, b);
 	nb = (long)n;
 	if (!(result = (char*)malloc(sizeof(char) * len)))
 		return (0);
