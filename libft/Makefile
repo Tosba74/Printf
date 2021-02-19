@@ -46,6 +46,8 @@ FLAGS	= -Wall -Wextra -Wall
 
 AR		= ar rcs
 
+MKDIR	= mkdir -p
+
 MV		= mv
 
 RM		= rm -f

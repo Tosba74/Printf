@@ -30,7 +30,7 @@ int main(void)
 	// ft_printf("Jaime bien:\n%*c\n", 7, nb);
 	// ft_printf("Jaime bien:\n%*x\n", 8, nb);
 	// ft_printf("Jaime bien:\n%*p\n", 9, ptr);
-	dprintf(1, "[%6s == (%10d)]\n", "10d", nb);
+	dprintf(1, "[%*s == (%10d)]\n", 6,"10d", nb);
 	ft_printf("[%6s == (%10d)]\n", "10d", nb);
 	dprintf(1, "[%6s == (%010d)]\n", "010d", nb);
 	ft_printf("[%6s == (%010d)]\n", "010d", nb);
@@ -38,10 +38,6 @@ int main(void)
 	ft_printf("[%6s == (%-10d)]\n", "-10d", nb);
 	dprintf(1, "[%6s == (%--10d)]\n", "--10d", nb);
 	ft_printf("[%6s == (%--10d)]\n", "--10d", nb);
-	dprintf(1, "[%6s == (%-.10d)]\n", "-.10d", nb);
-	ft_printf("[%6s == (%-.10d)]\n", "-.10d", nb);
-	dprintf(1, "[%6s == (%.10d)]\n", ".10d", nb);
-	ft_printf("[%6s == (%.10d)]\n", ".10d", nb);
 	dprintf(1, "[%6s == (%-10.6d)]\n", "-10.6d", nb);
 	ft_printf("[%6s == (%-10.6d)]\n", "-10.6d", nb);
 	dprintf(1, "[%6s == (%10.6d)]\n", "10.6d", nb);
@@ -52,6 +48,10 @@ int main(void)
 	ft_printf("[%6s == (%6.10d)]\n", "6.10d", nb);
 	dprintf(1, "[%6s == (%-6.10d)]\n", "-6.10d", nb);
 	ft_printf("[%6s == (%-6.10d)]\n", "-6.10d", nb);
+	dprintf(1, "[%6s == (%-.10d)]\n", "-.10d", nb);
+	ft_printf("[%6s == (%-.10d)]\n", "-.10d", nb);
+	dprintf(1, "[%6s == (%.10d)]\n", ".10d", nb);
+	ft_printf("[%6s == (%.10d)]\n", ".10d", nb);
 	dprintf(1, "[%6s == (%5.3d)]\n", "5.3d", nb);
 	ft_printf("[%6s == (%5.3d)]\n", "5.3d", nb);
 	dprintf(1, "[%6s == (%-7.3d)]\n", "-7.3d", nb);

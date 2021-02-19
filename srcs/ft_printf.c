@@ -52,7 +52,7 @@ static int	ft_parse(t_flags *flags, const char *format)
 		i += ft_complet_value(&flags->prec, flags, format + i);
 	}
 	if (ft_isconvert(format[i]) != -1)
-		flags->spec = format[i++];
+		flags->spec = format[i];
 	return (i);
 }
 
@@ -69,10 +69,9 @@ static int	ft_converse(t_flags *flags)
 		&ft_print_hex,
 		&ft_print_pourcent
 	};
-	// ft_prints(flags);
-	return (pf[ft_isconvert(flags->spec)](flags));	
+	return (pf[ft_isconvert(flags->spec)](flags));
 }
- 
+
 int			ft_printf(const char *format, ...)
 {
 	t_flags	tf;

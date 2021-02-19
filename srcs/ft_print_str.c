@@ -47,7 +47,7 @@ int		ft_print_str(t_flags *flags)
 	{
 		if (flags->rev == 1)
 			ft_memcpy(out, s, (i = len));
-		while (i != (size - len) && out[i])
+		while (i != (size - len))
 			out[i++] = (char)flags->zero;
 		if (flags->rev == 0)
 			ft_memcpy(out + i, s, len);

@@ -26,10 +26,6 @@ int		main(void)
 	printf("[%6s == (%-10d)]\n", "-10d", num);
 	printf("[%6s == (%--10d)]\n", "--10d", num);
 	printf("[%6s == (%--10d)]\n", "--10d", num);
-	printf("[%6s == (%-.10d)]\n", "-.10d", num);
-	printf("[%6s == (%-.10d)]\n", "-.10d", num);
-	printf("[%6s == (%.10d)]\n", ".10d", num);
-	printf("[%6s == (%.10d)]\n", ".10d", num);
 	printf("[%6s == (%-10.6d)]\n", "-10.6d", num);
 	printf("[%6s == (%-10.6d)]\n", "-10.6d", num);
 	printf("[%6s == (%10.6d)]\n", "10.6d", num);
@@ -40,6 +36,10 @@ int		main(void)
 	printf("[%6s == (%6.10d)]\n", "6.10d", num);
 	printf("[%6s == (%-6.10d)]\n", "-6.10d", num);
 	printf("[%6s == (%-6.10d)]\n", "-6.10d", num);
+	printf("[%6s == (%-.10d)]\n", "-.10d", num);
+	printf("[%6s == (%-.10d)]\n", "-.10d", num);
+	printf("[%6s == (%.10d)]\n", ".10d", num);
+	printf("[%6s == (%.10d)]\n", ".10d", num);
 	printf("[%6s == (%5.3d)]\n", "5.3d", num);
 	printf("[%6s == (%5.3d)]\n", "5.3d", num);
 	printf("[%6s == (%-7.3d)]\n", "-7.3d", num);
