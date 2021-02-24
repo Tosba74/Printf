@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 12:04:18 by bmangin           #+#    #+#             */
-/*   Updated: 2021/02/16 23:11:30 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 13:33:08 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ static int	ft_parse(t_flags *flags, const char *format)
 	while (format[i] == '-' || format[i] == '0')
 	{
 		if (format[i] == '-')
+		{
 			flags->rev = 1;
+			flags->zero = 32;
+		}
 		else if (format[i] == '0' && flags->rev == 0)
 			flags->zero = 48;
 		i++;
@@ -58,7 +61,7 @@ static int	ft_parse(t_flags *flags, const char *format)
 
 static int	ft_converse(t_flags *flags)
 {
-	int		(*pf[])(t_flags *flags) =
+	int		(*pf[8])(t_flags *flags) =
 	{
 		&ft_print_char,
 		&ft_print_str,

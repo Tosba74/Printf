@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 18:50:50 by bmangin           #+#    #+#             */
-/*   Updated: 2021/02/16 23:37:58 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 13:56:52 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,33 +24,82 @@ static int	ft_check_len(t_flags flags, char *s)
 	if (flags.prec > len)
 	{
 		len = flags.prec;
-		if (s[0] == '-' && flags.prec > flags.size)
+		if (s[0] == '-')
 			len++;
 	}
 	return (len);
 }
 
-static char	*ft_prepare_str(t_flags flags, int len, int nb)
+static char	*ft_prepare_str(t_flags flags, int size, int nb)
 {
+	char	*out;
+	int		neg;
+	int		i;
+	
+	if (!(out = malloc(sizeof(char) * size + 1)))
+		return (NULL);
+	neg = 0;
+	if (nb < 0 && (flags.rev == 1 || (flags.zero == 48 && flags.prec == -1)
+	|| (flags.size < flags.prec)))
+		out[neg++] = '-';
+	i = neg;
+	while (i != size)
+	{
+		if (i < flags.prec + neg && flags.rev == 1
+		&& flags.prec > -1)
+			out[i++] = '0';
+		else if (i >= size - (flags.prec + neg) && flags.rev == 0
+		&& flags.prec > -1)
+			out[i++] = '0';
+		else if (i < size - flags.prec && flags.prec > -1)
+		{
+			if (i == size - (flags.prec + 1))
+				out[i++] = '-';
+			else
+				out[i++] = ' ';
+		}
+		else
+			out[i++] = (char)flags.zero;
+	}
+	out[i] = '\0';
+	return (out);
+}
+	/*
+	if(flags.prec > len)
+	{
+		
+	}
+	else
+	{
+		while (i < len)
+			out[i++] = (char)flags.zero;
+	}
+	out[i] = '\0';
+	return (out);
+	*/	
+	
+	/*
 	int		i;
 	int		cp;
 	char	*out;
 
 	i = 0;
 	cp = 0;
-	if (!(out = malloc(sizeof(char) * len + 1)))
+	if (!(out = malloc(sizeof(char) * len)))
 		return (NULL);
-	out[len] = '\0';
 	if (flags.rev == 0)
 	{
 		if (flags.size > flags.prec)
 		{
-			while (i < (flags.size - (flags.prec + 1)))
+			while (i < (flags.size - (flags.prec)))
 				out[i++] = flags.zero;
-			if (nb < 0 && (flags.size > flags.prec))
+			if (nb < 0 && flags.prec > -1)
+			{
+				ft_putstr("Je suis la\n");
 				out[flags.size - (flags.prec + 1)] = '-';
-			// else
-			// 	out[i++] = flags.zero;
+			}
+			else
+				out[i++] = flags.zero;
 			while (i < len)
 				out[i++] = '0';
 			// if (nb < 0 && flags.zero == 48)
@@ -86,10 +135,12 @@ static char	*ft_prepare_str(t_flags flags, int len, int nb)
 	// }
 	}
 	cp = 0;
+	out[i] = '\0';
 	return (out);
-}
+	*/
+// }
 
-static void	*ft_mix_str(char *dst, char *src, t_flags *flags)
+static void	ft_mix_str(char *dst, char *src, t_flags *flags)
 {
 	int		i;
 	int		j;
@@ -103,14 +154,14 @@ static void	*ft_mix_str(char *dst, char *src, t_flags *flags)
 	// ft_putstr("| ");
 	if (src[0] == '-')
 	{
-		if (flags->zero == 48 || flags->prec < flags->size)
+		if (flags->zero == 48 || flags->prec < flags->size || flags->prec > -1 || flags->rev == 1)
 			src++;
 		cp = 1;
 	}
 	if (flags->rev == 0)
 	{
 		while (dst[i])
-			dst[(i++)] = src[j++];
+			dst[(cp + i++)] = src[j++];
 	}
 	else if (flags->rev == 1)
 	{
@@ -127,36 +178,41 @@ static void	*ft_mix_str(char *dst, char *src, t_flags *flags)
 	// ft_putstr(dst);
 	// ft_putchar('|');
 	// ft_putchar('\n');
-	// free(src);
+	// ft_memdel(src);
+	ft_putstr("<= len | ft_ =>");
+	ft_putnbr(ft_strlen(dst));
+	ft_putchar('\n');	
 	ft_print_and_clean(flags, dst);
 }
 
 int			ft_print_num(t_flags *flags)
 {
-	/*
 	int		nb;
-	int		len;
+	int		size;
 	char	*nb_str;
 	char	*out;
 
 	nb = va_arg(flags->ap, int);
 	nb_str = ft_itoa_base(nb, ft_choose_base(flags->spec));
-	len = ft_check_len(*flags, nb_str);
-	if (len == ft_strlen(nb_str))
+	size = ft_check_len(*flags, nb_str);
+	if (size <= ft_strlen(nb_str))
 	{
 		ft_print_and_clean(flags, nb_str);
-		return (len);
+		return (size);
 	}
-	else if (len > ft_strlen(nb_str))
+	else if (size > ft_strlen(nb_str))
 	{
-		out = ft_prepare_str(*flags, len, nb);
+		out = ft_prepare_str(*flags, size, nb);
 		ft_putstr(out);
 		ft_putstr(") <= out\n");
+		ft_putnbr(size);
 		ft_mix_str(out, nb_str, flags);
-		free(nb_str);
+		ft_memdel(nb_str);
 		return (ft_strlen(out));
 	}
-	*/
+	return (size);
+}
+	/*
 	int		nb;
 	char	*nb_str;
 	int		i;
@@ -210,7 +266,7 @@ int			ft_print_num(t_flags *flags)
 		}
 	}
 	return (i + j);
-}
+	*/
 
 int			ft_print_ptr(t_flags *flags)
 {
