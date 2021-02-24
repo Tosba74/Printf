@@ -154,9 +154,14 @@ static void	ft_mix_str(char *dst, char *src, t_flags *flags)
 	// ft_putstr("| ");
 	if (src[0] == '-')
 	{
-		if (flags->zero == 48 || flags->prec < flags->size || flags->prec > -1 || flags->rev == 1)
+		if ((flags->rev == 1 || (flags->zero == 48 && flags->prec == -1)
+		|| (flags->size < flags->prec)))
+		// if (flags->prec > ft_strlen(src)
+		// || flags->zero == 48 || flags->rev == 1)
+		{
 			src++;
-		cp = 1;
+			cp = 1;
+		}
 	}
 	if (flags->rev == 0)
 	{
@@ -172,16 +177,9 @@ static void	ft_mix_str(char *dst, char *src, t_flags *flags)
 		while (src[j])
 			dst[cp + i++] = src[j++];
 	}
-	// ft_putstr("str => |");
-	// ft_putstr(src);
-	// ft_putstr("| dst => |");
-	// ft_putstr(dst);
-	// ft_putchar('|');
-	// ft_putchar('\n');
-	// ft_memdel(src);
-	ft_putstr("<= len | ft_ =>");
-	ft_putnbr(ft_strlen(dst));
-	ft_putchar('\n');	
+	// ft_putstr("<= len | ft_ =>");
+	// ft_putnbr(ft_strlen(dst));
+	// ft_putchar('\n');	
 	ft_print_and_clean(flags, dst);
 }
 
@@ -203,12 +201,12 @@ int			ft_print_num(t_flags *flags)
 	else if (size > ft_strlen(nb_str))
 	{
 		out = ft_prepare_str(*flags, size, nb);
-		ft_putstr(out);
-		ft_putstr(") <= out\n");
-		ft_putnbr(size);
+		// ft_putstr(out);
+		// ft_putstr(") <= out\n");
+		// ft_putnbr(size);
 		ft_mix_str(out, nb_str, flags);
 		ft_memdel(nb_str);
-		return (ft_strlen(out));
+		return (size);
 	}
 	return (size);
 }

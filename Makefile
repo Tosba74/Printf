@@ -49,7 +49,8 @@ all:	${NAME}
 
 ${NAME}:	${OBJS}
 	${MAKE} ${F_LIB}
-	${AR} $@ ${C_LIB} $?
+	cp ${C_LIB} ${NAME}
+	${AR} $@ $?
 
 bonus:		${NAME} ${OBJS_B}
 	{AR} ${NAME} ${BONUS}
