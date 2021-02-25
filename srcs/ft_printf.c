@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 12:04:18 by bmangin           #+#    #+#             */
-/*   Updated: 2021/02/23 13:33:08 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/02/25 11:15:46 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ static int	ft_converse(t_flags *flags)
 		&ft_print_ptr,
 		&ft_print_num,
 		&ft_print_num,
-		&ft_print_hex,
-		&ft_print_hex,
+		&ft_print_num,
+		&ft_print_num,
 		&ft_print_pourcent
 	};
 	return (pf[ft_isconvert(flags->spec)](flags));

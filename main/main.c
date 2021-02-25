@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 16:46:14 by bmangin           #+#    #+#             */
-/*   Updated: 2021/02/23 21:51:14 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/02/25 11:15:03 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main(void)
 	
 	str = "salut";
 	pi = 3.141591654;
-	int nb = -4242;
+	int nb = 4242;
 	// int *ptr = &nb;
 	// dprintf(1, "1ALEXIS JE TAIME mais %-15.45s theo %-6s lavabo\n", str, "42");	
 	// ft_printf("ALEXIS JE TAIME mais %-15.45s theo %-6s lavabo\n",  str, "42");	
@@ -30,8 +30,8 @@ int main(void)
 	// ft_printf("Jaime bien:\n%*c\n", 7, nb);
 	// ft_printf("Jaime bien:\n%*x\n", 8, nb);
 	// ft_printf("Jaime bien:\n%*p\n", 9, ptr);
-	dprintf(1, "[%*s == (%10d)]\n", 6,"10d", nb);
-	ft_printf("[%6s == (%10d)]\n", "10d", nb);
+	dprintf(1, "[%*s == (%10x)]\n", 6,"10x", nb);
+	ft_printf("[%6s == (%10x)]\n", "10x", nb);
 	dprintf(1, "[%6s == (%010d)]\n", "010d", nb);
 	ft_printf("[%6s == (%010d)]\n", "010d", nb);
 	dprintf(1, "[%6s == (%-10d)]\n", "-10d", nb);
@@ -48,8 +48,8 @@ int main(void)
 	ft_printf("[%6s == (%-.10d)]\n", "-.10d", nb);
 	dprintf(1, "[%6s == (%.10d)]\n", ".10d", nb);
 	ft_printf("[%6s == (%.10d)]\n", ".10d", nb);
-	dprintf(1, "[%6s == (%5.3d)]\n", "5.3d", nb);
-	ft_printf("[%6s == (%5.3d)]\n", "5.3d", nb);
+	dprintf(1, "[%6s == (%6.3d)]\n", "6.3d", nb);
+	ft_printf("[%6s == (%6.3d)]\n", "6.3d", nb);
 	dprintf(1, "[%6s == (%-7.3d)]\n", "-7.3d", nb);
 	ft_printf("[%6s == (%-7.3d)]\n", "-7.3d", nb);
 	dprintf(1, "[%6s == (%6.10d)]\n", "6.10d", nb);

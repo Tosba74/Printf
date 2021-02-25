@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 18:50:50 by bmangin           #+#    #+#             */
-/*   Updated: 2021/02/24 13:56:52 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 22:31:45 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,10 +152,11 @@ static void	ft_mix_str(char *dst, char *src, t_flags *flags)
 	// ft_putstr("dst => |");
 	// ft_putstr(dst);
 	// ft_putstr("| ");
+	/*
 	if (src[0] == '-')
 	{
 		if ((flags->rev == 1 || (flags->zero == 48 && flags->prec == -1)
-		|| (flags->size < flags->prec)))
+		|| (flags->size > flags->prec)))
 		// if (flags->prec > ft_strlen(src)
 		// || flags->zero == 48 || flags->rev == 1)
 		{
@@ -163,19 +164,34 @@ static void	ft_mix_str(char *dst, char *src, t_flags *flags)
 			cp = 1;
 		}
 	}
+	*/
+	// if (src[0] == '-' && (flags->rev == 1 || (flags->zero == 48 && flags->prec == -1)
+	// || (flags->size < flags->prec)))
+	if (src[0] == '-' && (flags->prec > ft_strlen(src) || flags->prec == -1))
+	{
+		src++;
+		cp = 1;
+	}
 	if (flags->rev == 0)
 	{
-		while (dst[i])
-			dst[(cp + i++)] = src[j++];
+		// while (dst[i])
+			// dst[(cp + i++)] = src[j++];
+		ft_memcpy(dst + i + cp, src, ft_strlen(src));
 	}
 	else if (flags->rev == 1)
 	{
+		/*
 		if (flags->prec > ft_strlen(src))
 			i = (flags->prec - ft_strlen(src));
 		else
 			i = 0;
 		while (src[j])
 			dst[cp + i++] = src[j++];
+		*/
+		if (flags->prec > ft_strlen(src))
+			ft_memcpy(dst + cp + (flags->prec - ft_strlen(src)), src, ft_strlen(src));
+		else
+			ft_memcpy(dst + cp, src, ft_strlen(src));
 	}
 	// ft_putstr("<= len | ft_ =>");
 	// ft_putnbr(ft_strlen(dst));
