@@ -6,7 +6,7 @@
 #    By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/11 11:23:45 by bmangin           #+#    #+#              #
-#    Updated: 2021/02/15 16:51:00 by bmangin          ###   ########lyon.fr    #
+#    Updated: 2021/02/27 13:10:35 by bmangin          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,7 @@ test_s:
 	./test_s | cat -e 
 
 tests:
-	${CC} -fsanitize=address -g3 ${NAME} ${C_LIB}
+	${CC} -fsanitize=address -g3 main/main.c ${NAME} ${C_LIB}
 
 a:	re test
 

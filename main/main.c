@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 16:46:14 by bmangin           #+#    #+#             */
-/*   Updated: 2021/02/25 11:15:03 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/01 11:45:26 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,18 @@ int main(void)
 	
 	str = "salut";
 	pi = 3.141591654;
-	int nb = 4242;
+	int nb = -4242;
 	// int *ptr = &nb;
-	// dprintf(1, "1ALEXIS JE TAIME mais %-15.45s theo %-6s lavabo\n", str, "42");	
-	// ft_printf("ALEXIS JE TAIME mais %-15.45s theo %-6s lavabo\n",  str, "42");	
-	// ft_printf("Jaime bien: %*s %*s\n", 5, "coucou", 5, "hey");
-	// ft_printf("Jaime bien: %*s\n", 5, "coucou");
+	dprintf(1, "1ALEXIS JE TAIME mais %-15.45s theo %-6s lavabo\n", str, "42");	
+	ft_printf("ALEXIS JE TAIME mais %-15.45s theo %-6s lavabo\n",  str, "42");	
+	ft_printf("Jaime bien: %*s %*s\n", 5, "coucou", 5, "hey");
+	ft_printf("Jaime bien: %*s\n", 5, "coucou");
 	// ft_printf("Jaime bien:\n%-10.*d\n", 6, nb);
 	// ft_printf("Jaime bien:\n%*c\n", 7, nb);
 	// ft_printf("Jaime bien:\n%*x\n", 8, nb);
 	// ft_printf("Jaime bien:\n%*p\n", 9, ptr);
-	dprintf(1, "[%*s == (%10x)]\n", 6,"10x", nb);
-	ft_printf("[%6s == (%10x)]\n", "10x", nb);
+	// dprintf(1, "[%*s == (%10x)]\n", 6,"10x", nb);
+	// ft_printf("[%6s == (%10x)]\n", "10x", nb);
 	dprintf(1, "[%6s == (%010d)]\n", "010d", nb);
 	ft_printf("[%6s == (%010d)]\n", "010d", nb);
 	dprintf(1, "[%6s == (%-10d)]\n", "-10d", nb);
@@ -60,6 +60,21 @@ int main(void)
 	ft_printf("[%6s == (%3.6d)]\n", "-3.6d", nb);
 	dprintf(1, "[%6s == (%03.6d)]\n", "03.6d", nb);
 	ft_printf("[%6s == (%03.6d)]\n", "03.6d", nb);
+	dprintf(1, "|Hello, %s.|\n", "garvin");
+	ft_printf("|Hello, %s.|\n", "garvin");
+	dprintf(1, "|%.2s|\n", "abc");
+	ft_printf("|%.2s|\n", "abc");
+	dprintf(1, "|%.0s|%.s|\n", "abc", "abc");
+	ft_printf("|%.0s|%.s|\n", "abc", "abc");
+	dprintf(1, "[%6s == (%8.3d)]\n", "8.3d", -8473);
+	ft_printf("[%6s == (%8.3d)]\n", "8.3d", -8473);
+	dprintf(1, "[%6s == (%-8.3d)]\n", "-8.3d", -8473);
+	ft_printf("[%6s == (%-8.3d)]\n", "-8.3d", -8473);
+	dprintf(1, "[%6s == (%3d)]\n", "3d", 0);
+	ft_printf("[%6s == (%3d)]\n", "3d", 0);
+	dprintf(1, "[%6s == (%-3d)]\n", "-3d", 0);
+	ft_printf("[%6s == (%-3d)]\n", "-3d", 0);
+	ft_putstr("FIN!\n");
 	getchar();
 	return (0);
 }

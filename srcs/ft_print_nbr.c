@@ -6,11 +6,13 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 18:50:50 by bmangin           #+#    #+#             */
-/*   Updated: 2021/02/24 22:31:45 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/01 21:03:42 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+
+# include <stdio.h>
 
 static int	ft_check_len(t_flags flags, char *s)
 {
@@ -36,6 +38,7 @@ static char	*ft_prepare_str(t_flags flags, int size, int nb)
 	int		neg;
 	int		i;
 	
+	// dprintf(1, "\nsize => |%d|\n", size);
 	if (!(out = malloc(sizeof(char) * size + 1)))
 		return (NULL);
 	neg = 0;
@@ -53,7 +56,7 @@ static char	*ft_prepare_str(t_flags flags, int size, int nb)
 			out[i++] = '0';
 		else if (i < size - flags.prec && flags.prec > -1)
 		{
-			if (i == size - (flags.prec + 1))
+			if (i == size - (flags.prec + 1) && nb < 0)
 				out[i++] = '-';
 			else
 				out[i++] = ' ';
@@ -64,94 +67,21 @@ static char	*ft_prepare_str(t_flags flags, int size, int nb)
 	out[i] = '\0';
 	return (out);
 }
-	/*
-	if(flags.prec > len)
-	{
-		
-	}
-	else
-	{
-		while (i < len)
-			out[i++] = (char)flags.zero;
-	}
-	out[i] = '\0';
-	return (out);
-	*/	
-	
-	/*
-	int		i;
-	int		cp;
-	char	*out;
 
-	i = 0;
-	cp = 0;
-	if (!(out = malloc(sizeof(char) * len)))
-		return (NULL);
-	if (flags.rev == 0)
-	{
-		if (flags.size > flags.prec)
-		{
-			while (i < (flags.size - (flags.prec)))
-				out[i++] = flags.zero;
-			if (nb < 0 && flags.prec > -1)
-			{
-				ft_putstr("Je suis la\n");
-				out[flags.size - (flags.prec + 1)] = '-';
-			}
-			else
-				out[i++] = flags.zero;
-			while (i < len)
-				out[i++] = '0';
-			// if (nb < 0 && flags.zero == 48)
-			// 	out[0] = '-';
-		}
-		else if (flags.size < flags.prec)
-		{
-			if (nb < 0)
-			{
-				out[0] = '-';
-				i++;
-			}
-			while (out[i])
-				out[i++] = '0';
-		}
-	}
-	else if (flags.rev == 1)
-	{
-		// if (flags.size > flags.prec)
-		// {
-		if (nb < 0)
-		{
-			out[0] = '-';
-			cp = 1;
-			i++;
-		}
-		while (i < flags.prec + cp)
-			out[i++] = '0';
-		while (i < (flags.size))
-			out[i++] = ' ';
-		if (nb < 0 && flags.prec > flags.size)
-			out[i++] = ' ';
-	// }
-	}
-	cp = 0;
-	out[i] = '\0';
-	return (out);
-	*/
-// }
-
-static void	ft_mix_str(char *dst, char *src, t_flags *flags)
+static char	*ft_mix_str(char *dst, char *src, t_flags *flags)
 {
 	int		i;
-	int		j;
+	int		len;
 	int		cp;
 
 	i = ft_strlen(dst) - ft_strlen(src);
-	j = 0;
+	len = ft_strlen(src);
 	cp = 0;
 	// ft_putstr("dst => |");
 	// ft_putstr(dst);
 	// ft_putstr("| ");
+	// ft_putstr(src);
+	// ft_putstr("| <= src");
 	/*
 	if (src[0] == '-')
 	{
@@ -167,120 +97,56 @@ static void	ft_mix_str(char *dst, char *src, t_flags *flags)
 	*/
 	// if (src[0] == '-' && (flags->rev == 1 || (flags->zero == 48 && flags->prec == -1)
 	// || (flags->size < flags->prec)))
-	if (src[0] == '-' && (flags->prec > ft_strlen(src) || flags->prec == -1))
+	// if (src[0] == '-' && ((flags->prec > len || flags->prec == -1) 
+	// || (flags->rev == 0) || flags->size != 0))
+	if (src[0] == '-' && ((flags->prec > len || flags->prec == -1)
+	|| flags->size > ft_strlen(src)))
 	{
 		src++;
 		cp = 1;
 	}
-	if (flags->rev == 0)
+	len = ft_strlen(src);
+	// dprintf(1, "\ndst => |%s|\n src => |%s|%d|\n(", dst, src, len);
+	if (flags->rev == 1)
 	{
-		// while (dst[i])
-			// dst[(cp + i++)] = src[j++];
-		ft_memcpy(dst + i + cp, src, ft_strlen(src));
-	}
-	else if (flags->rev == 1)
-	{
-		/*
-		if (flags->prec > ft_strlen(src))
-			i = (flags->prec - ft_strlen(src));
-		else
-			i = 0;
-		while (src[j])
-			dst[cp + i++] = src[j++];
-		*/
-		if (flags->prec > ft_strlen(src))
+		if (flags->prec > len)
 			ft_memcpy(dst + cp + (flags->prec - ft_strlen(src)), src, ft_strlen(src));
 		else
 			ft_memcpy(dst + cp, src, ft_strlen(src));
 	}
-	// ft_putstr("<= len | ft_ =>");
-	// ft_putnbr(ft_strlen(dst));
-	// ft_putchar('\n');	
-	ft_print_and_clean(flags, dst);
+	else if (flags->rev == 0)
+		ft_memcpy(dst + i + cp, src, ft_strlen(src));
+	return (dst);
 }
 
 int			ft_print_num(t_flags *flags)
 {
 	int		nb;
 	int		size;
+	int		len;
 	char	*nb_str;
 	char	*out;
 
 	nb = va_arg(flags->ap, int);
-	nb_str = ft_itoa_base(nb, ft_choose_base(flags->spec));
+	if (nb == 0)
+		nb_str = ft_strdup("0");
+	else
+		nb_str = ft_itoa_base(nb, ft_choose_base(flags->spec));
 	size = ft_check_len(*flags, nb_str);
-	if (size <= ft_strlen(nb_str))
+	len = ft_strlen(nb_str);
+	if (size == len)
 	{
 		ft_print_and_clean(flags, nb_str);
-		return (size);
 	}
-	else if (size > ft_strlen(nb_str))
+	else if (size > len)
 	{
 		out = ft_prepare_str(*flags, size, nb);
-		// ft_putstr(out);
-		// ft_putstr(") <= out\n");
-		// ft_putnbr(size);
-		ft_mix_str(out, nb_str, flags);
+		out = ft_mix_str(out, nb_str, flags);
 		ft_memdel(nb_str);
-		return (size);
+		ft_print_and_clean(flags, out);
 	}
 	return (size);
 }
-	/*
-	int		nb;
-	char	*nb_str;
-	int		i;
-	int		j;
-	int		len;
-
-	nb = va_arg(flags->ap, int);
-	nb_str = ft_itoa_base(nb, ft_choose_base(flags->spec));
-	len = ft_check_len(*flags, nb_str);
-	i = 0;
-	j = 0;
-	if (flags->rev == 0)
-	{
-		if (flags->rev == 0)
-		{
-			if (nb < 0 && flags->prec > flags->size)
-			{
-				ft_putchar('-');
-				nb_str++;
-				ft_putstr(nb_str);
-			}
-			if (i < (flags->size - flags->prec) || i < (flags->size - ft_strlen(nb_str)))
-			{
-				while (i != (flags->size - flags->prec) || i < (flags->size - ft_strlen(nb_str)))
-				{
-					ft_putchar((char)flags->zero);
-					i++;
-				}
-			}
-			if (nb < 0 && flags->prec > ft_strlen(nb_str))
-			{
-				ft_putchar('-');
-				nb_str++;
-			}
-			while (j < (flags->size - i) - ft_strlen(nb_str))
-			{
-				ft_putchar('0');
-				j++;
-			}
-		}
-		ft_putstr(nb_str);
-	}
-	else if (flags->rev == 1)
-	{
-		ft_putstr(nb_str);
-		i = ft_strlen(nb_str);
-		while (i < flags->size || i < flags->prec)
-		{
-			ft_putchar(' ');
-			i++;
-		}
-	}
-	return (i + j);
-	*/
 
 int			ft_print_ptr(t_flags *flags)
 {
