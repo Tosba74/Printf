@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 18:50:50 by bmangin           #+#    #+#             */
-/*   Updated: 2021/03/02 20:08:32 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/02 23:15:56 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,17 +80,19 @@ int			ft_print_char(t_flags *flags)
 	
 	i = 0;
 	size = ft_size_str(*flags, 1);
-	c = (unsigned char)va_arg(flags->ap, int);
+	if (flags->spec == 'c')
+		c = (unsigned char)va_arg(flags->ap, int);
+	else if (flags->spec == '%')
+		c = '%';
 	if(!(out = malloc(sizeof(char) * size + 1)))
 		return (0);
 	while (i < size)
-		out[i++] = ' ';
+		out[i++] = (char)flags->zero;
 	out[i] = '\0';
 	if (flags->rev == 1)
 		out[0] = (char)c;
 	else if (flags->rev == 0)
 		out[size - 1] = (char)c;
 	ft_print_and_clean(flags, out);
-	return (size);
-	
+	return (size);	
 }

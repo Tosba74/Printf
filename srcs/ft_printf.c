@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 12:04:18 by bmangin           #+#    #+#             */
-/*   Updated: 2021/03/02 20:16:45 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/02 23:54:03 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	ft_complet_value(int *f, t_flags *flags, const char *format)
 	i = 0;
 	if (format[i] == '*')
 	{
-		*f = va_arg(flags->ap, int);
+		*f = (int)va_arg(flags->ap, int);
 		i++;
 	}
 	else if (ft_isdigit((int)format[i]))
@@ -28,6 +28,8 @@ static int	ft_complet_value(int *f, t_flags *flags, const char *format)
 		while (ft_isdigit((int)format[i]))
 			i++;
 	}
+	// if (&f < 0)
+		// *f = -(*f);
 	return (i);
 }
 
@@ -72,9 +74,9 @@ static int	ft_converse(t_flags *flags)
 		&ft_print_num,
 		&ft_print_num,
 		&ft_print_num,
-		&ft_print_hex,
-		&ft_print_hex,
-		&ft_print_pourcent,
+		&ft_print_num,
+		&ft_print_num,
+		&ft_print_char,
 	};
 	return (pf[ft_isconvert(flags->spec)](flags));
 }

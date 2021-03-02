@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 16:46:14 by bmangin           #+#    #+#             */
-/*   Updated: 2021/03/02 19:32:06 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/02 23:58:42 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,8 @@ int main(void)
 	ft_putstr("FIN!\n");
 	getchar();
 	*/
-	printf("-v == [%-12c]\n", 48);
-	ft_printf("-m == [%-12c]\n", 48);
-	printf("+v == [%12c]\n", 48);
-	ft_printf("+m == [%12c]\n", 48);
+	printf("v == [%8.5d]\n", 0);
+	ft_printf("m == [%8.5d]\n", 0);
 
 	return (0);
 }
