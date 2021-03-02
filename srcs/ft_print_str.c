@@ -6,13 +6,13 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 18:50:50 by bmangin           #+#    #+#             */
-/*   Updated: 2021/03/02 17:01:54 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/02 20:08:32 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-static int	ft_size_str(t_flags flags, char *s, int var)
+static int	ft_size_str(t_flags flags, int var)
 {
 	int		size;
 	
@@ -59,25 +59,38 @@ int			ft_print_str(t_flags *flags)
 	len = ft_strlen(s);
 	if (-1 < flags->prec && flags->prec < len)
 	{
-		size = ft_size_str(*flags, s, flags->prec);
+		size = ft_size_str(*flags, flags->prec);
 		out = ft_reverse_str(*flags, s, size, flags->prec);
 	}
 	else
 	{
-		size = ft_size_str(*flags, s, len);
+		size = ft_size_str(*flags, len);
 		out = ft_reverse_str(*flags, s, size, len);
 	}
 	ft_print_and_clean(flags, out);
 	return (ft_strlen(out));
 }
 
-int		ft_print_char(t_flags *flags)
+int			ft_print_char(t_flags *flags)
 {
-	int len = 0;
-	char *out;
-	ft_putstr("Salut je suis un char\n");
-	(void)va_arg(flags->ap, int);
+	int		i;
+	int		size;
+	char	c;
+	char	*out;
+	
+	i = 0;
+	size = ft_size_str(*flags, 1);
+	c = (unsigned char)va_arg(flags->ap, int);
+	if(!(out = malloc(sizeof(char) * size + 1)))
+		return (0);
+	while (i < size)
+		out[i++] = ' ';
+	out[i] = '\0';
+	if (flags->rev == 1)
+		out[0] = (char)c;
+	else if (flags->rev == 0)
+		out[size - 1] = (char)c;
 	ft_print_and_clean(flags, out);
-	return (len);
+	return (size);
 	
 }

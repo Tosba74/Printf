@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 16:46:14 by bmangin           #+#    #+#             */
-/*   Updated: 2021/03/02 16:39:48 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/02 19:32:06 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,10 @@ int main(void)
 	ft_putstr("FIN!\n");
 	getchar();
 	*/
-	printf("v == [%6d %-3d]\n", -4242, 0);
-	ft_printf("p == [%6d %-3d]\n", -4242, 0);
-	// printf("wv == [%12s]\n", str);
-	// ft_printf("wm == [%12s]\n", str);
+	printf("-v == [%-12c]\n", 48);
+	ft_printf("-m == [%-12c]\n", 48);
+	printf("+v == [%12c]\n", 48);
+	ft_printf("+m == [%12c]\n", 48);
 
 	return (0);
 }
