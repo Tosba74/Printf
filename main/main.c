@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 16:46:14 by bmangin           #+#    #+#             */
-/*   Updated: 2021/03/01 11:45:26 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/02 16:39:48 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@
 int main(void)
 {
 	char	*str;
-	double pi;
+	// double pi;
 	
 	str = "salut";
-	pi = 3.141591654;
-	int nb = -4242;
+	// pi = 3.141591654;
+	// int nb = -4242;
 	// int *ptr = &nb;
+	/*
 	dprintf(1, "1ALEXIS JE TAIME mais %-15.45s theo %-6s lavabo\n", str, "42");	
 	ft_printf("ALEXIS JE TAIME mais %-15.45s theo %-6s lavabo\n",  str, "42");	
 	ft_printf("Jaime bien: %*s %*s\n", 5, "coucou", 5, "hey");
@@ -76,5 +77,11 @@ int main(void)
 	ft_printf("[%6s == (%-3d)]\n", "-3d", 0);
 	ft_putstr("FIN!\n");
 	getchar();
+	*/
+	printf("v == [%6d %-3d]\n", -4242, 0);
+	ft_printf("p == [%6d %-3d]\n", -4242, 0);
+	// printf("wv == [%12s]\n", str);
+	// ft_printf("wm == [%12s]\n", str);
+
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 12:04:18 by bmangin           #+#    #+#             */
-/*   Updated: 2021/02/27 13:26:06 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/02 16:32:10 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static int	ft_converse(t_flags *flags)
 {
 	int		(*pf[8])(t_flags *flags) =
 	{
-		&ft_print_char,
+		&ft_print_str,
 		&ft_print_str,
 		&ft_print_ptr,
 		&ft_print_num,

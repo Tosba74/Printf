@@ -6,31 +6,23 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 18:50:50 by bmangin           #+#    #+#             */
-/*   Updated: 2021/02/28 11:08:34 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/02 17:01:54 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-#include <stdio.h>
-
-static int	ft_size_str(t_flags flags, char *s)
+static int	ft_size_str(t_flags flags, char *s, int var)
 {
-	int		len;
 	int		size;
 	
-	size = 0;
-	len = ft_strlen(s);
-	if (-1 < flags.prec && flags.prec < len)
-		size = flags.prec;
-	if (flags.size > size)
-		size = flags.size;
-	if (len > size && (0 > flags.prec && flags.prec > len))
-		size = len;
+	size = flags.size;
+	if (size < var)
+		size = var;
 	return (size);	
 }
 
-char		*ft_reverse_str(t_flags flags, char *s, int size, int var)
+static char	*ft_reverse_str(t_flags flags, char *s, int size, int var)
 {
 	int		i;
 	int		len;
@@ -45,41 +37,34 @@ char		*ft_reverse_str(t_flags flags, char *s, int size, int var)
 		var = -var;
 	while (i < size)
 		out[i++] = ' ';
-	// dprintf(1, "s = %s\nsize = %d\nvar = %d\n", s, size, var);
-	// dprintf(1, "out = |%s|\n", out);
 	if (size == len && flags.prec == -1)
 		ft_memcpy(out, s, var);
 	else if (flags.rev == 1)
 		ft_memcpy(out, s, var);
 	else if (flags.rev == 0)
 		ft_memcpy(out + (size - var), s, var);	
-	// dprintf(1, "out = |%s|\n", out);
 	return (out);
 }
 
 int			ft_print_str(t_flags *flags)
 {
-	int		i;
 	int		size;
 	int		len;
 	char	*s;
 	char	*out;
 
-	s = va_arg(flags->ap, char *);
+	s = (char*)va_arg(flags->ap, char *);
 	if (!s)
-		s = "(NULL)";
-	i = 0;
+		s = "(null)";
 	len = ft_strlen(s);
-	size = ft_size_str(*flags, s);
-	// ft_prints(flags);
 	if (-1 < flags->prec && flags->prec < len)
 	{
-		// ft_putstr("PREC MOTHER FUCKER\n");
+		size = ft_size_str(*flags, s, flags->prec);
 		out = ft_reverse_str(*flags, s, size, flags->prec);
 	}
 	else
 	{
-		// ft_putstr("NO PREC MOTHER FUCKER\n");
+		size = ft_size_str(*flags, s, len);
 		out = ft_reverse_str(*flags, s, size, len);
 	}
 	ft_print_and_clean(flags, out);

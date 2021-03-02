@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 18:50:50 by bmangin           #+#    #+#             */
-/*   Updated: 2021/03/01 21:03:42 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/02 17:20:15 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,25 +82,8 @@ static char	*ft_mix_str(char *dst, char *src, t_flags *flags)
 	// ft_putstr("| ");
 	// ft_putstr(src);
 	// ft_putstr("| <= src");
-	/*
-	if (src[0] == '-')
-	{
-		if ((flags->rev == 1 || (flags->zero == 48 && flags->prec == -1)
-		|| (flags->size > flags->prec)))
-		// if (flags->prec > ft_strlen(src)
-		// || flags->zero == 48 || flags->rev == 1)
-		{
-			src++;
-			cp = 1;
-		}
-	}
-	*/
-	// if (src[0] == '-' && (flags->rev == 1 || (flags->zero == 48 && flags->prec == -1)
-	// || (flags->size < flags->prec)))
-	// if (src[0] == '-' && ((flags->prec > len || flags->prec == -1) 
-	// || (flags->rev == 0) || flags->size != 0))
-	if (src[0] == '-' && ((flags->prec > len || flags->prec == -1)
-	|| flags->size > ft_strlen(src)))
+	if (src[0] == '-' && (flags->rev == 1 || (flags->zero == 48 && flags->prec == -1) 
+	|| (len < flags->prec)))
 	{
 		src++;
 		cp = 1;
@@ -127,8 +110,8 @@ int			ft_print_num(t_flags *flags)
 	char	*nb_str;
 	char	*out;
 
-	nb = va_arg(flags->ap, int);
-	if (nb == 0)
+	nb = (int)va_arg(flags->ap, int);
+	if (nb == 0 && flags->prec == -1)
 		nb_str = ft_strdup("0");
 	else
 		nb_str = ft_itoa_base(nb, ft_choose_base(flags->spec));
