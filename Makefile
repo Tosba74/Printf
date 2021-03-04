@@ -6,31 +6,31 @@
 #    By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/11 11:23:45 by bmangin           #+#    #+#              #
-#    Updated: 2021/02/27 13:10:35 by bmangin          ###   ########lyon.fr    #
+#    Updated: 2021/03/04 10:33:17 by bmangin          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= libftprintf.a
 
-HDRS	= ft_printf.h
-
 LIBFT	= libft.a
 
-F_HDRS	= includes/
-
-C_HRDS	= $(addprefix ${F_HDRS}, ${HDRS})
+HDRS	= ft_printf.h
 
 SRCS	= ft_printf.c ft_utils.c ft_print_str.c ft_print_nbr.c
 
-F_SRCS	= srcs/
-
-C_SRCS	= $(addprefix ${F_SRCS}, ${SRCS})
-
-F_LIB	= libft/
-
-C_LIB	= $(addprefix ${F_LIB}, ${LIBFT})
-
 OBJS	= ${C_SRCS:.c=.o}
+
+D_HDRS	= includes/
+
+D_SRCS	= srcs/
+
+D_LIB	= libft/
+
+C_HRDS	= $(addprefix ${D_HDRS}, ${HDRS})
+
+C_SRCS	= $(addprefix ${D_SRCS}, ${SRCS})
+
+C_LIB	= $(addprefix ${D_LIB}, ${LIBFT})
 
 MAKE	= make -C 
 
@@ -45,10 +45,10 @@ RM		= rm -f
 all:	${NAME}
 
 %.o: %.c	${HDRS} 
-	${CC} ${FLAGS} -c $< -o $@ -I ${F_HDRS} -I ${C_LIB}
+	${CC} ${FLAGS} -c $< -o $@ -I ${D_HDRS}
 
 ${NAME}:	${OBJS}
-	${MAKE} ${F_LIB}
+	${MAKE} ${D_LIB}
 	cp ${C_LIB} ${NAME}
 	${AR} $@ $?
 
@@ -56,11 +56,11 @@ bonus:		${NAME} ${OBJS_B}
 	{AR} ${NAME} ${BONUS}
 
 clean:
-	${MAKE} ${F_LIB} clean
+	${MAKE} ${D_LIB} clean
 	${RM} ${OBJS}
 
 fclean:		clean
-	${MAKE} ${F_LIB} fclean
+	${MAKE} ${D_LIB} fclean
 	${RM} ${NAME}
 
 re:			fclean all
@@ -69,13 +69,9 @@ test:
 	${CC} ${FLAGS} ${OBJS} main/main.c ${C_LIB} -o prog -I ${F_HDRS}
 	./prog | cat -e 
 
-test_s:
-	${CC} ${FLAGS} main/maintest_s.c -o test_s
-	./test_s | cat -e 
-
 tests:
 	${CC} -fsanitize=address -g3 main/main.c ${NAME} ${C_LIB}
 
-a:	re test
+a:	${NAME} test
 
-.PHONY:		all clean fclean test test_s re a
+.PHONY:		all clean fclean test tests re a

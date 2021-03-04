@@ -6,10 +6,11 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 18:50:50 by bmangin           #+#    #+#             */
-/*   Updated: 2021/03/02 23:15:56 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/04 10:20:00 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+// #include "ft_printf.h"
 #include "../includes/ft_printf.h"
 
 static int	ft_size_str(t_flags flags, int var)

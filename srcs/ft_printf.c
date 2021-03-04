@@ -6,10 +6,11 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 12:04:18 by bmangin           #+#    #+#             */
-/*   Updated: 2021/03/02 23:54:03 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/04 10:20:45 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+// #include "ft_printf.h"
 #include "../includes/ft_printf.h"
 
 static int	ft_complet_value(int *f, t_flags *flags, const char *format)

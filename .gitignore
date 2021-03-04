@@ -1,2 +1,4 @@
 pft/
-pft/
+*.o
+a.out
+test_sgi

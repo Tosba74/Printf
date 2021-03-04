@@ -6,13 +6,12 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 18:50:50 by bmangin           #+#    #+#             */
-/*   Updated: 2021/03/03 00:02:44 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/04 10:20:07 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+// #include "ft_printf.h"
 #include "../includes/ft_printf.h"
-
-# include <stdio.h>
 
 static int	ft_check_len(t_flags flags, char *s)
 {
@@ -103,9 +102,10 @@ int			ft_print_num(t_flags *flags)
 	char	*out;
 
 	nb = (int)va_arg(flags->ap, int);
+	nb_str = NULL;
 	if (nb == 0 && flags->prec == -1)
 		nb_str = ft_strdup("0");
-	else if (INT_MIN < nb && nb < INT_MAX)
+	else if (-2147483648 < nb && nb < 2147483647)
 		nb_str = ft_itoa_base(nb, ft_choose_base(flags->spec));
 	size = ft_check_len(*flags, nb_str);
 	len = ft_strlen(nb_str);

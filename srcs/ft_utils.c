@@ -6,11 +6,12 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 15:29:00 by bmangin           #+#    #+#             */
-/*   Updated: 2021/02/16 13:43:11 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/04 10:27:37 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+// #include "ft_printf.h"
 
 int		ft_isvalue(char c)
 {
@@ -35,12 +36,12 @@ int		ft_isconvert(char c)
 char	*ft_choose_base(char c)
 {
 	char *base;
-	if (c == 'd' || c == 'i')
-		base = "0123456789";
-	else if (c == 'p' || c == 'x')
+	if (c == 'p' || c == 'x')
 		base = "0123456789abcdef";
 	else if (c == 'X')
 		base = "0123456789ABCDEF";
+	else
+		base = "0123456789";
 	return (base);
 }
 
@@ -53,15 +54,6 @@ void	ft_print_and_clean(t_flags *flags, char *s)
 	flags->spec = '-';
 	ft_putstr(s);
 	ft_memdel(s);
-}
-
-void	ft_init_flags(t_flags *flags)
-{
-	flags->size = -1;
-	flags->zero = 32;
-	flags->rev = 0;
-	flags->prec = -1;
-	flags->spec = '-';
 }
 
 void	ft_prints(t_flags *flags)
