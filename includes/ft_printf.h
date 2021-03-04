@@ -33,15 +33,13 @@ int	            ft_printf(const char *format, ...)
 				__attribute__((format(printf,1,2)));
 int				ft_isconvert(char c);
 int				ft_isvalue(char c);
+int				ft_check_len(t_flags flags, char *s);
 int				ft_print_char(t_flags *flags);
 int				ft_print_str(t_flags *flags);
 int				ft_print_ptr(t_flags *flags);
 int				ft_print_num(t_flags *flags);
-int				ft_print_hex(t_flags *flags);
-int				ft_print_pourcent(t_flags *flags);
-char			*ft_choose_base(char c);
+char			*ft_get_base(char c);
 void			ft_print_and_clean(t_flags *flags, char *s);
-void			ft_init_flags(t_flags *flags);
 /*
 **	TEST
 */

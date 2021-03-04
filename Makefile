@@ -32,6 +32,8 @@ C_SRCS	= $(addprefix ${D_SRCS}, ${SRCS})
 
 C_LIB	= $(addprefix ${D_LIB}, ${LIBFT})
 
+C_HLIB	= $(addprefix ${D_SRCS}, ${HDRS})
+
 MAKE	= make -C 
 
 CC		= clang
@@ -44,8 +46,8 @@ RM		= rm -f
 
 all:	${NAME}
 
-%.o: %.c	${HDRS} 
-	${CC} ${FLAGS} -c $< -o $@ -I ${D_HDRS}
+%.o: %.c	${C_HDRS}
+	${CC} ${FLAGS} -c $< -o $@ -I ${D_HDRS} -I ${C_HLIB}
 
 ${NAME}:	${OBJS}
 	${MAKE} ${D_LIB}

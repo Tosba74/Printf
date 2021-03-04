@@ -2,3 +2,5 @@ pft/
 *.o
 a.out
 test_s
+a.out.dSYM
+*.a

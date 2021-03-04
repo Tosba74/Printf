@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "ft_printf.h"
 
 static int	ft_size_str(t_flags flags, int var)
 {
@@ -22,7 +22,7 @@ static int	ft_size_str(t_flags flags, int var)
 	return (size);
 }
 
-static char	*ft_reverse_str(t_flags flags, char *s, int size, int var)
+static char	*ft_complet_str(t_flags flags, char *s, int size, int var)
 {
 	int		i;
 	int		len;
@@ -60,12 +60,12 @@ int			ft_print_str(t_flags *flags)
 	if (-1 < flags->prec && flags->prec < len)
 	{
 		size = ft_size_str(*flags, flags->prec);
-		out = ft_reverse_str(*flags, s, size, flags->prec);
+		out = ft_complet_str(*flags, s, size, flags->prec);
 	}
 	else
 	{
 		size = ft_size_str(*flags, len);
-		out = ft_reverse_str(*flags, s, size, len);
+		out = ft_complet_str(*flags, s, size, len);
 	}
 	ft_print_and_clean(flags, out);
 	return (ft_strlen(out));

@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
-// #include "ft_printf.h"
+#include "ft_printf.h"
 
 int		ft_isvalue(char c)
 {
@@ -33,9 +32,10 @@ int		ft_isconvert(char c)
 	return (-1);
 }
 
-char	*ft_choose_base(char c)
+char	*ft_get_base(char c)
 {
 	char *base;
+
 	if (c == 'p' || c == 'x')
 		base = "0123456789abcdef";
 	else if (c == 'X')
@@ -43,6 +43,22 @@ char	*ft_choose_base(char c)
 	else
 		base = "0123456789";
 	return (base);
+}
+
+int		ft_check_len(t_flags flags, char *s)
+{
+	int		len;
+
+	len = ft_strlen(s);
+	if (flags.size > len)
+		len = flags.size;
+	if (flags.prec > len)
+	{
+		len = flags.prec;
+		if (s[0] == '-')
+			len++;
+	}
+	return (len);
 }
 
 void	ft_print_and_clean(t_flags *flags, char *s)

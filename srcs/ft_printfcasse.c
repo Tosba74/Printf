@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "ft_printf.h"
 
 static int	ft_complet_value(int *f, t_flags *flags, const char *format)
 {
@@ -28,10 +28,6 @@ static int	ft_complet_value(int *f, t_flags *flags, const char *format)
 		while (ft_isdigit((int)format[i]))
 			i++;
 	}
-	if (ft_isconvert(format[i]) != -1)
-		*f = 0;
-	if (*f < 0)
-		(*f) = -(*f);
 	return (i);
 }
 
@@ -56,7 +52,10 @@ static int	ft_parse(t_flags *flags, const char *format)
 	if (format[i] == '.')
 	{
 		i++;
-		i += ft_complet_value(&flags->prec, flags, format + i);
+		if (ft_isconvert(flags->spec) != -1)
+			flags->prec = 0;
+		else
+			i += ft_complet_value(&flags->prec, flags, format + i);
 	}
 	if (ft_isconvert(format[i]) != -1)
 		flags->spec = format[i];

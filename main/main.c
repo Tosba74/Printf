@@ -17,13 +17,12 @@
 int main(void)
 {
 	char	*str;
-	// double pi;
+	double pi;
 	
 	str = "salut";
-	// pi = 3.141591654;
-	// int nb = -4242;
+	pi = 3.141591654;
+	int nb = -4242;
 	// int *ptr = &nb;
-	/*
 	dprintf(1, "1ALEXIS JE TAIME mais %-15.45s theo %-6s lavabo\n", str, "42");	
 	ft_printf("ALEXIS JE TAIME mais %-15.45s theo %-6s lavabo\n",  str, "42");	
 	ft_printf("Jaime bien: %*s %*s\n", 5, "coucou", 5, "hey");
@@ -77,10 +76,9 @@ int main(void)
 	dprintf(1, "[%6s == (%-3d)]\n", "-3d", 0);
 	ft_printf("[%6s == (%-3d)]\n", "-3d", 0);
 	ft_putstr("FIN!\n");
-	getchar();
-	*/
 	printf("v == [%8.5d]\n", 0);
 	ft_printf("m == [%8.5d]\n", 0);
+	getchar();
 
 	return (0);
 }
