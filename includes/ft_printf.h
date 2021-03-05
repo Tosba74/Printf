@@ -38,6 +38,7 @@ int				ft_print_char(t_flags *flags);
 int				ft_print_str(t_flags *flags);
 int				ft_print_ptr(t_flags *flags);
 int				ft_print_num(t_flags *flags);
+int				ft_print_u(t_flags *flags);
 char			*ft_get_base(char c);
 void			ft_print_and_clean(t_flags *flags, char *s);
 /*

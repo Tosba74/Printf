@@ -12,11 +12,11 @@
 
 #include "ft_printf.h"
 
-static char		*ft_prepare_out(t_flags flags, int size, int nb)
+static char			*ft_prepare_out(t_flags flags, int size, unsigned int nb)
 {
-	char		*out;
-	int			neg;
-	int			i;
+	char			*out;
+	int				neg;
+	int				i;
 
 	if (!(out = malloc(sizeof(char) * size + 1)))
 		return (NULL);
@@ -40,11 +40,11 @@ static char		*ft_prepare_out(t_flags flags, int size, int nb)
 	return (out);
 }
 
-static char		*ft_mix_str(char *dst, char *src, t_flags *flags)
+static char			*ft_mix_str(char *dst, char *src, t_flags *flags)
 {
-	int			i;
-	int			len;
-	int			cp;
+	int				i;
+	int				len;
+	int				cp;
 
 	i = ft_strlen(dst) - ft_strlen(src);
 	len = ft_strlen(src);
@@ -68,25 +68,54 @@ static char		*ft_mix_str(char *dst, char *src, t_flags *flags)
 	return (dst);
 }
 
-int					ft_print_num(t_flags *flags)
+int					ft_print_u(t_flags *flags)
 {
-	int			nb;
-	int			size;
-	int			len;
-	char		*nb_str;
-	char		*out;
+	unsigned int	nb;
+	int				size;
+	int				len;
+	char			*nb_str;
+	char			*out;
 
-	nb = (int)va_arg(flags->ap, int);
+	nb = (unsigned int)va_arg(flags->ap, unsigned int);
 	nb_str = NULL;
 	if (nb == 0 && flags->prec == -1)
 		nb_str = ft_strdup("0");
-	else if (-2147483648 <= nb && nb <= 2147483647)
+	else if (0 <= nb && nb <= 4294967295)
 		nb_str = ft_itoa_base(nb, ft_get_base(flags->spec));
 	size = ft_check_len(*flags, nb_str);
 	len = ft_strlen(nb_str);
 	if (size == len)
 		ft_print_and_clean(flags, nb_str);
 	else if (size > len)
+	{
+		out = ft_prepare_out(*flags, size, nb);
+		out = ft_mix_str(out, nb_str, flags);
+		ft_memdel(nb_str);
+		ft_print_and_clean(flags, out);
+	}
+	return (size);
+}
+
+int					ft_print_ptr(t_flags *flags)
+{
+	unsigned int	nb;
+	int				size;
+	int				len;
+	char			*nb_str;
+	char			*out;
+
+	nb = (unsigned int)va_arg(flags->ap, unsigned int);
+	if (nb == 0)
+		nb_str = ft_strdup("0x0");
+	else
+		nb_str = ft_strjoin("0x10", ft_itoa_base(nb, ft_get_base(flags->spec)));
+	size = ft_check_len(*flags, nb_str);
+	len = ft_strlen(nb_str);
+	if (size == len)
+	{
+		ft_print_and_clean(flags, nb_str);
+	}
+	if (size > len)
 	{
 		out = ft_prepare_out(*flags, size, nb);
 		out = ft_mix_str(out, nb_str, flags);

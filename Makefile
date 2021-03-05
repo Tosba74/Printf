@@ -16,7 +16,7 @@ LIBFT	= libft.a
 
 HDRS	= ft_printf.h
 
-SRCS	= ft_printf.c ft_utils.c ft_print_str.c ft_print_nbr.c
+SRCS	= ft_printf.c ft_utils.c ft_print_str.c ft_print_nbr.c ft_print_unbr.c
 
 OBJS	= ${C_SRCS:.c=.o}
 
