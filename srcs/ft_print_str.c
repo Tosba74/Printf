@@ -18,7 +18,7 @@ static int	ft_size_str(t_flags *flags, int var)
 
 	if (flags->size != -1)
 	{
-		if(flags->size < 0)
+		if (flags->size < 0)
 		{
 			size = -(flags->size);
 			flags->rev = 1;
@@ -27,7 +27,7 @@ static int	ft_size_str(t_flags *flags, int var)
 			size = flags->size;
 	}
 	else
-		size = 0;	
+		size = 0;
 	if (size < 0 && size != -1)
 	{
 		size = -size;

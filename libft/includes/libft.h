@@ -81,6 +81,7 @@ int					ft_len_itoa(int n, int b);
 int					ft_itoa_base_len(char *result, int n, const char *base);
 char				*ft_itoa(int n);
 char				*ft_itoa_base(int n, const char *base);
+char				*ft_utoa_base(unsigned long long n, const char *base);
 char				*ft_hexa(int n, const char *base);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void				ft_putchar_fd(char c, int fd);

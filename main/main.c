@@ -31,12 +31,12 @@ int main(void)
 	// ft_printf("Jaime bien:\n%-10.*d\n", 6, nb);
 	// ft_printf("Jaime bien:\n%*c\n", 7, nb);
 	// ft_printf("Jaime bien:\n%*x\n", 8, nb);
-	ft_putstr(ft_itoa_base(4294967295, "0123456789abcdef"));
-	ft_putstr("\n");
-	ft_printf("m = [%u]\n", 4294967295u);
-	dprintf(1, "v = [%u]\n", 4294967295u);
-	ft_printf("m = [%*s]\n", -32, "42");
-	dprintf(1, "v = [%*s]\n", -32, "42");
+	// ft_putstr(ft_utoa_base(*str, "0123456789abcdef"));
+	// ft_putstr("\n");
+	ft_printf("m = [%p]\n",str);
+	dprintf(1, "v = [%p]\n",str);
+	//ft_printf("m = [%*s]\n", -32, "42");
+	//dprintf(1, "v = [%*s]\n", -32, "42");
 	// ft_printf("[%6s == (%10x)]\n", "10x", nb);
 	// dprintf(1, "[%6s == (%010d)]\n", "010d", nb);
 	// ft_printf("[%6s == (%010d)]\n", "010d", nb);

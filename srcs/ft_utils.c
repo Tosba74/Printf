@@ -53,7 +53,7 @@ int		ft_check_len(t_flags *flags, char *s)
 	len = ft_strlen(s);
 	if (flags->size != -1)
 	{
-		if(flags->size < 0)
+		if (flags->size < 0)
 		{
 			size = -(flags->size);
 			flags->rev = 1;
@@ -62,7 +62,7 @@ int		ft_check_len(t_flags *flags, char *s)
 			size = flags->size;
 	}
 	else
-		size = 0;		
+		size = 0;
 	if (size > len)
 		len = size;
 	if (flags->prec > len)

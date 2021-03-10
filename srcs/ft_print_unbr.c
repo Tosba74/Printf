@@ -80,8 +80,8 @@ int					ft_print_u(t_flags *flags)
 	nb_str = NULL;
 	if (nb == 0 && flags->prec == -1)
 		nb_str = ft_strdup("0");
-	else if (0 <= nb && nb <= 4294967295)
-		nb_str = ft_itoa_base(nb, ft_get_base(flags->spec));
+	else
+		nb_str = ft_utoa_base(nb, ft_get_base(flags->spec));
 	size = ft_check_len(flags, nb_str);
 	len = ft_strlen(nb_str);
 	if (size == len)
@@ -98,17 +98,17 @@ int					ft_print_u(t_flags *flags)
 
 int					ft_print_ptr(t_flags *flags)
 {
-	unsigned int	nb;
+	unsigned long long	nb;
 	int				size;
 	int				len;
 	char			*nb_str;
 	char			*out;
 
-	nb = (unsigned int)va_arg(flags->ap, unsigned int);
+	nb = (unsigned long long)va_arg(flags->ap, unsigned long long);
 	if (nb == 0)
 		nb_str = ft_strdup("0x0");
 	else
-		nb_str = ft_strjoin("0x10", ft_itoa_base(nb, ft_get_base(flags->spec)));
+		nb_str = ft_strjoin("0x", ft_utoa_base(nb, ft_get_base(flags->spec)));
 	size = ft_check_len(flags, nb_str);
 	len = ft_strlen(nb_str);
 	if (size == len)

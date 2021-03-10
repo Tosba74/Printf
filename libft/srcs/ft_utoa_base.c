@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
+/*   ft_utoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,40 +12,48 @@
 
 #include "../includes/libft.h"
 
-static void	ft_recursive_itoa(long nb, int i, const char *base, char *result)
+static int		ft_len_nbr(unsigned int n, unsigned int b)
+{
+	int		count;
+
+	count = 0;
+	while (n >= b)
+	{
+		n /= b;
+		count++;
+	}
+	count++;
+	return (count);
+}
+
+static void		ft_recursive_utoa(unsigned long long nb, int i, const char *base,
+char *result)
 {
 	unsigned int b;
 
 	b = (unsigned int)ft_check_base(base);
 	result[i] = (char)base[nb % b];
 	if (nb >= b)
-		ft_recursive_itoa(nb / b, i - 1, base, result);
+		ft_recursive_utoa(nb / b, i - 1, base, result);
 }
-char		*ft_itoa_base(int n, const char *base)
+#include <stdio.h>
+char		*ft_utoa_base(unsigned long long n, const char *base)
 {
-	long			nb;
-	long			b;
+	unsigned long long	nb;
+	unsigned int		b;
 	int				len;
 	char			*result;
 
-	nb = (long)n;
+	nb = (unsigned long long)n;
+	printf("nb => %llu", nb);
 	b = (long)ft_check_base(base);
-	len = ft_len_num(nb, b);
+	len = ft_len_nbr(nb, b);
+	// printf("Salut");
 	if (b == 0 || b == 1)
 		return (0);
-	if (!(result = (char*)malloc(sizeof(char) * len)))
+	if (!(result = (char*)malloc(sizeof(char) * (len + 1))))
 		return (NULL);
 	result[len] = '\0';
-	if (nb == -2147483648)
-	{
-		result[--len] = (char)base[n % b] - 1;
-		nb /= b;
-	}
-	if (nb < 0)
-	{
-		result[0] = '-';
-		nb = -nb;
-	}
-	ft_recursive_itoa(nb, len - 1, base, result);
+	ft_recursive_utoa(nb, len - 1, base, result);
 	return (result);
 }

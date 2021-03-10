@@ -18,8 +18,6 @@ HDRS	= ft_printf.h
 
 SRCS	= ft_printf.c ft_utils.c ft_print_str.c ft_print_nbr.c ft_print_unbr.c
 
-OBJS	= ${C_SRCS:.c=.o}
-
 D_HDRS	= includes/
 
 D_SRCS	= srcs/
@@ -34,6 +32,8 @@ C_LIB	= $(addprefix ${D_LIB}, ${LIBFT})
 
 C_HLIB	= $(addprefix ${D_SRCS}, ${HDRS})
 
+OBJS	= ${C_SRCS:.c=.o}
+
 MAKE	= make -C 
 
 CC		= clang
@@ -47,12 +47,13 @@ RM		= rm -f
 all:	${NAME}
 
 %.o: %.c	${C_HDRS}
-	${CC} ${FLAGS} -c $< -o $@ -I ${D_HDRS} -I ${C_HLIB}
+	${CC} ${FLAGS} -I ${D_HDRS} -I ${C_HLIB} -c $< -o $@
 
-${NAME}:	${OBJS}
-	${MAKE} ${D_LIB}
-	cp ${C_LIB} ${NAME}
-	${AR} $@ $?
+libft:
+	make -C libft/
+
+${NAME}:	libft ${OBJS}
+	${AR} $@ ${C_LIB} $?
 
 bonus:		${NAME} ${OBJS_B}
 	{AR} ${NAME} ${BONUS}
@@ -74,6 +75,6 @@ test:
 tests:
 	${CC} -fsanitize=address -g3 main/main.c ${NAME} ${C_LIB}
 
-a:	${NAME} test
+a:	all test
 
 .PHONY:		all clean fclean test tests re a

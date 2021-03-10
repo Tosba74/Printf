@@ -30,11 +30,6 @@ static int	ft_complet_value(int *f, t_flags *flags, const char *format)
 	}
 	else if (ft_isconvert(format[i]) != -1)
 		*f = 0;
-	// if (*f < 0)
-	// {
-	// 	*f = -(*f);
-	// 	flags->rev = 1;
-	// }
 	return (i);
 }
 
@@ -76,8 +71,8 @@ static int	ft_converse(t_flags *flags)
 	pf[3] = &ft_print_num;
 	pf[4] = &ft_print_num;
 	pf[5] = &ft_print_u;
-	pf[6] = &ft_print_num;
-	pf[7] = &ft_print_num;
+	pf[6] = &ft_print_u;
+	pf[7] = &ft_print_u;
 	pf[8] = &ft_print_char;
 	return (pf[ft_isconvert(flags->spec)](flags));
 }
