@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 00:58:17 by bmangin           #+#    #+#             */
-/*   Updated: 2021/02/04 14:05:35 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 21:44:54 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char				**ft_split(char const *s, char c);
 char				**ft_split_whitespaces(char const *s);
 int					ft_putchar_len(char c);
 int					ft_putstr_len(char *s);
-int					ft_len_num(int n, int b);
+int					ft_len_num(long n, int b);
 int					ft_putnbr_len(int n);
 int					ft_len_itoa(int n, int b);
 int					ft_itoa_base_len(char *result, int n, const char *base);

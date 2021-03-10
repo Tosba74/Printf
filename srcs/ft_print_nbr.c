@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 18:50:50 by bmangin           #+#    #+#             */
-/*   Updated: 2021/03/04 10:20:07 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 10:28:53 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int					ft_print_num(t_flags *flags)
 		nb_str = ft_strdup("0");
 	else if (-2147483648 <= nb && nb <= 2147483647)
 		nb_str = ft_itoa_base(nb, ft_get_base(flags->spec));
-	size = ft_check_len(*flags, nb_str);
+	size = ft_check_len(flags, nb_str);
 	len = ft_strlen(nb_str);
 	if (size == len)
 		ft_print_and_clean(flags, nb_str);

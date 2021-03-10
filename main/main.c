@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 16:46:14 by bmangin           #+#    #+#             */
-/*   Updated: 2021/03/03 17:27:42 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/09 14:21:58 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,17 @@ int main(void)
 	// dprintf(1, "1ALEXIS JE TAIME mais %-15.45s theo %-6s lavabo\n", str, "42");	
 	// ft_printf("ALEXIS JE TAIME mais %-15.45s theo %-6s lavabo\n",  str, "42");	
 	// ft_printf("Jaime bien: %*s %*s\n", -5, "coucou", -5, "hey");
-	ft_printf("Jaime bien: %*s\n", -5, "coucou");
-	ft_printf("m = [%u]\n", 4294967294u);
-	dprintf(1, "v = [%u]\n", 4294967294u);
+	// ft_printf("Jaime bien: %*s\n", -5, "coucou");
 	// ft_printf("Jaime bien:\n%*p\n", 9, ptr);
 	// ft_printf("Jaime bien:\n%-10.*d\n", 6, nb);
 	// ft_printf("Jaime bien:\n%*c\n", 7, nb);
 	// ft_printf("Jaime bien:\n%*x\n", 8, nb);
+	ft_putstr(ft_itoa_base(4294967295, "0123456789abcdef"));
+	ft_putstr("\n");
+	ft_printf("m = [%u]\n", 4294967295u);
+	dprintf(1, "v = [%u]\n", 4294967295u);
+	ft_printf("m = [%*s]\n", -32, "42");
+	dprintf(1, "v = [%*s]\n", -32, "42");
 	// ft_printf("[%6s == (%10x)]\n", "10x", nb);
 	// dprintf(1, "[%6s == (%010d)]\n", "010d", nb);
 	// ft_printf("[%6s == (%010d)]\n", "010d", nb);

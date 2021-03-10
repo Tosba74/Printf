@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_nbr.c                                     :+:      :+:    :+:   */
+/*   ft_print_unbr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 18:50:50 by bmangin           #+#    #+#             */
-/*   Updated: 2021/03/04 10:20:07 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 14:04:53 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int					ft_print_u(t_flags *flags)
 		nb_str = ft_strdup("0");
 	else if (0 <= nb && nb <= 4294967295)
 		nb_str = ft_itoa_base(nb, ft_get_base(flags->spec));
-	size = ft_check_len(*flags, nb_str);
+	size = ft_check_len(flags, nb_str);
 	len = ft_strlen(nb_str);
 	if (size == len)
 		ft_print_and_clean(flags, nb_str);
@@ -109,7 +109,7 @@ int					ft_print_ptr(t_flags *flags)
 		nb_str = ft_strdup("0x0");
 	else
 		nb_str = ft_strjoin("0x10", ft_itoa_base(nb, ft_get_base(flags->spec)));
-	size = ft_check_len(*flags, nb_str);
+	size = ft_check_len(flags, nb_str);
 	len = ft_strlen(nb_str);
 	if (size == len)
 	{

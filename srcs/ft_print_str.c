@@ -6,17 +6,33 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 18:50:50 by bmangin           #+#    #+#             */
-/*   Updated: 2021/03/04 10:20:00 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/09 14:23:48 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-static int	ft_size_str(t_flags flags, int var)
+static int	ft_size_str(t_flags *flags, int var)
 {
 	int		size;
 
-	size = flags.size;
+	if (flags->size != -1)
+	{
+		if(flags->size < 0)
+		{
+			size = -(flags->size);
+			flags->rev = 1;
+		}
+		else
+			size = flags->size;
+	}
+	else
+		size = 0;	
+	if (size < 0 && size != -1)
+	{
+		size = -size;
+		flags->rev = 1;
+	}
 	if (size < var)
 		size = var;
 	return (size);
@@ -59,12 +75,12 @@ int			ft_print_str(t_flags *flags)
 	len = ft_strlen(s);
 	if (-1 < flags->prec && flags->prec < len)
 	{
-		size = ft_size_str(*flags, flags->prec);
+		size = ft_size_str(flags, flags->prec);
 		out = ft_reverse_str(*flags, s, size, flags->prec);
 	}
 	else
 	{
-		size = ft_size_str(*flags, len);
+		size = ft_size_str(flags, len);
 		out = ft_reverse_str(*flags, s, size, len);
 	}
 	ft_print_and_clean(flags, out);
@@ -79,20 +95,20 @@ int			ft_print_char(t_flags *flags)
 	char	*out;
 
 	i = 0;
-	size = ft_size_str(*flags, 1);
+	size = ft_size_str(flags, 1);
 	if (flags->spec == 'c')
 		c = (unsigned char)va_arg(flags->ap, int);
 	else if (flags->spec == '%')
 		c = '%';
-	if (!(out = malloc(sizeof(char) * size + 1)))
+	if (!(out = malloc(sizeof(unsigned char) * size + 1)))
 		return (0);
 	while (i < size)
-		out[i++] = (char)flags->zero;
+		out[i++] = (unsigned char)flags->zero;
 	out[i] = '\0';
 	if (flags->rev == 1)
-		out[0] = (char)c;
+		out[0] = (unsigned char)c;
 	else if (flags->rev == 0)
-		out[size - 1] = (char)c;
+		out[size - 1] = (unsigned char)c;
 	ft_print_and_clean(flags, out);
 	return (size);
 }
