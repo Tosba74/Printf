@@ -18,21 +18,21 @@ static int	ft_size_str(t_flags *flags, int var)
 
 	if (flags->size != -1)
 	{
-		if (flags->size < 0)
-		{
-			size = -(flags->size);
-			flags->rev = 1;
-		}
-		else
+		// if (flags->size < 0)
+		// {
+		// 	size = -(flags->size);
+		// 	flags->rev = 1;
+		// }
+		// else
 			size = flags->size;
 	}
 	else
 		size = 0;
-	if (size < 0 && size != -1)
-	{
-		size = -size;
-		flags->rev = 1;
-	}
+	// if (size < 0 && size != -1)
+	// {
+	// 	size = -size;
+	// 	flags->rev = 1;
+	// }
 	if (size < var)
 		size = var;
 	return (size);
@@ -83,7 +83,7 @@ int			ft_print_str(t_flags *flags)
 		size = ft_size_str(flags, len);
 		out = ft_reverse_str(*flags, s, size, len);
 	}
-	ft_print_and_clean(flags, out);
+	ft_print_and_clean(flags, out, size);
 	return (ft_strlen(out));
 }
 
@@ -100,15 +100,15 @@ int			ft_print_char(t_flags *flags)
 		c = (unsigned char)va_arg(flags->ap, int);
 	else if (flags->spec == '%')
 		c = '%';
-	if (!(out = malloc(sizeof(unsigned char) * size + 1)))
+	if (!(out = malloc(sizeof(char) * size + 1)))
 		return (0);
 	while (i < size)
-		out[i++] = (unsigned char)flags->zero;
+		out[i++] = (char)flags->zero;
 	out[i] = '\0';
 	if (flags->rev == 1)
-		out[0] = (unsigned char)c;
+		out[0] = c;
 	else if (flags->rev == 0)
-		out[size - 1] = (unsigned char)c;
-	ft_print_and_clean(flags, out);
+		out[size - 1] = c;
+	ft_print_and_clean(flags, out, size);
 	return (size);
 }

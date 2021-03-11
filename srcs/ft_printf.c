@@ -12,6 +12,12 @@
 
 #include "../includes/ft_printf.h"
 
+static int	ft_trash_user(t_flags *flags)
+{
+	(void)flags;
+	return (0);
+}
+
 static int	ft_complet_value(int *f, t_flags *flags, const char *format)
 {
 	int		i;
@@ -71,7 +77,7 @@ static int	ft_parse(t_flags *flags, const char *format)
 
 static int	ft_converse(t_flags *flags)
 {
-	int		(*pf[9])(t_flags *flags);
+	int		(*pf[10])(t_flags *flags);
 
 	pf[0] = &ft_print_char;
 	pf[1] = &ft_print_str;
@@ -82,6 +88,7 @@ static int	ft_converse(t_flags *flags)
 	pf[6] = &ft_print_u;
 	pf[7] = &ft_print_u;
 	pf[8] = &ft_print_char;
+	pf[9] = &ft_trash_user;
 	return (pf[ft_isconvert(flags->spec)](flags));
 }
 

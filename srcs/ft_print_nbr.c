@@ -50,7 +50,7 @@ static char	*ft_mix_str(char *dst, char *src, t_flags *flags)
 	len = ft_strlen(src);
 	cp = 0;
 	if (src[0] == '-' && ((flags->zero == 48 && flags->prec == -1)
-	|| len < flags->prec || flags->rev == 1))
+	|| len <= flags->prec || flags->rev == 1))
 	{
 		src++;
 		cp = 1;
@@ -68,11 +68,11 @@ static char	*ft_mix_str(char *dst, char *src, t_flags *flags)
 	return (dst);
 }
 
+#include <stdio.h>
 int			ft_print_num(t_flags *flags)
 {
 	int		nb;
 	int		size;
-	int		len;
 	char	*nb_str;
 	char	*out;
 
@@ -83,15 +83,15 @@ int			ft_print_num(t_flags *flags)
 	else
 		nb_str = ft_itoa_base(nb, ft_get_base(flags->spec));
 	size = ft_check_len(flags, nb_str);
-	len = ft_strlen(nb_str);
-	if (size == len)
-		ft_print_and_clean(flags, nb_str);
-	else if (size > len)
+	if (size == (int)ft_strlen(nb_str))
+		ft_print_and_clean(flags, nb_str, size);
+	else if (size > (int)ft_strlen(nb_str))
 	{
 		out = ft_prepare_out(*flags, size, nb);
+		// printf("out-->%s\n",out);
 		out = ft_mix_str(out, nb_str, flags);
 		ft_memdel(nb_str);
-		ft_print_and_clean(flags, out);
+		ft_print_and_clean(flags, out, size);
 	}
 	return (size);
 }

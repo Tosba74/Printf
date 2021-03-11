@@ -33,7 +33,12 @@ int main(void)
 	// ft_printf("Jaime bien:\n%*x\n", 8, nb);
 	// ft_putstr(ft_utoa_base(*str, "0123456789abcdef"));
 	// ft_putstr("\n");
-	ft_printf(" -%*c* -%-*c* ", -2, 0, 2, 0);
+	// printf("le -->%-c%-c%c*\n", 1, '0', 0);
+	ft_printf("ft -->%*.5d\n", 10, -1);
+	ft_printf("ft -->%*.5d\n", 10, -111);
+	ft_printf("ft -->%*.5d\n", 10, -1011);
+	ft_printf("ft -->%*.10d\n", 20, -10011);
+	ft_printf("ft -->%*.10d\n", 20, -111011);
 	// ft_printf("m = [%p]\n",str);
 	// dprintf(1, "v = [%p]\n",str);
 	//ft_printf("m = [%*s]\n", -32, "42");

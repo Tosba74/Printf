@@ -74,7 +74,7 @@ char				*ft_strtrim(char const *s1, char const *set);
 char				**ft_split(char const *s, char c);
 char				**ft_split_whitespaces(char const *s);
 int					ft_putchar_len(char c);
-int					ft_putstr_len(char *s);
+void				ft_putstr_len(char *s, int len);
 int					ft_len_num(long n, int b);
 int					ft_putnbr_len(int n);
 int					ft_len_itoa(int n, int b);

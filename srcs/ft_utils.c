@@ -29,7 +29,7 @@ int		ft_isconvert(char c)
 	while (convert[++i])
 		if (convert[i] == c)
 			return (i);
-	return (-1);
+	return (i);
 }
 
 char	*ft_get_base(char c)
@@ -74,14 +74,14 @@ int		ft_check_len(t_flags *flags, char *s)
 	return (len);
 }
 
-void	ft_print_and_clean(t_flags *flags, char *s)
+void	ft_print_and_clean(t_flags *flags, char *s, int size)
 {
 	flags->size = -1;
 	flags->zero = 32;
 	flags->rev = 0;
 	flags->prec = -1;
 	flags->spec = '-';
-	ft_putstr(s);
+	ft_putstr_len(s, size);
 	ft_memdel(s);
 }
 
