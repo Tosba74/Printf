@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 18:50:50 by bmangin           #+#    #+#             */
-/*   Updated: 2021/03/08 14:04:53 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 14:53:52 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int					ft_print_ptr(t_flags *flags)
 	if (nb == 0)
 		nb_str = ft_strdup("0x0");
 	else
-		nb_str = ft_strjoin("0x", ft_utoa_base(nb, ft_get_base(flags->spec)));
+		nb_str = ft_strjoin("0x10", ft_utoa_base(nb, ft_get_base(flags->spec)));
 	size = ft_check_len(flags, nb_str);
 	len = ft_strlen(nb_str);
 	if (size == len)

@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 16:46:14 by bmangin           #+#    #+#             */
-/*   Updated: 2021/03/09 14:21:58 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 15:22:14 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ int main(void)
 	// ft_printf("Jaime bien:\n%*x\n", 8, nb);
 	// ft_putstr(ft_utoa_base(*str, "0123456789abcdef"));
 	// ft_putstr("\n");
-	ft_printf("m = [%p]\n",str);
-	dprintf(1, "v = [%p]\n",str);
+	ft_printf(" -%*c* -%-*c* ", -2, 0, 2, 0);
+	// ft_printf("m = [%p]\n",str);
+	// dprintf(1, "v = [%p]\n",str);
 	//ft_printf("m = [%*s]\n", -32, "42");
 	//dprintf(1, "v = [%*s]\n", -32, "42");
 	// ft_printf("[%6s == (%10x)]\n", "10x", nb);

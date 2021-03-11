@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 12:04:18 by bmangin           #+#    #+#             */
-/*   Updated: 2021/03/08 13:51:14 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 15:17:48 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,15 @@ static int	ft_parse(t_flags *flags, const char *format)
 		i++;
 	}
 	if (ft_isvalue(format[i]))
+	{
 		i += ft_complet_value(&flags->size, flags, format + i);
+		if (flags->size < 0)
+		{
+			flags->size *= -1;
+			flags->zero = 32;
+			flags->rev = 1;
+		}
+	}
 	if (format[i] == '.')
 	{
 		i++;

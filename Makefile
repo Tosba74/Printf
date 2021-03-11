@@ -6,75 +6,69 @@
 #    By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/11 11:23:45 by bmangin           #+#    #+#              #
-#    Updated: 2021/03/04 10:33:17 by bmangin          ###   ########lyon.fr    #
+#    Updated: 2021/03/11 14:49:02 by bmangin          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= libftprintf.a
+NAME		= libftprintf.a
 
-LIBFT	= libft.a
+NAME_LIBFT 	= libft.a
 
-HDRS	= ft_printf.h
+FILES			= ft_printf.c ft_utils.c ft_print_str.c ft_print_nbr.c ft_print_unbr.c
 
-SRCS	= ft_printf.c ft_utils.c ft_print_str.c ft_print_nbr.c ft_print_unbr.c
+FILES_BONUS = 
 
-D_HDRS	= includes/
+INC_FILES	= ft_printf.h
 
-D_SRCS	= srcs/
+LIBFT_PATH 	= libft/
 
-D_LIB	= libft/
+SRC_PATH	= ./srcs/
 
-C_HRDS	= $(addprefix ${D_HDRS}, ${HDRS})
+INC_PATH	= ./includes/
 
-C_SRCS	= $(addprefix ${D_SRCS}, ${SRCS})
+SRC			=  $(addprefix ${SRC_PATH}, ${FILES})
 
-C_LIB	= $(addprefix ${D_LIB}, ${LIBFT})
+SRC_BONUS	=  $(addprefix ${SRC_PATH}, ${FILES} ${FILES_BONUS})
 
-C_HLIB	= $(addprefix ${D_SRCS}, ${HDRS})
+INC			= $(addprefix ${INC_PATH}, ${INC_FILES})
 
-OBJS	= ${C_SRCS:.c=.o}
+LIBFT		= $(addprefix ${LIBFT_PATH}, ${NAME_LIBFT})
 
-MAKE	= make -C 
+OBJS 		= ${SRC:.c=.o}
 
-CC		= clang
+OBJS_BONUS	= ${SRC_BONUS:.c=.o}
 
-FLAGS	= -Wall -Werror -Wextra
+AR			= ar rcs
 
-AR		= ar rcs
+CC			= clang
 
-RM		= rm -f
+FLAGS		= -Wall -Wextra -Werror
 
-all:	${NAME}
+all: 	${NAME}
 
-%.o: %.c	${C_HDRS}
-	${CC} ${FLAGS} -I ${D_HDRS} -I ${C_HLIB} -c $< -o $@
 
-libft:
-	make -C libft/
+%.o: %.c	${INC}
+			${CC} ${FLAGS} -c $< -o ${<:.c=.o} -I ${INC_PATH}
+$(NAME):	${OBJS}
+			make -C ${LIBFT_PATH}
+			cp ${LIBFT} $(NAME)
+			${AR} ${NAME} ${OBJS}
 
-${NAME}:	libft ${OBJS}
-	${AR} $@ ${C_LIB} $?
-
-bonus:		${NAME} ${OBJS_B}
-	{AR} ${NAME} ${BONUS}
-
+bonus: 		${NAME} ${OBJS_BONUS}
+			${AR} ${NAME} ${OBJS_BONUS}
 clean:
-	${MAKE} ${D_LIB} clean
-	${RM} ${OBJS}
+			make -C ${LIBFT_PATH} clean
+			${RM} ${OBJS} ${OBJS_BONUS}
 
 fclean:		clean
-	${MAKE} ${D_LIB} fclean
-	${RM} ${NAME}
+			${RM} ${NAME}
+			${RM} ${LIBFT}
 
 re:			fclean all
 
-test:
-	${CC} ${FLAGS} ${OBJS} main/main.c ${C_LIB} -o prog -I ${F_HDRS}
-	./prog | cat -e 
+test:		${NAME}
+			${CC} ${FLAGS} ${SRC} ./srcs/main.c ${NAME} -I includes
+			clear
+			./a.out | cat -e
 
-tests:
-	${CC} -fsanitize=address -g3 main/main.c ${NAME} ${C_LIB}
-
-a:	all test
-
-.PHONY:		all clean fclean test tests re a
+.PHONY: all clean fclean re bonus
