@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 12:02:40 by bmangin           #+#    #+#             */
-/*   Updated: 2021/03/11 15:13:28 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/12 16:22:03 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,15 @@ int	            ft_printf(const char *format, ...)
 				__attribute__((format(printf,1,2)));
 int				ft_isconvert(char c);
 int				ft_isvalue(char c);
-int				ft_check_len(t_flags *flags, char *s);
 int				ft_print_char(t_flags *flags);
 int				ft_print_str(t_flags *flags);
 int				ft_print_ptr(t_flags *flags);
 int				ft_print_num(t_flags *flags);
+int				ft_print_hexa(t_flags *flags);
 int				ft_print_u(t_flags *flags);
 char			*ft_get_base(char c);
 void			ft_print_and_clean(t_flags *flags, char *s, int size);
+size_t			ft_check_len(t_flags *flags, char *s);
 /*
 **	TEST
 */

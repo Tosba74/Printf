@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 15:29:00 by bmangin           #+#    #+#             */
-/*   Updated: 2021/03/08 14:10:56 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/12 15:50:27 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ char	*ft_get_base(char c)
 	return (base);
 }
 
-int		ft_check_len(t_flags *flags, char *s)
+size_t		ft_check_len(t_flags *flags, char *s)
 {
-	int		len;
+	size_t	len;
 	int		size;
 
 	len = ft_strlen(s);
@@ -55,7 +55,7 @@ int		ft_check_len(t_flags *flags, char *s)
 	{
 		if (flags->size < 0)
 		{
-			size = -(flags->size);
+			size = flags->size * -1;
 			flags->rev = 1;
 		}
 		else
@@ -63,9 +63,9 @@ int		ft_check_len(t_flags *flags, char *s)
 	}
 	else
 		size = 0;
-	if (size > len)
+	if ((int)len < size)
 		len = size;
-	if (flags->prec > len)
+	if ((int)len < flags->prec)
 	{
 		len = flags->prec;
 		if (s[0] == '-')

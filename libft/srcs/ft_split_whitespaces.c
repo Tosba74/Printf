@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 
-#include "../includes/libft.h"
+#include "libft.h"
 
 static size_t	ft_len_words(char const *s, int pos)
 {

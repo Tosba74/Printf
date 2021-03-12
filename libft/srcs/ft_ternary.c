@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/libft.h"
+# include "libft.h"
 
 void	ft_ternary (int *(*condition)(void *), void *(*f1)(void *), void *(*f2)(void *))
 {

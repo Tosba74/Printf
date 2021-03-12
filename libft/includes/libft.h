@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 00:58:17 by bmangin           #+#    #+#             */
-/*   Updated: 2021/03/08 21:44:54 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/12 15:05:14 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,15 @@ char				*ft_strtrim(char const *s1, char const *set);
 char				**ft_split(char const *s, char c);
 char				**ft_split_whitespaces(char const *s);
 int					ft_putchar_len(char c);
-void				ft_putstr_len(char *s, int len);
+void				ft_putstr_len(char *s, size_t len);
 int					ft_len_num(long n, int b);
 int					ft_putnbr_len(int n);
 int					ft_len_itoa(int n, int b);
 int					ft_itoa_base_len(char *result, int n, const char *base);
 char				*ft_itoa(int n);
 char				*ft_itoa_base(int n, const char *base);
-char				*ft_utoa_base(unsigned long long n, const char *base);
+char				*ft_utoa_base(unsigned int n, const char *base);
+char				*ft_ulltoa_base(unsigned long long ull, char *base);
 char				*ft_hexa(int n, const char *base);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void				ft_putchar_fd(char c, int fd);

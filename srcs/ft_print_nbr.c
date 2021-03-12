@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 18:50:50 by bmangin           #+#    #+#             */
-/*   Updated: 2021/03/10 10:28:53 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/12 16:17:39 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static char	*ft_mix_str(char *dst, char *src, t_flags *flags)
 int			ft_print_num(t_flags *flags)
 {
 	int		nb;
-	int		size;
+	size_t	size;
 	char	*nb_str;
 	char	*out;
 
@@ -83,12 +83,11 @@ int			ft_print_num(t_flags *flags)
 	else
 		nb_str = ft_itoa_base(nb, ft_get_base(flags->spec));
 	size = ft_check_len(flags, nb_str);
-	if (size == (int)ft_strlen(nb_str))
+	if (size == ft_strlen(nb_str))
 		ft_print_and_clean(flags, nb_str, size);
-	else if (size > (int)ft_strlen(nb_str))
+	else if (size > ft_strlen(nb_str))
 	{
 		out = ft_prepare_out(*flags, size, nb);
-		// printf("out-->%s\n",out);
 		out = ft_mix_str(out, nb_str, flags);
 		ft_memdel(nb_str);
 		ft_print_and_clean(flags, out, size);

@@ -6,17 +6,17 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 18:50:50 by bmangin           #+#    #+#             */
-/*   Updated: 2021/03/11 14:53:52 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/12 16:53:32 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char			*ft_prepare_out(t_flags flags, int size, unsigned int nb)
+static char					*ft_prepare_out(t_flags flags, int size, unsigned int nb)
 {
-	char			*out;
-	int				neg;
-	int				i;
+	char					*out;
+	int						neg;
+	int						i;
 
 	if (!(out = malloc(sizeof(char) * size + 1)))
 		return (NULL);
@@ -40,11 +40,11 @@ static char			*ft_prepare_out(t_flags flags, int size, unsigned int nb)
 	return (out);
 }
 
-static char			*ft_mix_str(char *dst, char *src, t_flags *flags)
+static char					*ft_mix_str(char *dst, char *src, t_flags *flags)
 {
-	int				i;
-	int				len;
-	int				cp;
+	int						i;
+	int						len;
+	int						cp;
 
 	i = ft_strlen(dst) - ft_strlen(src);
 	len = ft_strlen(src);
@@ -68,25 +68,47 @@ static char			*ft_mix_str(char *dst, char *src, t_flags *flags)
 	return (dst);
 }
 
-int					ft_print_u(t_flags *flags)
+int						ft_print_u(t_flags *flags)
 {
-	unsigned int	nb;
-	int				size;
-	int				len;
-	char			*nb_str;
-	char			*out;
+	unsigned int		nb;
+	size_t				size;
+	char				*nb_str;
+	char				*out;
 
 	nb = (unsigned int)va_arg(flags->ap, unsigned int);
-	nb_str = NULL;
-	if (nb == 0 && flags->prec == -1)
-		nb_str = ft_strdup("0");
+	out = NULL;
+	if (nb == 0 && flags->prec == 0)
+		nb_str = ft_strdup("");
 	else
 		nb_str = ft_utoa_base(nb, ft_get_base(flags->spec));
 	size = ft_check_len(flags, nb_str);
-	len = ft_strlen(nb_str);
-	if (size == len)
+	if (size == ft_strlen(nb_str))
 		ft_print_and_clean(flags, nb_str, size);
-	else if (size > len)
+	else if (size > ft_strlen(nb_str))
+	{
+		out = ft_prepare_out(*flags, size, nb);
+		out = ft_mix_str(out, nb_str, flags);
+		ft_memdel(nb_str);
+		ft_print_and_clean(flags, out, size);
+	}
+	return (size);
+}
+int						ft_print_ptr(t_flags *flags)
+{
+	unsigned long long	nb;
+	size_t				size;
+	char				*nb_str;
+	char				*out;
+
+	nb = (unsigned long long)va_arg(flags->ap, unsigned long long);
+	if (nb == 0)
+		nb_str = ft_strdup("0x0");
+	else
+		nb_str = ft_strjoin("0x", ft_ulltoa_base(nb, ft_get_base(flags->spec)));
+	size = ft_check_len(flags, nb_str);
+	if (size == ft_strlen(nb_str))
+		ft_print_and_clean(flags, nb_str, size);
+	else if (size > ft_strlen(nb_str))
 	{
 		out = ft_prepare_out(*flags, size, nb);
 		out = ft_mix_str(out, nb_str, flags);
@@ -96,26 +118,22 @@ int					ft_print_u(t_flags *flags)
 	return (size);
 }
 
-int					ft_print_ptr(t_flags *flags)
+int						ft_print_hexa(t_flags *flags)
 {
 	unsigned long long	nb;
-	int				size;
-	int				len;
-	char			*nb_str;
-	char			*out;
+	size_t				size;
+	char				*nb_str;
+	char				*out;
 
 	nb = (unsigned long long)va_arg(flags->ap, unsigned long long);
-	if (nb == 0)
-		nb_str = ft_strdup("0x0");
+	if (nb == 0 && flags->prec != -1)
+		nb_str = ft_strdup("");
 	else
-		nb_str = ft_strjoin("0x", ft_utoa_base(nb, ft_get_base(flags->spec)));
+		nb_str = ft_ulltoa_base(nb, ft_get_base(flags->spec));
 	size = ft_check_len(flags, nb_str);
-	len = ft_strlen(nb_str);
-	if (size == len)
-	{
+	if (size == ft_strlen(nb_str))
 		ft_print_and_clean(flags, nb_str, size);
-	}
-	if (size > len)
+	else if (size > ft_strlen(nb_str))
 	{
 		out = ft_prepare_out(*flags, size, nb);
 		out = ft_mix_str(out, nb_str, flags);

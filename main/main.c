@@ -6,20 +6,21 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 16:46:14 by bmangin           #+#    #+#             */
-/*   Updated: 2021/03/11 15:22:14 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/12 15:51:17 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 // #include "ft_printf.h"
 #include <stdio.h>
+#include <limits.h>
 
 int main(void)
 {
 	char	*str;
 	// double pi;
 	
-	str = "salut";
+	str = "42";
 	// pi = 3.141591654;
 	// int nb = -4242;
 	// int *ptr = &nb;
@@ -33,14 +34,34 @@ int main(void)
 	// ft_printf("Jaime bien:\n%*x\n", 8, nb);
 	// ft_putstr(ft_utoa_base(*str, "0123456789abcdef"));
 	// ft_putstr("\n");
+	// ft_putstr(ft_utoa_base(42, "0123456789abcdef"));
+	// ft_putstr("\n");
+	// printf(" 0*%-0*.10d*0 0*%-0*.0d*0 ", 21, 1021, 21, -1011);
+	// ft_printf(" 0*%-0*.10d*0 0*%-0*.0d*0 ", 21, 1021, 21, -1011);
+	// printf(" --0*%0*.0d*0 0*%0*.10d*0-- ", -2, 0, 21, 1);
+	// ft_printf(" --0*%0*.0d*0 0*%0*.10d*0-- ", -2, 0, 21, 1);
+	// printf(" --0*%0*.0d*0 0*%0*.10d*0-- ", -21, INT_MAX, 21, INT_MIN);
+	// ft_printf(" --0*%0*.0d*0 0*%0*.10d*0-- ", -21, INT_MAX, 21, INT_MIN);
+	// printf(" --0*%0*.0d*0 0*%0*.10d*0-- ", -21, LONG_MAX, 21, LONG_MIN);
+	// ft_printf(" --0*%0*.0d*0 0*%0*.10d*0-- ", -21, LONG_MAX, 21, LONG_MIN);
+	// printf(" --0*%-0*.20d*0 0*%-0*.10d*0-- ", -21, CHAR_MAX, 21, CHAR_MIN);
+	// ft_printf(" --0*%-0*.20d*0 0*%-0*.10d*0-- ", -21, CHAR_MAX, 21, CHAR_MIN);
+	// printf(" --0*%-0*.2d*0 0*%-0*.2d*0-- ", -21, CHAR_MAX, 21, CHAR_MIN);
+	// ft_printf(" --0*%-0*.2d*0 0*%-0*.2d*0-- ", -21, CHAR_MAX, 21, CHAR_MIN);
+	// printf(" --0*%-0*.3d*0 0*%-0*.3d*0-- ", -21, CHAR_MAX, 21, CHAR_MIN);
+	// ft_printf(" --0*%-0*.3d*0 0*%-0*.3d*0-- ", -21, CHAR_MAX, 21, CHAR_MIN);
 	// printf("le -->%-c%-c%c*\n", 1, '0', 0);
-	ft_printf("ft -->%*.5d\n", 10, -1);
-	ft_printf("ft -->%*.5d\n", 10, -111);
-	ft_printf("ft -->%*.5d\n", 10, -1011);
-	ft_printf("ft -->%*.10d\n", 20, -10011);
-	ft_printf("ft -->%*.10d\n", 20, -111011);
-	// ft_printf("m = [%p]\n",str);
-	// dprintf(1, "v = [%p]\n",str);
+	// ft_printf("ft -->%*.5d\n", 10, -1);
+	// ft_printf("ft -->%*.5d\n", 10, -111);
+	// ft_printf("ft -->%*.5d\n", 10, -1011);
+	// ft_printf("ft -->%*.10d\n", 20, -10011);
+	// ft_printf("ft -->%*.10d\n", 20, -111011);
+	// ft_putstr(ft_ulltoa_base(4294967295u, "0123456789abcdef"));
+	// ft_putstr("\n");
+	ft_printf("m = [%x]\n", 4294967295u);
+	dprintf(1, "v = [%x]\n", 4294967295u);
+	ft_printf("m = [%p]\n",str);
+	dprintf(1, "v = [%p]\n",str);
 	//ft_printf("m = [%*s]\n", -32, "42");
 	//dprintf(1, "v = [%*s]\n", -32, "42");
 	// ft_printf("[%6s == (%10x)]\n", "10x", nb);

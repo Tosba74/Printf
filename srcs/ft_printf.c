@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 12:04:18 by bmangin           #+#    #+#             */
-/*   Updated: 2021/03/11 15:17:48 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/12 16:20:20 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ static int	ft_converse(t_flags *flags)
 	pf[3] = &ft_print_num;
 	pf[4] = &ft_print_num;
 	pf[5] = &ft_print_u;
-	pf[6] = &ft_print_u;
-	pf[7] = &ft_print_u;
+	pf[6] = &ft_print_hexa;
+	pf[7] = &ft_print_hexa;
 	pf[8] = &ft_print_char;
 	pf[9] = &ft_trash_user;
 	return (pf[ft_isconvert(flags->spec)](flags));

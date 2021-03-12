@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
 
 void    ft_recursive_itoa(long nb, int i, const char *base, char *result)
 {

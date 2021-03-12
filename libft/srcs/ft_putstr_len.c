@@ -6,13 +6,13 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 14:07:59 by bmangin           #+#    #+#             */
-/*   Updated: 2021/01/09 14:08:06 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/12 14:37:23 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
 
-void     ft_putstr_len(char *s, int len)
+void     ft_putstr_len(char *s, size_t len)
 {
     write(1, s, len);
 }

@@ -19,7 +19,8 @@ FILES	= ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 		  ft_putchar.c ft_putstr.c ft_putnbr.c ft_isspace.c ft_strstr.c \
 		  ft_strcat.c ft_strncat.c ft_strncpy.c ft_split_whitespaces.c \
 		  ft_strcmp.c ft_len_num.c ft_putchar_len.c ft_putstr_len.c \
-		  ft_hexa.c ft_memdel.c ft_utoa_base.c get_next_line.c 
+		  ft_hexa.c ft_memdel.c ft_utoa_base.c ft_ulltoa_base.c \
+		  get_next_line.c 
 
 FILES_B	= ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c \
 		  ft_lstiter.c ft_lstlast.c ft_lstmap.c ft_lstnew.c ft_lstsize.c \
@@ -68,8 +69,8 @@ _E=\x1b[0m
 
 all :		${NAME}
 
-%.o : %.c
-	${CC} ${FLAGS} -o $@ -c $< -I ${INC}
+%.o : %.c	${INC}
+	${CC} ${FLAGS} -o $@ -c $< -I ${PATH_I}
 	echo "${_Y}compiling >>>${E}${_G} $<${_E}"
 
 $(NAME)	:	${TMP}

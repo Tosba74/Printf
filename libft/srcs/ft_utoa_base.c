@@ -6,17 +6,18 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/08 21:42:29 by bmangin           #+#    #+#             */
-/*   Updated: 2021/03/09 14:15:56 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/12 17:00:06 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
 
-static int		ft_len_nbr(unsigned int n, unsigned int b)
+static size_t			ft_len_nbr(unsigned int n, unsigned int b)
 {
-	int		count;
+	int					count;
 
 	count = 0;
+	b = 10;
 	while (n >= b)
 	{
 		n /= b;
@@ -26,31 +27,29 @@ static int		ft_len_nbr(unsigned int n, unsigned int b)
 	return (count);
 }
 
-static void		ft_recursive_utoa(unsigned long long nb, int i, const char *base,
+static void				ft_recursive_utoa(unsigned int nb, int i, const char *base,
 char *result)
 {
-	unsigned int b;
+	unsigned int 		b;
 
 	b = (unsigned int)ft_check_base(base);
+	if (b == 0 || b == 1)
+		return ;
 	result[i] = (char)base[nb % b];
 	if (nb >= b)
 		ft_recursive_utoa(nb / b, i - 1, base, result);
 }
-#include <stdio.h>
-char		*ft_utoa_base(unsigned long long n, const char *base)
+
+char					*ft_utoa_base(unsigned int n, const char *base)
 {
 	unsigned long long	nb;
-	unsigned int		b;
-	int				len;
-	char			*result;
+	unsigned int 		b;
+	size_t				len;
+	char				*result;
 
 	nb = (unsigned long long)n;
-	printf("nb => %llu", nb);
-	b = (long)ft_check_base(base);
+	b = (unsigned int)ft_check_base(base);
 	len = ft_len_nbr(nb, b);
-	// printf("Salut");
-	if (b == 0 || b == 1)
-		return (0);
 	if (!(result = (char*)malloc(sizeof(char) * (len + 1))))
 		return (NULL);
 	result[len] = '\0';
