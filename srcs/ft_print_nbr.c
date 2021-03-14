@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 18:50:50 by bmangin           #+#    #+#             */
-/*   Updated: 2021/03/12 16:17:39 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/14 16:48:35 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ static char	*ft_prepare_out(t_flags flags, int size, int nb)
 		return (NULL);
 	neg = 0;
 	if (nb < 0 && (flags.rev == 1 || (flags.zero == 48 && flags.prec == -1)
-	|| (flags.size < flags.prec)))
+	|| (flags.size <= flags.prec)))
 		out[neg++] = '-';
 	i = neg;
 	while (i != size)
-		if ((i < flags.prec + neg && flags.rev == 1 && flags.prec > -1) ||
-		(i >= size - (flags.prec + neg) && flags.rev == 0 && flags.prec > -1))
+		if ((i < flags.prec + neg && flags.rev == 1 && flags.prec > 0) ||
+		(i >= size - (flags.prec + neg) && flags.rev == 0 && flags.prec > 1))
 			out[i++] = '0';
-		else if (i < size - flags.prec && flags.prec > -1)
-			if (i == size - (flags.prec + 1) && nb < 0)
+		else if (i < size - flags.prec && flags.prec != -1 && flags.prec != size)
+			if ((i == size - (flags.prec + 1) && nb < 0) && flags.rev == 0)
 				out[i++] = '-';
 			else
 				out[i++] = ' ';
@@ -50,7 +50,7 @@ static char	*ft_mix_str(char *dst, char *src, t_flags *flags)
 	len = ft_strlen(src);
 	cp = 0;
 	if (src[0] == '-' && ((flags->zero == 48 && flags->prec == -1)
-	|| len <= flags->prec || flags->rev == 1))
+	|| len < flags->prec || flags->rev == 1 || flags->prec >= len))
 	{
 		src++;
 		cp = 1;

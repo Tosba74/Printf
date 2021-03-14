@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 16:46:14 by bmangin           #+#    #+#             */
-/*   Updated: 2021/03/12 15:51:17 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/14 16:06:33 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,20 @@ int main(void)
 	// ft_printf("ft -->%*.10d\n", 20, -111011);
 	// ft_putstr(ft_ulltoa_base(4294967295u, "0123456789abcdef"));
 	// ft_putstr("\n");
-	ft_printf("m = [%x]\n", 4294967295u);
-	dprintf(1, "v = [%x]\n", 4294967295u);
-	ft_printf("m = [%p]\n",str);
-	dprintf(1, "v = [%p]\n",str);
+	// ft_printf("m = [%x]\n", 4294967295u);
+	// dprintf(1, "v = [%x]\n", 4294967295u);
+	// ft_printf("m = [%p]\n",str);
+	// dprintf(1, "v = [%p]\n",str);
 	//ft_printf("m = [%*s]\n", -32, "42");
 	//dprintf(1, "v = [%*s]\n", -32, "42");
-	// ft_printf("[%6s == (%10x)]\n", "10x", nb);
-	// dprintf(1, "[%6s == (%010d)]\n", "010d", nb);
-	// ft_printf("[%6s == (%010d)]\n", "010d", nb);
-	// dprintf(1, "[%6s == (%-10d)]\n", "-10d", nb);
-	// ft_printf("[%6s == (%-10d)]\n", "-10d", nb);
-	// dprintf(1, "[%6s == (%--10d)]\n", "--10d", nb);
-	// ft_printf("[%6s == (%--10d)]\n", "--10d", nb);
-	// dprintf(1, "[%6s == (%-10.6d)]\n", "-10.6d", nb);
+	ft_printf("m[%6s == (%9.2d)]\n", "9.2d", UINT_MAX);
+	dprintf(1, "v[%6s == (%9.2d)]\n", "9.2d", UINT_MAX);
+	ft_printf("m[%6s == (%9.0d)]\n", "9.0d", UINT_MAX);
+	dprintf(1, "v[%6s == (%9.0d)]\n", "9.0d", UINT_MAX);
+	ft_printf("m[%6s == (%09.0d)]\n", "09.0d", UINT_MAX);
+	dprintf(1, "v[%6s == (%09.0d)]\n", "09.0d", UINT_MAX);
+	ft_printf("m[%6s == (%9.9d)]\n", "9.9d", UINT_MAX);
+	dprintf(1, "v[%6s == (%9.9d)]\n", "9.9d", UINT_MAX);
 	// ft_printf("[%6s == (%-10.6d)]\n", "-10.6d", nb);
 	// dprintf(1, "[%6s == (%10.6d)]\n", "10.6d", nb);
 	// ft_printf("[%6s == (%10.6d)]\n", "10.6d", nb);

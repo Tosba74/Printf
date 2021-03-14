@@ -6,6 +6,8 @@ PATH_S	= srcs/
 
 PATH_O	= bin/
 
+VPATH	= ${PATH_I} ${PATH_S} ${PATH_O}
+
 HDRS	= libft.h
 
 FILES	= ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
@@ -70,21 +72,25 @@ _E=\x1b[0m
 all :		${NAME}
 
 %.o : %.c	${INC}
-	${CC} ${FLAGS} -o $@ -c $< -I ${PATH_I}
+	${CC} ${FLAGS} -I ${PATH_I} -o $@ -c $<
 	echo "${_Y}compiling >>>${E}${_G} $<${_E}"
 
-$(NAME)	:	${TMP}
+${NAME}	:	${TMP} | crea_b
 	${MV} $? ${PATH_O}
 	${AR} $@ ${BIN}
 	echo "${_P}-----${_E}\t${_R}   creating archive${_E}\t${_P}-----${_E}"
 	echo "${_P}-----${_E}\t${_R}    library index${_E}\t${_P}-----${_E}"
 	${I_LIB} $@
 
+
 bonus :		${TMP_B}
 	${MV} $? ${PATH_O}
 	${AR} ${NAME} ${BIN_B}
 	echo "${_P}-----${_E}\t${_R}    library index${_E}\t${_P}-----${_E}"
 	${I_LIB} ${NAME}
+
+crea_b :
+	${MKDIR} bin
 
 clean : 
 	${RM} ${BIN} ${BIN_B}

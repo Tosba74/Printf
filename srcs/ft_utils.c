@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 15:29:00 by bmangin           #+#    #+#             */
-/*   Updated: 2021/03/12 15:50:27 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/14 16:15:45 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ size_t		ft_check_len(t_flags *flags, char *s)
 		size = 0;
 	if ((int)len < size)
 		len = size;
-	if ((int)len < flags->prec)
+	if ((int)len <= flags->prec)
 	{
 		len = flags->prec;
 		if (s[0] == '-')
