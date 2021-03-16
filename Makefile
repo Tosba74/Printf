@@ -6,7 +6,7 @@
 #    By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/11 11:23:45 by bmangin           #+#    #+#              #
-#    Updated: 2021/03/11 14:49:02 by bmangin          ###   ########lyon.fr    #
+#    Updated: 2021/03/14 17:46:01 by bmangin          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME		= libftprintf.a
 
 NAME_LIBFT 	= libft.a
 
-FILES			= ft_printf.c ft_utils.c ft_print_str.c ft_print_nbr.c ft_print_unbr.c
+FILES			= ft_printf.c ft_utils.c ft_print_str.c ft_print_nbr.c \
+				ft_print_unbr.c ft_print_hexa.c
 
 FILES_BONUS = 
 

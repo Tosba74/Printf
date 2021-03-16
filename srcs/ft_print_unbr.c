@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 18:50:50 by bmangin           #+#    #+#             */
-/*   Updated: 2021/03/14 11:46:30 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/14 17:44:49 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,55 +81,6 @@ int						ft_print_u(t_flags *flags)
 		nb_str = ft_strdup("");
 	else
 		nb_str = ft_utoa_base(nb, ft_get_base(flags->spec));
-	size = ft_check_len(flags, nb_str);
-	if (size == ft_strlen(nb_str))
-		ft_print_and_clean(flags, nb_str, size);
-	else if (size > ft_strlen(nb_str))
-	{
-		out = ft_prepare_out(*flags, size, nb);
-		out = ft_mix_str(out, nb_str, flags);
-		ft_memdel(nb_str);
-		ft_print_and_clean(flags, out, size);
-	}
-	return (size);
-}
-int						ft_print_ptr(t_flags *flags)
-{
-	unsigned long long	nb;
-	size_t				size;
-	char				*nb_str;
-	char				*out;
-
-	nb = (unsigned long long)va_arg(flags->ap, unsigned long long);
-	if (nb == 0)
-		nb_str = ft_strdup("0x0");
-	else
-		nb_str = ft_strjoin("0x", ft_ulltoa_base(nb, ft_get_base(flags->spec)));
-	size = ft_check_len(flags, nb_str);
-	if (size == ft_strlen(nb_str))
-		ft_print_and_clean(flags, nb_str, size);
-	else if (size > ft_strlen(nb_str))
-	{
-		out = ft_prepare_out(*flags, size, nb);
-		out = ft_mix_str(out, nb_str, flags);
-		ft_memdel(nb_str);
-		ft_print_and_clean(flags, out, size);
-	}
-	return (size);
-}
-
-int						ft_print_hexa(t_flags *flags)
-{
-	unsigned long long	nb;
-	size_t				size;
-	char				*nb_str;
-	char				*out;
-
-	nb = (unsigned long long)va_arg(flags->ap, unsigned long long);
-	if (nb == 0 && flags->prec != -1)
-		nb_str = ft_strdup("");
-	else
-		nb_str = ft_ulltoa_base(nb, ft_get_base(flags->spec));
 	size = ft_check_len(flags, nb_str);
 	if (size == ft_strlen(nb_str))
 		ft_print_and_clean(flags, nb_str, size);

@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 15:08:23 by bmangin           #+#    #+#             */
-/*   Updated: 2021/02/04 14:51:01 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 15:52:56 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ char	*ft_strjoin_free(char const *s1, char const *s2, int sp)
 	ft_memcpy(s, s1, len1);
 	ft_memcpy(s + len1, s2, len2 + 1);
 	if (sp)
-		ft_memdel((void *)s1);
+		ft_memdel((void *)s2);
 	return (s);
 }

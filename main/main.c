@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 16:46:14 by bmangin           #+#    #+#             */
-/*   Updated: 2021/03/14 16:06:33 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 16:36:27 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,14 @@ int main(void)
 	// double pi;
 	
 	str = "42";
+	
 	// pi = 3.141591654;
 	// int nb = -4242;
 	// int *ptr = &nb;
-	// dprintf(1, "1ALEXIS JE TAIME mais %-15.45s theo %-6s lavabo\n", str, "42");	
-	// ft_printf("ALEXIS JE TAIME mais %-15.45s theo %-6s lavabo\n",  str, "42");	
+	printf("len = %d\n", ft_strlen("(null)  (null) (nul (null)   (null)   (null) (null) (null)  ( (n (nul (null))"));
+	printf("res printf = %d\n" ,printf("ALEXIS JE TAIME mais %-15.45s theo %-6s lavabo\n", str, "42"));
+	printf("\n");	
+	printf("res ft_printf = %d\n", ft_printf("ALEXIS JE TAIME mais %-15.45s theo %-6s lavabo\n",  str, "42"));	
 	// ft_printf("Jaime bien: %*s %*s\n", -5, "coucou", -5, "hey");
 	// ft_printf("Jaime bien: %*s\n", -5, "coucou");
 	// ft_printf("Jaime bien:\n%*p\n", 9, ptr);
@@ -64,14 +67,33 @@ int main(void)
 	// dprintf(1, "v = [%p]\n",str);
 	//ft_printf("m = [%*s]\n", -32, "42");
 	//dprintf(1, "v = [%*s]\n", -32, "42");
-	ft_printf("m[%6s == (%9.2d)]\n", "9.2d", UINT_MAX);
-	dprintf(1, "v[%6s == (%9.2d)]\n", "9.2d", UINT_MAX);
-	ft_printf("m[%6s == (%9.0d)]\n", "9.0d", UINT_MAX);
-	dprintf(1, "v[%6s == (%9.0d)]\n", "9.0d", UINT_MAX);
-	ft_printf("m[%6s == (%09.0d)]\n", "09.0d", UINT_MAX);
-	dprintf(1, "v[%6s == (%09.0d)]\n", "09.0d", UINT_MAX);
-	ft_printf("m[%6s == (%9.9d)]\n", "9.9d", UINT_MAX);
-	dprintf(1, "v[%6s == (%9.9d)]\n", "9.9d", UINT_MAX);
+	// ft_printf("m[%6s == *%p*]\n", "p", str);
+	// dprintf(1, "v[%6s == *%p*]\n", "p", str);
+	// ft_printf("m[%6s == *%*.*x*]\n", "*.*x", 10, 21, -10);
+	// dprintf(1, "v[%6s == *%*.*x*]\n", "*.*x", 10, 21, -10);
+	// ft_printf("m[%6s == *%*.*x*]\n", "*.*x", 10, 21, 101);
+	// dprintf(1, "v[%6s == *%*.*x*]\n", "*.*x", 10, 21, 101);
+	// ft_printf("m[%6s == *%*.*x*]\n", "*.*x", 10, 21, -101);
+	// dprintf(1, "v[%6s == *%*.*x*]\n", "*.*x", 10, 21, -101);
+	// ft_printf("m[%6s == *%*.*x*0]\n", "*.*x", 10, 21, -101);
+	// dprintf(1, "v[%6s == *%*.*x*0]\n", "*.*x", 10, 21, -101);
+	// ft_printf("m[%6s == *%*.*x*0]\n", "*.*x", 21, 10, -101);
+	// dprintf(1, "v[%6s == *%*.*x*0]\n", "*.*x", 21, 10, -101);
+	// ft_printf("m[%6s == *%0*.0x*0]\n", "0*.0x", -21, LONG_MAX);
+	// dprintf(1, "v[%6s == *%0*.0lx*0]\n", "0*.0x", -21, LONG_MAX);
+	// ft_printf("m[%6s == *%0*.10x*0]\n", "0*.10x", -21, LONG_MAX);
+	// dprintf(1, "v[%6s == *%0*.10lx*0]\n", "0*.10x", -21, LONG_MAX);
+	// ft_printf("m[%6s == (%1.1d)]\n", "1.1d", 0);
+	// ft_printf("m[%6s == (%1.1d)]\n", "1.1d", 0);
+	// dprintf(1, "v[%6s == (%1.1d)]\n", "1.1d", 0);
+	// ft_printf("m[%6s == (%1.2d)]\n", "1.1d", 0);
+	// dprintf(1, "v[%6s == (%1.2d)]\n", "1.1d", 0);
+	// ft_printf("m[%6s == (%9.0d)]\n", "9.0d", UINT_MAX);
+	// dprintf(1, "v[%6s == (%9.0d)]\n", "9.0d", UINT_MAX);
+	// ft_printf("m[%6s == (%09.0d)]\n", "09.0d", UINT_MAX);
+	// dprintf(1, "v[%6s == (%09.0d)]\n", "09.0d", UINT_MAX);
+	// ft_printf("m[%6s == (%9.9d)]\n", "9.9d", UINT_MAX);
+	// dprintf(1, "v[%6s == (%9.9d)]\n", "9.9d", UINT_MAX);
 	// ft_printf("[%6s == (%-10.6d)]\n", "-10.6d", nb);
 	// dprintf(1, "[%6s == (%10.6d)]\n", "10.6d", nb);
 	// ft_printf("[%6s == (%10.6d)]\n", "10.6d", nb);
