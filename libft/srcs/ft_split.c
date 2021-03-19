@@ -22,10 +22,10 @@ static size_t	ft_len_words(char const *s, char c, int pos)
 	return (i);
 }
 
-static int		ft_nb_words(char const *s, char c)
+static int	ft_nb_words(char const *s, char c)
 {
 	int	i;
-	int nb;
+	int	nb;
 
 	i = 0;
 	nb = 0;
@@ -36,14 +36,14 @@ static int		ft_nb_words(char const *s, char c)
 	while (s[i])
 	{
 		if ((s[i + 1] == '\0' || s[i + 1] == c)
-		&& s[i] != c)
+			&& s[i] != c)
 			nb++;
 		i++;
 	}
 	return (nb);
 }
 
-static char		**ft_free_all(char **tab, int t)
+static char	**ft_free_all(char **tab, int t)
 {
 	int	i;
 
@@ -54,13 +54,14 @@ static char		**ft_free_all(char **tab, int t)
 	return (tab);
 }
 
-static char		*ft_new_words(char const *s, int *index, char c)
+static char	*ft_new_words(char const *s, int *index, char c)
 {
 	int		i;
 	char	*str;
 
 	i = 0;
-	if (!(str = malloc(sizeof(char) * (ft_len_words(s, c, *index) + 1))))
+	str = NULL;
+	if (ft_norm_all((void *)&str, ft_len_words(s, c, *index) + 1, sizeof(char)))
 		return (NULL);
 	while (s[*index] && s[*index] != c)
 		str[i++] = s[(*index)++];
@@ -68,7 +69,7 @@ static char		*ft_new_words(char const *s, int *index, char c)
 	return (str);
 }
 
-char			**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	int		i;
 	int		t;
@@ -78,7 +79,8 @@ char			**ft_split(char const *s, char c)
 	i = 0;
 	t = -1;
 	nb_words = ft_nb_words(s, c);
-	if (!s || !(tab = malloc((nb_words + 1) * sizeof(char*))))
+	tab = NULL;
+	if (!s || ft_norm_all((void *)&tab, (nb_words + 1), sizeof(char *)))
 		return (NULL);
 	while (++t < nb_words)
 	{
@@ -86,7 +88,8 @@ char			**ft_split(char const *s, char c)
 			i++;
 		if (s[i] != c)
 		{
-			if (!(tab[t] = ft_new_words(s, &i, c)))
+			tab[t] = ft_new_words(s, &i, c);
+			if (!(tab[t]))
 				return (ft_free_all(tab, t));
 		}
 	}

@@ -18,17 +18,17 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*str;
 
 	i = 1;
+	str = NULL;
 	if (s == NULL)
 		return (NULL);
 	if (start >= ft_strlen(s))
 		return (ft_strdup(""));
 	while (s[i + start] && i < len)
 		i++;
-	if (!(str = (char*)malloc(sizeof(char) * (i + 1))))
+	if (ft_norm_all((void *)&str, i + 1, sizeof(char)))
 		return (NULL);
 	i = 0;
 	while (s[i] && i < len)
 		str[i++] = s[start++];
-	str[i] = '\0';
 	return (str);
 }

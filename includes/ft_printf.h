@@ -18,10 +18,10 @@
 # include <stdarg.h>
 # include "../libft/includes/libft.h"
 
-typedef	struct	s_flags
+typedef struct s_flags
 {
 	va_list		ap;
-	int 		size;
+	int			size;
 	int			zero;
 	int			rev;
 	int			prec;
@@ -29,8 +29,8 @@ typedef	struct	s_flags
 	char		spec;
 }				t_flags;
 
-int	            ft_printf(const char *format, ...)
-				__attribute__((format(printf,1,2)));
+int				ft_printf(const char *format, ...)
+				__attribute__((format(printf, 1, 2)));
 int				ft_isconvert(char c);
 int				ft_isvalue(char c);
 int				ft_print_char(t_flags *flags);
@@ -39,6 +39,7 @@ int				ft_print_ptr(t_flags *flags);
 int				ft_print_num(t_flags *flags);
 int				ft_print_hexa(t_flags *flags);
 int				ft_print_u(t_flags *flags);
+int				ft_trash_user(t_flags *flags);
 char			*ft_get_base(char c);
 void			ft_print_and_clean(t_flags *flags, char *s, int size);
 size_t			ft_check_len(t_flags *flags, char *s);

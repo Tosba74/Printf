@@ -22,7 +22,7 @@ static int	ft_check_num(long num, int neg, int len)
 		return (num * neg);
 }
 
-int			ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	long	num;
 	int		neg;

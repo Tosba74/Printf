@@ -12,16 +12,16 @@
 
 #include "libft.h"
 
-int		ft_check_base(const char *base)
+int	ft_check_base(const char *base)
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (base[i])
 	{
 		j = i + 1;
-    	if (base[i] == ' ' || (base[i] >= 9 && base[i] <= 13))
+		if (base[i] == ' ' || (base[i] >= 9 && base[i] <= 13))
 			return (0);
 		while (base[j])
 		{
@@ -31,5 +31,5 @@ int		ft_check_base(const char *base)
 		}
 		i++;
 	}
-	return(i);
+	return (i);
 }

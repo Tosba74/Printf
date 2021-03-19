@@ -10,12 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "ft_printf.h"
 
-static int	ft_trash_user(t_flags *flags)
+static int	ft_skip_zero_min(const char *format, int i, t_flags *flags)
 {
-	(void)flags;
-	return (0);
+	while (format[i] == '-' || format[i] == '0')
+	{
+		if (format[i] == '-')
+		{
+			flags->rev = 1;
+			flags->zero = 32;
+		}
+		else if (format[i] == '0' && flags->rev == 0)
+			flags->zero = 48;
+		i++;
+	}
+	return (i);
 }
 
 static int	ft_complet_value(int *f, t_flags *flags, const char *format)
@@ -44,17 +54,8 @@ static int	ft_parse(t_flags *flags, const char *format)
 	int		i;
 
 	i = 1;
-	while (format[i] == '-' || format[i] == '0')
-	{
-		if (format[i] == '-')
-		{
-			flags->rev = 1;
-			flags->zero = 32;
-		}
-		else if (format[i] == '0' && flags->rev == 0)
-			flags->zero = 48;
-		i++;
-	}
+	if (format[i] == '-' || format[i] == '0')
+		i = ft_skip_zero_min(format, i, flags);
 	if (ft_isvalue(format[i]))
 	{
 		i += ft_complet_value(&flags->size, flags, format + i);
@@ -92,12 +93,12 @@ static int	ft_converse(t_flags *flags)
 	return (pf[ft_isconvert(flags->spec)](flags));
 }
 
-int			ft_printf(const char *format, ...)
+int	ft_printf(const char *format, ...)
 {
 	t_flags	tf;
 	int		i;
 
-	tf = (t_flags) {.size = -1, .zero = 32, .prec = -1, .spec = '-'};
+	tf = (t_flags){.size = -1, .zero = 32, .prec = -1, .spec = '-'};
 	i = -1;
 	va_start(tf.ap, format);
 	while (format[++i])

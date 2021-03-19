@@ -12,6 +12,12 @@
 
 #include "../includes/ft_printf.h"
 
+int	ft_trash_user(t_flags *flags)
+{
+	(void)flags;
+	return (0);
+}
+
 static int	ft_size_str(t_flags *flags, int var)
 {
 	int		size;
@@ -33,9 +39,9 @@ static char	*ft_reverse_str(t_flags flags, char *s, int size, int var)
 
 	i = 0;
 	len = ft_strlen(s);
-	if (!(out = malloc(sizeof(char) * size + 1)))
+	out = NULL;
+	if (ft_norm_all((void *)&out, (size + 1), sizeof(char)))
 		return (NULL);
-	out[size] = '\0';
 	if (var < 0)
 		var = -var;
 	while (i < size)
@@ -49,14 +55,14 @@ static char	*ft_reverse_str(t_flags flags, char *s, int size, int var)
 	return (out);
 }
 
-int			ft_print_str(t_flags *flags)
+int	ft_print_str(t_flags *flags)
 {
 	int		size;
 	int		len;
 	char	*s;
 	char	*out;
 
-	s = (char*)va_arg(flags->ap, char *);
+	s = (char *)va_arg(flags->ap, char *);
 	if (!s)
 		s = "(null)";
 	len = ft_strlen(s);
@@ -74,7 +80,7 @@ int			ft_print_str(t_flags *flags)
 	return (ft_strlen(out));
 }
 
-int			ft_print_char(t_flags *flags)
+int	ft_print_char(t_flags *flags)
 {
 	int		i;
 	int		size;
@@ -83,11 +89,12 @@ int			ft_print_char(t_flags *flags)
 
 	i = 0;
 	size = ft_size_str(flags, 1);
+	out = NULL;
 	if (flags->spec == 'c')
 		c = (unsigned char)va_arg(flags->ap, int);
 	else if (flags->spec == '%')
 		c = '%';
-	if (!(out = malloc(sizeof(char) * size + 1)))
+	if (ft_norm_all((void *)&out, (size + 1), sizeof(char)))
 		return (0);
 	while (i < size)
 		out[i++] = (char)flags->zero;

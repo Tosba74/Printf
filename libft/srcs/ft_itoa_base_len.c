@@ -12,9 +12,9 @@
 
 #include "libft.h"
 
-void    ft_recursive_itoa(long nb, int i, const char *base, char *result)
+void	ft_recursive_itoa(long nb, int i, const char *base, char *result)
 {
-	int b;
+	int	b;
 
 	b = ft_check_base(base);
 	result[i] = (char)base[nb % b];
@@ -22,7 +22,7 @@ void    ft_recursive_itoa(long nb, int i, const char *base, char *result)
 		ft_recursive_itoa(nb / b, i - 1, base, result);
 }
 
-int		ft_itoa_base_len(char *result, int n, const char *base)
+int	ft_itoa_base_len(char *result, int n, const char *base)
 {
 	int		b;
 	int		len;
@@ -31,7 +31,7 @@ int		ft_itoa_base_len(char *result, int n, const char *base)
 	b = ft_check_base(base);
 	len = ft_len_num(n, b);
 	nb = (long)n;
-	if (!(result = (char*)malloc(sizeof(char) * len)))
+	if (ft_norm_all((void *)&result, len, sizeof(char)))
 		return (0);
 	if (b == 0 || b == 1)
 		return (0);

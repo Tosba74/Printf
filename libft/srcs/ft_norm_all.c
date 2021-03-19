@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ternary.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/10 20:50:19 by bmangin           #+#    #+#             */
-/*   Updated: 2021/01/11 10:37:17 by bmangin          ###   ########lyon.fr   */
+/*   Created: 2020/11/04 00:45:13 by bmangin           #+#    #+#             */
+/*   Updated: 2020/12/08 19:51:36 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libft.h"
+#include "libft.h"
 
-void	ft_ternary (int *(*condition)(void *), void *(*f1)(void *), void *(*f2)(void *))
+int	ft_norm_all(void **s, size_t count, size_t size)
 {
-	if (condition() == 0)
-		return (f1());
-	else if (condition() > 0)
-		return (f2(void *));
+	if (count < 0 || size < 0)
+		return (1);
+	*s = (void *)malloc(count * size);
+	if (!(*s))
+		return (1);
+	ft_bzero(*s, count * size);
+	return (0);
 }

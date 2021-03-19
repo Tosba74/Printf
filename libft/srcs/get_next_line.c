@@ -14,9 +14,9 @@
 
 #define BUFFER_SIZE 1
 
-static int		ft_find_eol(char *s)
+static int	ft_find_eol(char *s)
 {
-	int			i;
+	int		i;
 
 	i = 0;
 	while (s[i])
@@ -25,25 +25,26 @@ static int		ft_find_eol(char *s)
 	return (0);
 }
 
-static char		*ft_copy_line(char *rest, char *line)
+static char	*ft_copy_line(char *rest, char *line)
 {
 	int			i;
 
 	i = 0;
 	while (rest[i] && rest[i] != '\n')
 		i++;
-	if (!(line = malloc(sizeof(char) * (i + 1))))
+	line = malloc(sizeof(char) * (i + 1));
+	if (!(line))
 		return (NULL);
 	ft_memcpy(line, rest, i);
 	line[i] = '\0';
 	return (line);
 }
 
-static char		*ft_after_eol(char *rest)
+static char	*ft_after_eol(char *rest)
 {
-	int			i;
-	int			j;
-	char		*tmp;
+	int		i;
+	int		j;
+	char	*tmp;
 
 	i = 0;
 	j = 0;
@@ -54,7 +55,8 @@ static char		*ft_after_eol(char *rest)
 		ft_memdel(rest);
 		return (NULL);
 	}
-	if (!(tmp = malloc(sizeof(char) * (ft_strlen(rest) - i))))
+	tmp = malloc(sizeof(char) * (ft_strlen(rest) - i));
+	if (!(tmp))
 	{
 		ft_memdel(rest);
 		return (NULL);
@@ -64,7 +66,7 @@ static char		*ft_after_eol(char *rest)
 	return (tmp);
 }
 
-static int		ft_create_line(char **rest, char **line, int ret)
+static int	ft_create_line(char **rest, char **line, int ret)
 {
 	*line = ft_copy_line(*rest, *line);
 	*rest = ft_after_eol(*rest);
@@ -76,7 +78,7 @@ static int		ft_create_line(char **rest, char **line, int ret)
 	return (1);
 }
 
-int				get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	int			ret;
 	char		buf[BUFFER_SIZE + 1];
@@ -88,7 +90,8 @@ int				get_next_line(int fd, char **line)
 		rest[fd] = ft_strdup("");
 	while (ft_find_eol(rest[fd]) != 1)
 	{
-		if ((ret = read(fd, buf, BUFFER_SIZE)) == -1)
+		ret = read(fd, buf, BUFFER_SIZE);
+		if (ret == -1)
 		{
 			ft_memdel(rest[fd]);
 			return (-1);

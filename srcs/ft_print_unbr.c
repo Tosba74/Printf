@@ -12,35 +12,34 @@
 
 #include "ft_printf.h"
 
-static char					*ft_prepare_out(t_flags flags, int size, unsigned int nb)
+static char	*ft_prepare_out(t_flags tf, int size, unsigned int nb)
 {
-	char					*out;
-	int						neg;
 	int						i;
+	char					*out;
 
-	if (!(out = malloc(sizeof(char) * size + 1)))
+	i = 0;
+	out = NULL;
+	if (ft_norm_all((void *)&out, (size + 1), sizeof(char)))
 		return (NULL);
-	neg = 0;
-	if (nb < 0 && (flags.rev == 1 || (flags.zero == 48 && flags.prec == -1)
-	|| (flags.size < flags.prec)))
-		out[neg++] = '-';
-	i = neg;
 	while (i != size)
-		if ((i < flags.prec + neg && flags.rev == 1 && flags.prec > -1) ||
-		(i >= size - (flags.prec + neg) && flags.rev == 0 && flags.prec > -1))
+	{
+		if ((i >= size - (tf.prec) && tf.rev == 0 && tf.prec > -1)
+			|| (i < tf.prec && tf.rev == 1 && tf.prec > -1))
 			out[i++] = '0';
-		else if (i < size - flags.prec && flags.prec > -1)
-			if (i == size - (flags.prec + 1) && nb < 0)
+		else if (i < size - tf.prec && tf.prec > -1)
+		{
+			if (i == size - (tf.prec + 1) && nb < 0)
 				out[i++] = '-';
 			else
 				out[i++] = ' ';
+		}
 		else
-			out[i++] = (char)flags.zero;
-	out[i] = '\0';
+			out[i++] = (char)tf.zero;
+	}
 	return (out);
 }
 
-static char					*ft_mix_str(char *dst, char *src, t_flags *flags)
+static char	*ft_mix_str(char *dst, char *src, t_flags *flags)
 {
 	int						i;
 	int						len;
@@ -50,7 +49,7 @@ static char					*ft_mix_str(char *dst, char *src, t_flags *flags)
 	len = ft_strlen(src);
 	cp = 0;
 	if (src[0] == '-' && ((flags->zero == 48 && flags->prec == -1)
-	|| len < flags->prec || flags->rev == 1))
+			|| len < flags->prec || flags->rev == 1))
 	{
 		src++;
 		cp = 1;
@@ -68,7 +67,7 @@ static char					*ft_mix_str(char *dst, char *src, t_flags *flags)
 	return (dst);
 }
 
-int						ft_print_u(t_flags *flags)
+int	ft_print_u(t_flags *flags)
 {
 	unsigned int		nb;
 	size_t				size;

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libft.h"
+#include "libft.h"
 
 static char	*ft_add_0x(char *str, const char *base)
 {
@@ -22,35 +22,36 @@ static char	*ft_add_0x(char *str, const char *base)
 	return (str);
 }
 
-void	    ft_recursive_itoa(long nb, int i, const char *base, char *result)
+void	ft_recursive_itoa(long nb, int i, const char *base, char *result)
 {
-	int b;
+	int	b;
 
 	b = ft_check_base(base);
-    result[i] = (char)base[nb % b];
-    if (nb >= b)
-        ft_recursive_itoa(nb / b, i - 1, base, result);
+	result[i] = (char)base[nb % b];
+	if (nb >= b)
+		ft_recursive_itoa(nb / b, i - 1, base, result);
 }
 
-char		*ft_hexa(int n, const char *base)
+char	*ft_hexa(int n, const char *base)
 {
 	int		b;
 	int		len;
 	long	nb;
 	char	*result;
 
-	b = ft_check_base(base); 
+	b = ft_check_base(base);
 	len = ft_len_num(n, b) + 2;
 	nb = (long)n;
-	if (!(result = (char*)malloc(sizeof(char) * len) + 1))
+	result = NULL;
+	if (ft_norm_all((void *)&result, len + 1, sizeof(char)))
 		return (NULL);
 	if (b == 0 || b == 1)
 		return (0);
 	if (nb < 0)
-    {
+	{
 		result[0] = '-';
-        nb = -nb;
-    }
+		nb = -nb;
+	}
 	result[len] = '\0';
 	ft_recursive_itoa(nb, len - 3, base, result);
 	result = ft_add_0x(result, base);

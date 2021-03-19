@@ -20,15 +20,18 @@ int main(void)
 	char	*str;
 	// double pi;
 	
-	str = "42";
+	str = "4\02";
 	
 	// pi = 3.141591654;
 	// int nb = -4242;
 	// int *ptr = &nb;
-	printf("len = %d\n", ft_strlen("(null)  (null) (nul (null)   (null)   (null) (null) (null)  ( (n (nul (null))"));
-	printf("res printf = %d\n" ,printf("ALEXIS JE TAIME mais %-15.45s theo %-6s lavabo\n", str, "42"));
+	// printf("len = %d\n", ft_strlen("(null)  (null) (nul (null)   (null)   (null) (null) (null)  ( (n (nul (null))"));
+	// printf("res printf = %d\n" ,printf("ALEXIS JE TAIME mais %-15.45s theo %-6s lavabo\n", str, "42"));
+	// printf("\n");	
+	// printf("res ft_printf = %d\n", ft_printf("ALEXIS JE TAIME mais %-15.45s theo %-6s lavabo\n",  str, "42"));	
+	printf("res printf = %d\n" ,printf("theo %c %-6s lavabo\n", '\0',str));
 	printf("\n");	
-	printf("res ft_printf = %d\n", ft_printf("ALEXIS JE TAIME mais %-15.45s theo %-6s lavabo\n",  str, "42"));	
+	printf("res ft_printf = %d\n", ft_printf("theo %c %-6s lavabo\n", '\0', str));	
 	// ft_printf("Jaime bien: %*s %*s\n", -5, "coucou", -5, "hey");
 	// ft_printf("Jaime bien: %*s\n", -5, "coucou");
 	// ft_printf("Jaime bien:\n%*p\n", 9, ptr);

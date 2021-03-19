@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "libft.h"
 
 static size_t	ft_len_words(char const *s, int pos)
@@ -23,10 +22,10 @@ static size_t	ft_len_words(char const *s, int pos)
 	return (i);
 }
 
-static int		ft_nb_words(char const *s)
+static int	ft_nb_words(char const *s)
 {
 	int	i;
-	int nb;
+	int	nb;
 
 	i = 0;
 	nb = 0;
@@ -37,14 +36,14 @@ static int		ft_nb_words(char const *s)
 	while (s[i])
 	{
 		if ((s[i + 1] == '\0' || ft_isspace(s[i + 1]))
-		&& ft_isspace(s[i]))
+			&& ft_isspace(s[i]))
 			nb++;
 		i++;
 	}
 	return (nb);
 }
 
-static char		**ft_free_all(char **tab, int t)
+static char	**ft_free_all(char **tab, int t)
 {
 	int	i;
 
@@ -55,13 +54,14 @@ static char		**ft_free_all(char **tab, int t)
 	return (tab);
 }
 
-static char		*ft_new_words(char const *s, int *index)
+static char	*ft_new_words(char const *s, int *index)
 {
 	int		i;
 	char	*str;
 
 	i = 0;
-	if (!(str = malloc(sizeof(char) * (ft_len_words(s, *index) + 1))))
+	str = NULL;
+	if (ft_norm_all((void *)&str, (ft_len_words(s, *index) + 1), sizeof(char)))
 		return (NULL);
 	while (s[*index] && ft_isspace(s[*index]))
 		str[i++] = s[(*index)++];
@@ -69,7 +69,7 @@ static char		*ft_new_words(char const *s, int *index)
 	return (str);
 }
 
-char			**ft_split_whitespaces(char const *s)
+char	**ft_split_whitespaces(char const *s)
 {
 	int		i;
 	int		t;
@@ -79,7 +79,8 @@ char			**ft_split_whitespaces(char const *s)
 	i = 0;
 	t = -1;
 	nb_words = ft_nb_words(s);
-	if (!s || !(tab = malloc((nb_words + 1) * sizeof(char*))))
+	tab = NULL;
+	if (!s || ft_norm_all((void *)&tab, (nb_words + 1), sizeof(char *)))
 		return (NULL);
 	while (++t < nb_words)
 	{
@@ -87,7 +88,8 @@ char			**ft_split_whitespaces(char const *s)
 			i++;
 		if (!ft_isspace(s[i]))
 		{
-			if (!(tab[t] = ft_new_words(s, &i)))
+			tab[t] = ft_new_words(s, &i);
+			if (!(tab[t]))
 				return (ft_free_all(tab, t));
 		}
 	}

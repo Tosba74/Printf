@@ -43,7 +43,7 @@ AR			= ar rcs
 
 CC			= clang
 
-FLAGS		= -Wall -Wextra -Werror
+FLAGS		= -Wall -Wextra -Werror 
 
 all: 	${NAME}
 

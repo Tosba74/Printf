@@ -14,14 +14,15 @@
 
 static void	ft_recursive_itoa(long nb, int i, const char *base, char *result)
 {
-	unsigned int b;
+	unsigned int	b;
 
 	b = (unsigned int)ft_check_base(base);
 	result[i] = (char)base[nb % b];
 	if (nb >= b)
 		ft_recursive_itoa(nb / b, i - 1, base, result);
 }
-char		*ft_itoa_base(int n, const char *base)
+
+char	*ft_itoa_base(int n, const char *base)
 {
 	long			nb;
 	long			b;
@@ -31,11 +32,11 @@ char		*ft_itoa_base(int n, const char *base)
 	nb = (long)n;
 	b = (long)ft_check_base(base);
 	len = ft_len_num(nb, b);
+	result = NULL;
 	if (b == 0 || b == 1)
 		return (0);
-	if (!(result = (char*)malloc(sizeof(char) * len)))
+	if (ft_norm_all((void *)&result, len + 1, (sizeof(char))))
 		return (NULL);
-	result[len] = '\0';
 	if (nb == -2147483648)
 	{
 		result[--len] = (char)base[n % b] - 1;

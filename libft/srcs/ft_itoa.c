@@ -12,14 +12,14 @@
 
 #include "libft.h"
 
-static void		ft_recursive(long nb, int len, char *res)
+static void	ft_recursive(long nb, int len, char *res)
 {
 	res[len] = nb % 10 + '0';
 	if (nb > 9)
 		ft_recursive(nb / 10, len - 1, res);
 }
 
-char			*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	long	nb;
 	int		len;
@@ -27,14 +27,14 @@ char			*ft_itoa(int n)
 
 	nb = (long)n;
 	len = ft_len_num(n, 10);
-	if (!(result = (char *)malloc(sizeof(char) * len + 1)))
+	result = NULL;
+	if (ft_norm_all((void *)&result, len + 1, (sizeof(char))))
 		return (NULL);
 	if (n < 0)
 	{
 		result[0] = '-';
 		nb = -nb;
 	}
-	result[len] = '\0';
 	ft_recursive(nb, len - 1, result);
 	return (result);
 }

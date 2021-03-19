@@ -12,14 +12,14 @@
 
 #include "ft_printf.h"
 
-int		ft_isvalue(char c)
+int	ft_isvalue(char c)
 {
 	if (ft_isdigit((int)c) || c == '*')
 		return (1);
 	return (0);
 }
 
-int		ft_isconvert(char c)
+int	ft_isconvert(char c)
 {
 	int		i;
 	char	*convert;
@@ -34,7 +34,7 @@ int		ft_isconvert(char c)
 
 char	*ft_get_base(char c)
 {
-	char *base;
+	char	*base;
 
 	if (c == 'p' || c == 'x')
 		base = "0123456789abcdef";
@@ -45,7 +45,7 @@ char	*ft_get_base(char c)
 	return (base);
 }
 
-size_t		ft_check_len(t_flags *flags, char *s)
+size_t	ft_check_len(t_flags *flags, char *s)
 {
 	size_t	len;
 	int		size;

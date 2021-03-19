@@ -12,10 +12,10 @@
 
 #include "libft.h"
 
-static void				ft_recursive_utoa(unsigned long long nb, int i,
-const char *base, char *result)
+static void	ft_recursive_utoa(unsigned long long nb, int i, const char *base,
+char *result)
 {
-	unsigned int 		b;
+	unsigned int	b;
 
 	b = (unsigned int)ft_check_base(base);
 	if (b == 0 || b == 1)
@@ -32,6 +32,7 @@ char	*ft_ulltoa_base(unsigned long long ull, char *base)
 	int					i;
 	int					b;
 
+	result = NULL;
 	save = ull;
 	i = 0;
 	b = ft_check_base(base);
@@ -42,10 +43,8 @@ char	*ft_ulltoa_base(unsigned long long ull, char *base)
 		ull /= b;
 		i++;
 	}
-	if (!(result = malloc((i + 1) * sizeof(char))))
+	if (ft_norm_all((void *)&result, sizeof(char), (i + 1)))
 		return (NULL);
-	result[i] = '\0';
-	// result = convert_ull(save, b, result, i);
 	ft_recursive_utoa(save, i - 1, base, result);
 	return (result);
 }

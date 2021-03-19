@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static int		ft_check_set(char c, char const *set)
+static int	ft_check_set(char c, char const *set)
 {
 	while (*set)
 	{
@@ -23,7 +23,7 @@ static int		ft_check_set(char c, char const *set)
 	return (0);
 }
 
-static int		ft_len_word(char const *s, char const *set)
+static int	ft_len_word(char const *s, char const *set)
 {
 	int		i;
 	int		size;
@@ -41,7 +41,7 @@ static int		ft_len_word(char const *s, char const *set)
 	return (len);
 }
 
-char			*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	int		i;
 	int		j;
@@ -55,7 +55,8 @@ char			*ft_strtrim(char const *s1, char const *set)
 	len = ft_len_word(s1, set);
 	if (len == 0)
 		return (ft_strdup(""));
-	if (!(s = (char*)malloc(sizeof(char) * len + 2)))
+	s = NULL;
+	if (ft_norm_all((void *)&s, len + 2, sizeof(char)))
 		return (NULL);
 	while (s1[i] && ft_check_set(s1[i], set) != 0)
 		i++;

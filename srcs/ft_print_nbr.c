@@ -12,35 +12,45 @@
 
 #include "ft_printf.h"
 
-static char	*ft_prepare_out(t_flags flags, int size, int nb)
+static char	ft_print_min_except(t_flags tf, int size, int i, int nb)
+{
+	if ((i == size - (tf.prec + 1) && nb < 0) && tf.rev == 0)
+		return ('-');
+	else
+		return (' ');
+}
+
+static char	*ft_prepare_out(t_flags tf, int size, int nb)
 {
 	char	*out;
 	int		neg;
 	int		i;
 
-	if (!(out = malloc(sizeof(char) * size + 1)))
+	out = NULL;
+	if (ft_norm_all((void *)&out, size + 1, sizeof(char)))
 		return (NULL);
 	neg = 0;
-	if (nb < 0 && (flags.rev == 1 || (flags.zero == 48 && flags.prec == -1)
-	|| (flags.size < flags.prec)))
+	if ((tf.rev == 1 || (tf.zero == 48 && tf.prec == -1) || (tf.size < tf.prec))
+		&& nb < 0)
 		out[neg++] = '-';
 	i = neg;
 	while (i != size)
-		if ((i < flags.prec + neg && flags.rev == 1 && flags.prec > 0) ||
-		(i >= size - (flags.prec + neg) && flags.rev == 0 && flags.prec > 1))
+	{
+		if ((i >= size - (tf.prec + neg) && tf.rev == 0 && tf.prec > 1)
+			|| (i < tf.prec + neg && tf.rev == 1 && tf.prec > 0))
 			out[i++] = '0';
-		else if (i < size - flags.prec && flags.prec != -1 && flags.prec != size)
-			if ((i == size - (flags.prec + 1) && nb < 0) && flags.rev == 0)
-				out[i++] = '-';
-			else
-				out[i++] = ' ';
+		else if (i < size - tf.prec && tf.prec != -1 && tf.prec != size)
+		{
+			out[i] = ft_print_min_except(tf, size, i, nb);
+			i++;
+		}
 		else
-			out[i++] = (char)flags.zero;
-	out[i] = '\0';
+			out[i++] = (char)tf.zero;
+	}
 	return (out);
 }
 
-static char	*ft_mix_str(char *dst, char *src, t_flags *flags)
+static char	*ft_mix_str(char *dst, char *src, t_flags *tf)
 {
 	int		i;
 	int		len;
@@ -49,26 +59,26 @@ static char	*ft_mix_str(char *dst, char *src, t_flags *flags)
 	i = ft_strlen(dst) - ft_strlen(src);
 	len = ft_strlen(src);
 	cp = 0;
-	if (src[0] == '-' && ((flags->zero == 48 && flags->prec == -1)
-	|| len < flags->prec || flags->rev == 1 || flags->prec >= len))
+	if (src[0] == '-' && ((tf->zero == 48 && tf->prec == -1)
+			|| len < tf->prec || tf->rev == 1 || tf->prec >= len))
 	{
 		src++;
 		cp = 1;
 	}
 	len = ft_strlen(src);
-	if (flags->rev == 1)
+	if (tf->rev == 1)
 	{
-		if (flags->prec > len)
-			ft_memcpy(dst + cp + (flags->prec - len), src, len);
+		if (tf->prec > len)
+			ft_memcpy(dst + cp + (tf->prec - len), src, len);
 		else
 			ft_memcpy(dst + cp, src, len);
 	}
-	else if (flags->rev == 0)
+	else if (tf->rev == 0)
 		ft_memcpy(dst + i + cp, src, len);
 	return (dst);
 }
 
-int			ft_print_num(t_flags *flags)
+int	ft_print_num(t_flags *flags)
 {
 	int		nb;
 	size_t	size;
@@ -81,6 +91,7 @@ int			ft_print_num(t_flags *flags)
 	else
 		nb_str = ft_itoa_base(nb, ft_get_base(flags->spec));
 	size = ft_check_len(flags, nb_str);
+	out = NULL;
 	if (size == ft_strlen(nb_str))
 		ft_print_and_clean(flags, nb_str, size);
 	else if (size > ft_strlen(nb_str))
