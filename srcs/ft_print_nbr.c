@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 18:50:50 by bmangin           #+#    #+#             */
-/*   Updated: 2021/03/20 11:29:19 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/20 12:46:14 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static char	ft_print_min_except(t_flags tf, int size, int i, int nb)
 {
-	if ((i == size - (tf.prec + 1) && nb < 0) && tf.rev == 0)
+	if (nb < 0 && (((i == size - (tf.prec + 1) && tf.prec != 0) && tf.rev == 0) || (i == 0 && tf.prec == 0 && tf.rev == 1)))
 		return ('-');
-	// else if (tf.zero == 48)
-		// return (tf.zero);
+	else if (tf.zero == 48 && tf.prec < 0 && tf.size > 1)
+		return (tf.zero);
 	else
 		return (' ');
 }
@@ -32,7 +32,8 @@ static char	*ft_prepare_out(t_flags tf, int size, int nb)
 	if (ft_norm_all((void *)&out, size + 1, sizeof(char)))
 		return (NULL);
 	neg = 0;
-	if ((tf.rev == 1 || (tf.zero == 48 && tf.prec == -1) || (tf.size < tf.prec))
+	// ft_prints(&tf);
+	if ((tf.rev == 1 || (tf.zero == 48 && tf.prec < 0) || (tf.size < tf.prec))
 		&& nb < 0)
 		out[neg++] = '-';
 	i = neg;
@@ -61,8 +62,8 @@ static char	*ft_mix_str(char *dst, char *src, t_flags *tf)
 	i = ft_strlen(dst) - ft_strlen(src);
 	len = ft_strlen(src);
 	cp = 0;
-	if (src[0] == '-' && ((tf->zero == 48 && tf->prec == -1)
-			|| len < tf->prec || tf->rev == 1 || tf->prec >= len))
+	if (src[0] == '-' && ((tf->zero == 48 && tf->prec < 0)
+			|| tf->rev == 1 || tf->prec >= len))
 	{
 		src++;
 		cp = 1;
