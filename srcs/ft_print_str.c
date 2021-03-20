@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 18:50:50 by bmangin           #+#    #+#             */
-/*   Updated: 2021/03/13 12:03:00 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/20 10:48:48 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	ft_print_str(t_flags *flags)
 		out = ft_reverse_str(*flags, s, size, len);
 	}
 	ft_print_and_clean(flags, out, size);
-	return (ft_strlen(out));
+	return (size);
 }
 
 int	ft_print_char(t_flags *flags)

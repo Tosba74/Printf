@@ -6,7 +6,7 @@
 /*   By: bmangin <bmangin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 18:50:50 by bmangin           #+#    #+#             */
-/*   Updated: 2021/03/16 15:57:52 by bmangin          ###   ########lyon.fr   */
+/*   Updated: 2021/03/20 11:29:19 by bmangin          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static char	ft_print_min_except(t_flags tf, int size, int i, int nb)
 {
 	if ((i == size - (tf.prec + 1) && nb < 0) && tf.rev == 0)
 		return ('-');
+	// else if (tf.zero == 48)
+		// return (tf.zero);
 	else
 		return (' ');
 }
@@ -86,7 +88,9 @@ int	ft_print_num(t_flags *flags)
 	char	*out;
 
 	nb = (int)va_arg(flags->ap, int);
-	if (nb == 0 && (flags->prec == -1 || flags->prec == flags->size))
+	if (nb == 0 && flags->prec == 0) 
+		nb_str = ft_strdup("");
+	else if (nb == 0 && ((flags->prec < 1 || flags->size == flags->prec) || flags->prec == 1))
 		nb_str = ft_strdup("0");
 	else
 		nb_str = ft_itoa_base(nb, ft_get_base(flags->spec));
