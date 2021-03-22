@@ -69,15 +69,16 @@ _P=\x1b[35m
 _C=\x1b[36m
 _E=\x1b[0m
 
-all :		${NAME}
+all :		${NAME} libft
 
 %.o : %.c	${INC}
 	${CC} ${FLAGS} -I ${PATH_I} -o $@ -c $<
-	echo "${_Y}compiling >>>${E}${_G} $<${_E}"
+	echo "${_Y}compiling >>>${_G} $<${_E}"
 
 ${NAME}	:	${TMP} | crea_b
 	${MV} $? ${PATH_O}
 	${AR} $@ ${BIN}
+	echo "${_P}-----${_E}\t${_R}        LIB FT     ${_E}\t${_P}-----${_E}"
 	echo "${_P}-----${_E}\t${_R}   creating archive${_E}\t${_P}-----${_E}"
 	echo "${_P}-----${_E}\t${_R}    library index${_E}\t${_P}-----${_E}"
 	${I_LIB} $@
@@ -108,7 +109,6 @@ libft:
 		echo "$(_C) _/       _/ _/    _/    _/       _/$(_E)"
 		echo "$(_C)_/_/_/_/ _/ _/_/_/      _/         _/_/$(_E)"
 		echo "${_B}                          is ready !!!${_E}"
-		echo "\n"
 
 monkey:
 		clear
