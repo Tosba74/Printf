@@ -22,7 +22,7 @@ FILES	= ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 		  ft_strstr.c ft_strcat.c ft_strncat.c ft_strlcat.c ft_strncpy.c \
 		  ft_split_whitespaces.c ft_strcmp.c ft_len_num.c ft_putchar_len.c \
 		  ft_putstr_len.c ft_hexa.c ft_memdel.c ft_utoa_base.c ft_norm_all.c \
-		  ft_ulltoa_base.c get_next_line.c 
+		  ft_ulltoa_base.c 
 
 FILES_B	= ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c \
 		  ft_lstiter.c ft_lstlast.c ft_lstmap.c ft_lstnew.c ft_lstsize.c \
@@ -35,13 +35,13 @@ INC		= ${addprefix ${PATH_I}, ${HDRS}}
 
 SRCS	= ${addprefix ${PATH_S}, ${FILES}}
 
-TMP		= ${addprefix ${PATH_S}, ${OBJS}}
+BIN		= ${addprefix ${PATH_S}, ${OBJS}}
 
-TMP_B	= ${addprefix ${PATH_S}, ${OBJS_B}}
+BIN_B	= ${addprefix ${PATH_S}, ${OBJS_B}}
 
-BIN		= ${addprefix ${PATH_O}, ${OBJS}}
+BINA	= ${addprefix ${PATH_O}, ${OBJS}}
 
-BIN_B	= ${addprefix ${PATH_O}, ${OBJS_B}}
+BINA_B	= ${addprefix ${PATH_O}, ${OBJS_B}}
 
 CC		= clang
 
@@ -69,15 +69,15 @@ _P=\x1b[35m
 _C=\x1b[36m
 _E=\x1b[0m
 
-all :		${NAME} libft
+all :		${NAME}
 
 %.o : %.c	${INC}
 	${CC} ${FLAGS} -I ${PATH_I} -o $@ -c $<
-	echo "${_Y}compiling >>>${_G} $<${_E}"
+	printf "\e[?35l${_Y}$< >>> ${_G}$@${_E} \e[0m\r\e[?35h"
 
-${NAME}	:	${TMP} | crea_b
-	${MV} $? ${PATH_O}
+${NAME}	:	${BIN}
 	${AR} $@ ${BIN}
+	echo "\n"
 	echo "${_P}-----${_E}\t${_R}        LIB FT     ${_E}\t${_P}-----${_E}"
 	echo "${_P}-----${_E}\t${_R}   creating archive${_E}\t${_P}-----${_E}"
 	echo "${_P}-----${_E}\t${_R}    library index${_E}\t${_P}-----${_E}"
@@ -85,7 +85,6 @@ ${NAME}	:	${TMP} | crea_b
 
 
 bonus :		${TMP_B}
-	${MV} $? ${PATH_O}
 	${AR} ${NAME} ${BIN_B}
 	echo "${_P}-----${_E}\t${_R}    library index${_E}\t${_P}-----${_E}"
 	${I_LIB} ${NAME}
@@ -109,6 +108,7 @@ libft:
 		echo "$(_C) _/       _/ _/    _/    _/       _/$(_E)"
 		echo "$(_C)_/_/_/_/ _/ _/_/_/      _/         _/_/$(_E)"
 		echo "${_B}                          is ready !!!${_E}"
+		echo "\n"
 
 monkey:
 		clear

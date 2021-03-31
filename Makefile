@@ -56,18 +56,19 @@ _P=\x1b[35m
 _C=\x1b[36m
 _E=\x1b[0m
 
-all: 	${NAME}
+all: 		lib ${NAME}
 
+lib:	
+			make -C ${LIBFT_PATH}
 
-%.o: %.c	${INC}
-			${CC} ${FLAGS} -I ${INC_PATH} -c $< -o ${<:.c=.o}
+%.o: %.c	${INC} ${LIBFT}
+			${CC} ${FLAGS} -I ${INC_PATH} -c $< -o $@
 			printf "\e[?35l${_Y}$< >>> ${_G}$@${_E} \e[0m\r\e[?35h"
 
-$(NAME):	${OBJS}
+${NAME}:	${OBJS} 
+			cp ${LIBFT} ${NAME} 
+			${AR} ${NAME} $?
 			echo "\n"
-			make -C ${LIBFT_PATH}
-			cp ${LIBFT} $(NAME)
-			${AR} ${NAME} ${OBJS}
 			echo "${_P}-----${_E}\t${_R}        PRINTF     ${_E}\t${_P}-----${_E}"
 			echo "${_P}-----${_E}\t${_R}   creating archive${_E}\t${_P}-----${_E}"
 			echo "${_P}-----${_E}\t${_R}    library index${_E}\t${_P}-----${_E}"
@@ -90,9 +91,8 @@ test:		${NAME}
 			./a.out | cat -e
 
 kitty:
-	        echo "\n"
 	        echo "      ${_Y}_           ${_R}_${_E}"
-	        echo "     ${_Y}/ \_______ ${_R}/|_\\ ${_E}"
+		    echo "     ${_Y}/ \_______ ${_R}/|_\\ ${_E}"
 	        echo "    ${_Y}/          ${_R}/_/ \_\\ ${_E}"
 	        echo "   ${_Y}/             ${_R}\_/ /${_E}"
 	        echo "__${_Y}|${_E}_              ${_R}|/${_Y}|${_E}__"

@@ -13,11 +13,8 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include <unistd.h>
-# include <stdlib.h>
 # include <stdarg.h>
 # include "../libft/includes/libft.h"
-# include <stdio.h>
 
 typedef struct s_flags
 {
@@ -42,11 +39,8 @@ int				ft_print_hexa(t_flags *flags);
 int				ft_print_u(t_flags *flags);
 int				ft_trash_user(t_flags *flags);
 char			*ft_get_base(char c);
+void			ft_init_flags(t_flags *flags);
 void			ft_print_and_clean(t_flags *flags, char *s, int size);
 size_t			ft_check_len(t_flags *flags, char *s);
-/*
-**	TEST
-*/
-void			ft_prints(t_flags *flags);
 
 #endif

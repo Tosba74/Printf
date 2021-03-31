@@ -12,14 +12,58 @@
 
 #include "ft_printf.h"
 
-static char	ft_print_min_except(t_flags tf, int size, int i, int nb)
+size_t	ft_check_len(t_flags *flags, char *s)
 {
-	if (nb < 0 && (((i == size - (tf.prec + 1) && tf.prec != 0) && tf.rev == 0) || (i == 0 && tf.prec == 0 && tf.rev == 1)))
-		return ('-');
-	else if (tf.zero == 48 && tf.prec < 0 && tf.size > 1)
-		return (tf.zero);
+	size_t	len;
+	int		size;
+
+	len = ft_strlen(s);
+	if (flags->size != -1)
+	{
+		if (flags->size < 0)
+		{
+			size = flags->size * -1;
+			flags->rev = 1;
+		}
+		else
+			size = flags->size;
+	}
 	else
-		return (' ');
+		size = 0;
+	if ((int)len < size)
+		len = size;
+	if ((int)len <= flags->prec)
+	{
+		len = flags->prec;
+		if (s[0] == '-')
+			len++;
+	}
+	return (len);
+}
+
+static char	ft_print_good_char(t_flags tf, int size, int i, int nb)
+{
+	int		neg;
+
+	neg = 0;
+	if ((tf.rev == 1 || (tf.zero == 48 && tf.prec < 0) || (tf.size < tf.prec))
+		&& nb < 0)
+		neg = 1;
+	if ((i >= size - (tf.prec + neg) && tf.rev == 0 && tf.prec > 1)
+		|| (i < tf.prec + neg && tf.rev == 1 && tf.prec > 0))
+		return ('0');
+	else if (i < size - tf.prec && tf.prec != -1 && tf.prec != size)
+	{
+		if (nb < 0 && (((i == size - (tf.prec + 1) && tf.prec != 0)
+					&& tf.rev == 0) || (i == 0 && tf.prec == 0 && tf.rev == 1)))
+			return ('-');
+		else if (tf.zero == 48 && tf.prec < 0 && tf.size > 1)
+			return (tf.zero);
+		else
+			return (' ');
+	}
+	else
+		return (tf.zero);
 }
 
 static char	*ft_prepare_out(t_flags tf, int size, int nb)
@@ -32,23 +76,14 @@ static char	*ft_prepare_out(t_flags tf, int size, int nb)
 	if (ft_norm_all((void *)&out, size + 1, sizeof(char)))
 		return (NULL);
 	neg = 0;
-	// ft_prints(&tf);
 	if ((tf.rev == 1 || (tf.zero == 48 && tf.prec < 0) || (tf.size < tf.prec))
 		&& nb < 0)
 		out[neg++] = '-';
 	i = neg;
 	while (i != size)
 	{
-		if ((i >= size - (tf.prec + neg) && tf.rev == 0 && tf.prec > 1)
-			|| (i < tf.prec + neg && tf.rev == 1 && tf.prec > 0))
-			out[i++] = '0';
-		else if (i < size - tf.prec && tf.prec != -1 && tf.prec != size)
-		{
-			out[i] = ft_print_min_except(tf, size, i, nb);
-			i++;
-		}
-		else
-			out[i++] = (char)tf.zero;
+		out[i] = ft_print_good_char(tf, size, i, nb);
+		i++;
 	}
 	return (out);
 }
@@ -89,9 +124,10 @@ int	ft_print_num(t_flags *flags)
 	char	*out;
 
 	nb = (int)va_arg(flags->ap, int);
-	if (nb == 0 && flags->prec == 0) 
+	if (nb == 0 && flags->prec == 0)
 		nb_str = ft_strdup("");
-	else if (nb == 0 && ((flags->prec < 1 || flags->size == flags->prec) || flags->prec == 1))
+	else if (nb == 0 && ((flags->prec < 1 || flags->size == flags->prec)
+			|| flags->prec == 1))
 		nb_str = ft_strdup("0");
 	else
 		nb_str = ft_itoa_base(nb, ft_get_base(flags->spec));

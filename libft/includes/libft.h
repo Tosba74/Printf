@@ -15,8 +15,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <string.h>
-# include <limits.h>
 
 typedef struct s_list
 {
@@ -107,9 +105,5 @@ t_list				*ft_lstnew(void *content);
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
 t_list				*ft_lstlast(t_list *lst);
-/*
-**					GNL
-*/
-int					get_next_line(int fd, char **line);
 
 #endif
